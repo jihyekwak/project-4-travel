@@ -24,5 +24,5 @@ class Travel_List(TemplateView):
             context['header'] = f"Searching for {title}"
         else:
             context['travels'] = Travel.objects.all()
-            context['header'] = "All Travles"
+            context['header'] = "All Travels"
         return context

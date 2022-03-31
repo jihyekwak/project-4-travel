@@ -11,10 +11,18 @@
     </form>
     
     <p>{{header}} ({{travels|length}})</p>
-    {% for travel in travels %}
+    <div class="list-grid">
+        {% for travel in travels %}
         <div class="travel-card-content">
-            <h3>{{travel.title}}</h3>
-            <img src="{{travel.img}}" alt="{{travel.title}}">
+            <div class="travel-card-img">
+                <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+            </div>
+            <div class="travel-card-text">
+                <h3>{{travel.title}}</h3>
+            </div>
+
         </div>
     {% endfor %}
+    </div>
+    
 {% endblock %}
