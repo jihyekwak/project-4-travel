@@ -1,4 +1,5 @@
 # project-4-travel
+
 #### Table of Contents  
 1. About The Project
 2. User Stories
@@ -25,7 +26,7 @@ AAU, I want to search posts.
 AAU, I want to see all travel posts.
 AAU, I want to click the posts.
 
-### On the detail page:
+#### On the detail page:
 AAU, I want to see the detail of post.  
 AAU, I want to create, edit, and delete comments.  
 
@@ -37,6 +38,8 @@ AAU, I want to click logout button.
 ![image](https://user-images.githubusercontent.com/47770303/160962673-59ea7b6c-dee9-4cfc-a077-7a9b15c4d792.png)  
 
 ## ERD
-![image](https://user-images.githubusercontent.com/47770303/160970377-e8a16975-c631-4a8a-9bf7-9e535ce14cfb.png)  
+![image](https://user-images.githubusercontent.com/47770303/160985129-b3414109-6959-47ea-96b6-e5df428a77b5.png)
 
 ## Wireframe
+![image](https://user-images.githubusercontent.com/47770303/160985002-1d761305-2293-4c83-b5cd-aa4fb284c24d.png)
+
