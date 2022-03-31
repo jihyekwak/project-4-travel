@@ -1,9 +1,9 @@
-from re import template
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
 from .models import Travel
 
@@ -38,3 +38,12 @@ class Travel_Create(CreateView):
 class Travel_Detail(DetailView):
     model = Travel
     template_name = 'travel_detail.html'
+    success_url= '/travels/'
+
+class Travel_Update(UpdateView):
+    model = Travel
+    fields = '__all__'
+    template_name = 'travel_update.html'
+
+    def get_success_url(self):
+        return reverse('travel_detail', kwargs={'pk': self.object.pk})

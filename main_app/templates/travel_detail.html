@@ -12,7 +12,7 @@
             <p>Budget: {{travel.budget}}</p>
         </div>
         <div>
-            <button>Edit/Delete</button>
+            <a href="{% url 'travel_update' travel.pk %}"><button>Edit/Delete</button></a>
         </div>
         <div>
             <h3>Itinerary</h3>
