@@ -18,5 +18,11 @@ class Travel_List(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['travels'] = Travel.objects.all()
+        title = self.request.GET.get("title")
+        if title != None:
+            context['travels'] = Travel.objects.filter(title__icontains=title)
+            context['header'] = f"Searching for {title}"
+        else:
+            context['travels'] = Travel.objects.all()
+            context['header'] = "All Travles"
         return context

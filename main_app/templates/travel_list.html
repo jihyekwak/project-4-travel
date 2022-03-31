@@ -2,6 +2,15 @@
 
 {% block content %}
     <h1>Travel List Page</h1>
+    <form class="search-travel">
+        <div>
+            <input type="text" name="title" placeholder="">
+            <input type="submit" value="Search">
+            <a href="{% url 'travel_list' %}">Clear Search</a>
+        </div>
+    </form>
+    
+    <p>{{header}} ({{travels|length}})</p>
     {% for travel in travels %}
         <div class="travel-card-content">
             <h3>{{travel.title}}</h3>
