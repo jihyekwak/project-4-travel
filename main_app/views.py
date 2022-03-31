@@ -47,3 +47,8 @@ class Travel_Update(UpdateView):
 
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
+
+class Travel_Delete(DeleteView):
+    model = Travel
+    template_name = 'travel_delete_confirmation.html'
+    success_url = '/travels/'

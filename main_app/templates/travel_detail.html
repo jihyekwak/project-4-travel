@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     <h1>Travel Detail Page</h1>
         <div class="detail-header">
             <img class="detail-header-img" src="{{travel.img}}" alt="{{travel.title}}">
@@ -12,7 +13,8 @@
             <p>Budget: {{travel.budget}}</p>
         </div>
         <div>
-            <a href="{% url 'travel_update' travel.pk %}"><button>Edit/Delete</button></a>
+            <a href="{% url 'travel_update' travel.pk %}"><button>Edit</button></a>
+            <a href="{% url 'travel_delete' travel.pk %}"><button>Delete</button></a>
         </div>
         <div>
             <h3>Itinerary</h3>
