@@ -12,7 +12,6 @@ h1 {
 .travel-card-content {
     width: 400px;
     height: 600px;
-    border: 1px dotted black;
 }
 
 .travel-card-img, .travel-card-text {
@@ -22,4 +21,17 @@ h1 {
 .travel-img {
     width: 100%;
     height: 100%;
+}
+
+.detail-header {
+    width: 100%;
+    height: 400px;
+}
+
+.detail-header-img {
+    width: 100%;
+    height: 100%;
+}
+div {
+    border: 1px dotted black;
 }

@@ -2,6 +2,8 @@ from re import template
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.base import TemplateView
+from django.views.generic import DetailView
+from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 from .models import Travel
 
@@ -26,3 +28,13 @@ class Travel_List(TemplateView):
             context['travels'] = Travel.objects.all()
             context['header'] = "All Travels"
         return context
+
+class Travel_Create(CreateView):
+    model = Travel
+    fields = '__all__'
+    template_name = 'travel_create.html'
+    success_url = '/travels/'
+
+class Travel_Detail(DetailView):
+    model = Travel
+    template_name = 'travel_detail.html'

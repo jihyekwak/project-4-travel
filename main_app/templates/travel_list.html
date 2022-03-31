@@ -14,13 +14,14 @@
     <div class="list-grid">
         {% for travel in travels %}
         <div class="travel-card-content">
-            <div class="travel-card-img">
-                <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
-            </div>
-            <div class="travel-card-text">
-                <h3>{{travel.title}}</h3>
-            </div>
-
+            <a href="{% url 'travel_detail' travel.pk %}">
+                <div class="travel-card-img">
+                    <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                </div>
+                <div class="travel-card-text">
+                    <h3>{{travel.title}}</h3>
+                </div>
+            </a>
         </div>
     {% endfor %}
     </div>
