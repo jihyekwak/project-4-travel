@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Travel List Page</h1>
+    {% for travel in travels %}
+        <div class="travel-card-content">
+            <h3>{{travel.title}}</h3>
+            <img src="{{travel.img}}" alt="{{travel.title}}">
+        </div>
+    {% endfor %}
+{% endblock %}
