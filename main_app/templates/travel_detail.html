@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Travel Detail Page</h1>
+        <div class="detail-header">
+            <img class="detail-header-img" src="{{travel.img}}" alt="{{travel.title}}">
+        </div>
+        <div class="detail-content">
+            <h3>{{travel.title}}</h3>
+            <p>Departure Date: {{travel.departure_date}}</p>
+            <p>Return Date: {{travel.return_date}}</p>
+            <p>Budget: {{travel.budget}}</p>
+        </div>
+        <div>
+            <a href="{% url 'travel_update' travel.pk %}"><button>Edit</button></a>
+            <a href="{% url 'travel_delete' travel.pk %}"><button>Delete</button></a>
+        </div>
+        <div>
+            <h3>Itinerary</h3>
+        </div>
+        <div>
+            <button>Add Itinerary</button>
+        </div>
+        <div>
+            <h3>Day1</h3>
+        </div>
+        <div>
+            <h3>Day2</h3>
+        </div>
+
+    </div>
+    
+{% endblock %}

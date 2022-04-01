@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Edit your Travel</h1>
+    <form class="create-form" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" />
+    </form>
+    <a href="{% url 'travel_detail' travel.pk%}"><button>Cancel</button></a>
+
+{% endblock %}
