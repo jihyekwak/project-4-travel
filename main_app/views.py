@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
-from .models import Travel
+from .models import Travel, Itinerary
 
 # Create your views here.
 
@@ -38,7 +38,6 @@ class Travel_Create(CreateView):
 class Travel_Detail(DetailView):
     model = Travel
     template_name = 'travel_detail.html'
-    success_url= '/travels/'
 
 class Travel_Update(UpdateView):
     model = Travel
@@ -52,3 +51,16 @@ class Travel_Delete(DeleteView):
     model = Travel
     template_name = 'travel_delete_confirmation.html'
     success_url = '/travels/'
+
+class Itinerary_Create(CreateView):
+    model = Itinerary
+    fields = '__all__'
+    template_name = 'itinerary_create.html'
+
+    def get_success_url(self):
+        return reverse('travel_detail', kwargs={'pk': self.object.travel.id})
+    
+    def from_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.travel = self.request.travel
+        self.object.save()

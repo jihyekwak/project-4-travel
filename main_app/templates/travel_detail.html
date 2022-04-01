@@ -20,14 +20,18 @@
             <h3>Itinerary</h3>
         </div>
         <div>
-            <button>Add Itinerary</button>
+            <a href="{% url 'itinerary_create' travel.pk %}"><button>Add Itinerary</button></a>
         </div>
         <div>
-            <h3>Day1</h3>
+            {% for itinerary in travel.itineraries.all %}
+            <div class="itinerary-card-content">
+                <a href="">
+                    <h4>Day{{itinerary.day}} : {{itinerary.date}}</h4>
+                </a>
+            </div>
+        {% endfor %}
         </div>
-        <div>
-            <h3>Day2</h3>
-        </div>
+        
 
     </div>
     

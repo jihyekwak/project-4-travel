@@ -9,4 +9,6 @@ urlpatterns = [
     path('travels/<int:pk>/update', views.Travel_Update.as_view(), name='travel_update'),
     path('travels/<int:pk>/delete', views.Travel_Delete.as_view(), name='travel_delete'),
 
+    path('travels/<int:pk>/itineraries/new', views.Itinerary_Create.as_view(), name='itinerary_create'),
+
 ]
