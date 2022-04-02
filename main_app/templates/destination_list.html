@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Destination List Page</h1>
+    <a href="{% url 'destination_create' %}">Add new Destination</a>
+
+    <div class="list-grid">
+        {% for destination in destinations %}
+        <div class="destination-card-content">
+            <a href="{% url 'destination_detail' destination.id %}">
+                <div class="destination-card-img">
+                    <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+                </div>
+                <div class="destination-card-text">
+                    <h3>{{destination.city}}</h3>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+    
+{% endblock %}

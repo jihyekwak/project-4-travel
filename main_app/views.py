@@ -94,9 +94,7 @@ class Destination_Create(CreateView):
 
 class Destination_Detail(DetailView):
     model = Destination
-    fields = '__all__'
-    template_name = 'destination_create.html'
-    success_url = "/destinations/"
+    template_name = 'destination_detail.html'
 
 class Destination_Update(UpdateView):
     model = Destination
