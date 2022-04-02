@@ -5,9 +5,13 @@
     <h1>Travel Detail Page</h1>
         <div class="detail-header">
             <img class="detail-header-img" src="{{travel.img}}" alt="{{travel.title}}">
+            <div class="detail-header-text">
+                <h1>{{travel.title}}</h1>
+                <h2>{{travel.departure_date}} ~ {{travel.return_date}}</h2>
+            </div>
         </div>
         <div class="detail-content">
-            <h3>{{travel.title}}</h3>
+            <h2>{{travel.title}}</h2>
             <p>Departure Date: {{travel.departure_date}}</p>
             <p>Return Date: {{travel.return_date}}</p>
             <p>Budget: {{travel.budget}}</p>
@@ -16,27 +20,70 @@
             <a href="{% url 'travel_update' travel.pk %}"><button>Edit</button></a>
             <a href="{% url 'travel_delete' travel.pk %}"><button>Delete</button></a>
         </div>
-        <div>
-            <h3>Itinerary</h3>
-        </div>
-        <div>
-            <a href="{% url 'itinerary_create' travel.pk %}"><button>Add Itinerary</button></a>
+        <div class="detail-itinerary-add">
+            <h2>Itinerary</h2>
+            <a href="{% url 'itinerary_create' travel.pk %}"><button> + Add Itinerary</button></a>
         </div>
         <div>
             {% for itinerary in travel.itineraries.all %}
             <div class="itinerary-card-content">
-                <a href="">
-                    <h4>Day{{itinerary.day}} : {{itinerary.date}}</h4>
-                </a>
-                    <p>{{itinerary.transportarion}}</p>
-                    <p>{{itinerary.accomodation}}</p>
-                    <p>{{itinerary.things_to_do}}</p>
-                    <p>{{itinerary.meals}}</p>
-                    <p>{{itinerary.daily_budget}}</p>
-            </div>
-            <div>
-                <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
-                <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
+                <h3>Day{{itinerary.day}}</h3>
+                    <p>Date: {{itinerary.date}}</p>
+                    <p>Transportation: {{itinerary.transportation}}</p>
+                    <p>Accomodation: {{itinerary.accomodation}}</p>
+                    <p>Thinkgs To Do:</p>
+                    {% for thing_to_do in itinerary.things_to_do %}
+                        <span>{{thing_to_do}}</span>
+                    {% endfor %}
+                    <p>Meals:</p>
+                    {% for meal in itinerary.meals %}
+                        <span>{{meal}}</span>
+                    {% endfor %}
+                    <p>Budget: {{itinerary.daily_budget}}</p>
+
+                <!-- <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Transportation</th>
+                            <th>Accomodation</th>
+                            <th>Things To Do</th>
+                            <th>Meals</th>
+                            <th>Budget</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p>{{itinerary.day}}</p></td>
+                            <td><p>{{itinerary.date}}</p></td>
+                            <td><p>{{itinerary.transportation}}</p></td>
+                            <td><p>{{itinerary.accomodation}}</p></td>
+                            <td>
+                                {% for thing_to_do in itinerary.things_to_do %}
+                                <p>{{thing_to_do}}</p>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for meal in itinerary.meals %}
+                                <p>{{meal}}</p>
+                            {% endfor %}
+                            </td>
+                            <td><p>{{itinerary.daily_budget}}</p></td>
+                            <td>
+                                <div class="detail-itinerary-edit-delete">
+                                    <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
+                                    <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <div class="">
+                    <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
+                    <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
+                </div>
             </div>
         {% endfor %}
         </div>

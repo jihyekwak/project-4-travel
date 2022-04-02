@@ -1,6 +1,6 @@
-h1 {
-    background-color: #66cdaa70;
-}
+/* div {
+    border: 1px dotted black;
+} */
 
 .list-grid {
     margin: 20px;
@@ -9,9 +9,13 @@ h1 {
     gap: 30px;
 }
 
+/* Travel List Page */
+
 .travel-card-content {
     width: 400px;
     height: 600px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .travel-card-img, .travel-card-text {
@@ -23,15 +27,71 @@ h1 {
     height: 100%;
 }
 
+/* Travel Detail Page */
+
 .detail-header {
     width: 100%;
     height: 400px;
+    position: relative;
+    text-align: center;
 }
 
 .detail-header-img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin: auto;
+    display: block;
 }
-div {
-    border: 1px dotted black;
+
+.detail-header-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
 }
+
+.itinerary-card-content {
+    margin: 0 0 20px 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.detail-itinerary-add {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.detail-itinerary-add a{
+    text-decoration: none;
+}
+
+/* table {
+    width: 100%;
+}
+
+table, th, td {
+    border: 2px solid gray;
+    border-collapse: collapse;
+    padding: 0 5px;
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    vertical-align: top;
+}
+
+.detail-itinerary-edit-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25%;
+    gap: 5px;
+} */
