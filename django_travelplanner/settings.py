@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'django_travelplanner.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gaproject-travelplanner',
+        'NAME': 'ga-travelplanner',
     }
 }
 
