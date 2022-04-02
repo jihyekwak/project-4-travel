@@ -147,9 +147,13 @@ def signup_view(request):
             user = form.save()
             login(request, user)
             print('Hi', user.username)
-            return HttpResponseRedirect('/users/' + str(user))
+            return HttpResponseRedirect('/user/' + str(user))
         else:
             return render(request, 'signup.html', {'form':form})
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form':form})
+
+def profile(request, username):
+    user = User.objects.get(username = username)
+    return render(request, 'profile.html', {'user':user})
