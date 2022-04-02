@@ -34,12 +34,12 @@ Post List Page / Detail Page:
 ![image](https://user-images.githubusercontent.com/47770303/160962673-59ea7b6c-dee9-4cfc-a077-7a9b15c4d792.png)  
 
 # ERD
-![image](https://user-images.githubusercontent.com/47770303/160996473-15c7935e-75f9-46d4-bb7d-423ad872794c.png)
+![image](https://user-images.githubusercontent.com/47770303/161394120-89eef39d-c9d8-4b31-8631-c3e163632bd5.png)
 
 
 # Wireframes
-![image](https://user-images.githubusercontent.com/47770303/160989685-50d8cae4-8c3e-4425-8ad4-fd10729c0359.png)
-![image](https://user-images.githubusercontent.com/47770303/160989772-e4a35f1c-985e-4a2c-9b7d-afdfc139f47e.png)
+![image](https://user-images.githubusercontent.com/47770303/161394182-fb35d194-b453-4310-896c-dafe03dc27ef.png)
+![image](https://user-images.githubusercontent.com/47770303/161394203-96c7ea33-0cae-4384-b224-ca5c1c3c4dce.png)
 
 # Technologies Used
 - Django
