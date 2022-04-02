@@ -74,4 +74,11 @@ def itinerary_update(request, pk, itinerary_id):
         form.save()
         return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, 'itinerary_update.html', {'itineray':itinerary, 'form':form})
-    
+
+def itinerary_delete(request, pk, itinerary_id):
+    itinerary = Itinerary.objects.get(id=itinerary_id)
+    if request.method == "POST":
+        itinerary.delete()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, "itinerary_delete_confirmation.html", {'itinerary':itinerary})
+

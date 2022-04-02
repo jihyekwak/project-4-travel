@@ -36,6 +36,7 @@
             </div>
             <div>
                 <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
+                <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
             </div>
         {% endfor %}
         </div>
