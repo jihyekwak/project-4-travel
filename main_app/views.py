@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary
+from .models import Travel, Itinerary, Destination
 from .forms import ItineraryForm
 
 # Create your views here.
@@ -82,3 +82,31 @@ def itinerary_delete(request, pk, itinerary_id):
         return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, "itinerary_delete_confirmation.html", {'itinerary':itinerary})
 
+def destination_list(request):
+    destinations = Destination.objects.all()
+    return render(request, 'destination_list.html', {'destinations': destinations})
+
+class Destination_Create(CreateView):
+    model = Destination
+    fields = '__all__'
+    template_name = 'destination_create.html'
+    success_url = "/destinations/"
+
+class Destination_Detail(DetailView):
+    model = Destination
+    fields = '__all__'
+    template_name = 'destination_create.html'
+    success_url = "/destinations/"
+
+class Destination_Update(UpdateView):
+    model = Destination
+    fields = '__all__'
+    template_name = 'destination_update.html'
+    
+    def get_success_url(self):
+        return reverse('destination_detail', kwargs={'pk': self.object.pk})
+
+class Destination_Delete(DeleteView):
+    model = Destination
+    template_name = 'destination_delete_confirmation.html'
+    success_url = "/destinations/"
