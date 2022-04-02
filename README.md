@@ -1,4 +1,5 @@
 # Travel Planner
+This app is for travel planning. Plan your travels with your family and friends, and share the plans and itineraries with others. Leave precious memories through travels.
 
 #### Table of Contents  
 1. [About The Project](#about-the-project)
@@ -10,21 +11,22 @@
 
 # About The Project  
 
+
 # User Stories
-Landing / Main Page:
+Home Page (Laning page) / General:
 - AAU, I want to know what the website is about.  
 - AAU, I want to sign up and login. 
 - AAU, I want to have navigation for pages.  
 - AAU, I want to click logout button. 
 
-Profile Page:  
+Profile Page (My Travel Page):  
 - AAU, I want to edit my profile.  
 - AAU, I want to read, create, edit, and delete travel plans.   
 - AAU, I want to read, create, edit, and delete travel itineraries.  
 - AAU, I want to read comments on my posts.  
 - AAU, I want to create, edit, delete my comments.  
 
-Post List Page / Detail Page:  
+Post List Page (Travels, Destinations) / Detail Page (Travel, Destination):  
 - AAU, I want to search posts. 
 - AAU, I want to see the list of posts. 
 - AAU, I want to see the detail of post.  
