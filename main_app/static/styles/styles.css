@@ -27,6 +27,10 @@
     height: 100%;
 }
 
+.travel-card-text {
+    padding: 5px 10px;
+}
+
 /* Travel Detail Page */
 
 .detail-header {
@@ -95,3 +99,38 @@ td {
     margin-top: 25%;
     gap: 5px;
 } */
+
+/* Destination List Page */
+
+.destination-card-content {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.destination-card-img {
+    height: 300px;
+}
+
+.destination-img {
+    width: 100%;
+    height: 100%;
+}
+
+.destination-card-text {
+    padding: 5px 10px;
+}
+
+/* Destination Detail Page */
+.destination-detail-header {
+    width: 100%;
+    height: 400px;
+}
+
+.destination-detail-header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
