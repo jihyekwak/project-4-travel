@@ -20,8 +20,11 @@ from django.utils.decorators import method_decorator
 class Home(TemplateView):
     template_name = 'home.html'
 
-    # def get(self, request):
-    #     return HttpResponse("Travel Planner")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['destinations'] = Destination.objects.order_by('?')[:2]
+        context['travels'] = Travel.objects.order_by('?')[:2]
+        return context
 
 class Travel_List(TemplateView):
     template_name = 'travel_list.html'
