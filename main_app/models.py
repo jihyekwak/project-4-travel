@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
@@ -16,3 +17,14 @@ class Travel(models.Model):
     
     class Meta:
         ordering = ['departure_date']
+
+class Itinerary(models.Model):
+
+    day = models.IntegerField()
+    date = models.DateField(auto_now = False, auto_now_add = False)
+    transportation = models.CharField(max_length=250)
+    accomodation = models.CharField(max_length=250)
+    things_to_do = ArrayField(models.CharField(max_length=250))
+    meals = ArrayField(models.CharField(max_length=50))
+    daily_budget = models.IntegerField(default = 0)
+    travel = models.ForeignKey(Travel, related_name='itineraries', on_delete = models.CASCADE)

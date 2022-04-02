@@ -9,6 +9,6 @@
         {% csrf_token %}
         <input type="submit" value="Yes Delete">
     </form>
-    <a href="{% url 'travel_detail' travel.pk%}"><button>Cancel</button></a>
+    <a href="{% url 'travel_detail' travel.pk %}"><button>Cancel</button></a>
 
 {% endblock %}
