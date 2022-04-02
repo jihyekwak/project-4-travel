@@ -18,4 +18,8 @@ urlpatterns = [
     path('destinations/<int:pk>', views.Destination_Detail.as_view(), name='destination_detail'),
     path('destinations/<int:pk>/update', views.Destination_Update.as_view(), name='destination_update'),
     path('destinations/<int:pk>/delete', views.Destination_Delete.as_view(), name='destination_delete'),
+
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name="loggout"),
+    path('signup/', views.signup_view, name="signup")
 ]
