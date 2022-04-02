@@ -22,8 +22,8 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['destinations'] = Destination.objects.order_by('?')[:2]
-        context['travels'] = Travel.objects.order_by('?')[:2]
+        context['destinations'] = Destination.objects.order_by('?')[:4]
+        context['travels'] = Travel.objects.order_by('?')[:4]
         return context
 
 class Travel_List(TemplateView):

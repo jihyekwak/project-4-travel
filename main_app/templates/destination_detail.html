@@ -19,6 +19,11 @@
             <a href="{% url 'destination_delete' destination.id %}"><button>Delete</button></a>
         </div>
         <div>
+            <a href="{% url 'travel_create' %}">
+                <h3>Start Travel Plan</h3>
+            </a>
+        </div>
+        <div>
             <h2>Travels</h2>
             {% for travel in destination.travel_set.all %}
             <div class="travel-card-content">
