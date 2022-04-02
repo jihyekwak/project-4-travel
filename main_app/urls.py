@@ -10,5 +10,5 @@ urlpatterns = [
     path('travels/<int:pk>/delete', views.Travel_Delete.as_view(), name='travel_delete'),
 
     path('travels/<int:pk>/itineraries/new', views.Itinerary_Create.as_view(), name='itinerary_create'),
-
+    path('travels/<int:pk>/itineraries/<int:itinerary_id>/update', views.itinerary_update, name='itinerary_update')
 ]

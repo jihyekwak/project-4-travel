@@ -28,6 +28,14 @@
                 <a href="">
                     <h4>Day{{itinerary.day}} : {{itinerary.date}}</h4>
                 </a>
+                    <p>{{itinerary.transportarion}}</p>
+                    <p>{{itinerary.accomodation}}</p>
+                    <p>{{itinerary.things_to_do}}</p>
+                    <p>{{itinerary.meals}}</p>
+                    <p>{{itinerary.daily_budget}}</p>
+            </div>
+            <div>
+                <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
             </div>
         {% endfor %}
         </div>

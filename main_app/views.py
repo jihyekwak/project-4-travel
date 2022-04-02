@@ -1,11 +1,13 @@
+from dataclasses import field
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Travel, Itinerary
+from .forms import ItineraryForm
 
 # Create your views here.
 
@@ -64,3 +66,12 @@ class Itinerary_Create(CreateView):
         self.object = form.save(commit = False)
         self.object.travel = self.request.travel
         self.object.save()
+
+def itinerary_update(request, pk, itinerary_id):
+    itinerary = Itinerary.objects.get(id=itinerary_id)
+    form = ItineraryForm(request.POST or None, instance = itinerary)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'itinerary_update.html', {'itineray':itinerary, 'form':form})
+    
