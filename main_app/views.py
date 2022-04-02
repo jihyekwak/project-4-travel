@@ -8,14 +8,23 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Travel, Itinerary, Destination
 from .forms import ItineraryForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 # Create your views here.
 
 class Home(TemplateView):
     template_name = 'home.html'
 
-    # def get(self, request):
-    #     return HttpResponse("Travel Planner")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['destinations'] = Destination.objects.order_by('?')[:2]
+        context['travels'] = Travel.objects.order_by('?')[:2]
+        return context
 
 class Travel_List(TemplateView):
     template_name = 'travel_list.html'
@@ -108,3 +117,46 @@ class Destination_Delete(DeleteView):
     model = Destination
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            user = authenticate(username = u, password = p)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/user/'+u)
+                else:
+                    return render(request, 'login.html', {'form': form})
+            else:
+                return render(request, 'login.html', {'form': form})
+        else: 
+            return render(request, 'signup.html', {'form': form})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
+def signup_view(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            print('Hi', user.username)
+            return HttpResponseRedirect('/user/' + str(user))
+        else:
+            return render(request, 'signup.html', {'form':form})
+    else:
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form':form})
+
+def profile(request, username):
+    user = User.objects.get(username = username)
+    return render(request, 'profile.html', {'user':user})

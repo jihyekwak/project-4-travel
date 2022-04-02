@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -25,6 +26,7 @@ class Travel(models.Model):
     departure_date = models.DateField(auto_now = False, auto_now_add = False)
     return_date = models.DateField(auto_now = False, auto_now_add = False)
     budget = models.IntegerField()
+    travelers = models.ManyToManyField(User)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

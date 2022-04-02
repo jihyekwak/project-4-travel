@@ -16,6 +16,14 @@
       <a href="/travels">Travels |</a>
       <a href="/travels/new">New Travel |</a>
       <a href="/destinations">Destinations |</a>
+
+      {% if user.is_authenticated%}
+      <a href="{% url 'profile' user.username %}">My Travel</a>
+      <a href="/logout">Logout</a>
+      {% else %}
+      <a href="/login">Login</a>
+      <a href="/signup">Signup</a>
+      {% endif%}
     </nav>
     {% block content %}
 

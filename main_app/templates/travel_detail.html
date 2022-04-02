@@ -20,6 +20,11 @@
             <p>Departure Date: {{travel.departure_date}}</p>
             <p>Return Date: {{travel.return_date}}</p>
             <p>Budget: {{travel.budget}}</p>
+            <p>Travelers: 
+                {% for traveler in travel.travelers.all %}
+                    <span>{{traveler.username}}</span>
+                {% endfor %}
+            </p>
         </div>
         <div>
             <a href="{% url 'travel_update' travel.pk %}"><button>Edit</button></a>

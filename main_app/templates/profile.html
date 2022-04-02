@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Profile Page {{user.username}}</h1>
+
+    {% for travel in user.travel_set.all %}
+        <p>{{travel.title}}</p>
+        <p>{{travel.departure_date}} ~ {{travel.return_date}}</p>
+    {% endfor %}
+
+{% endblock %}
