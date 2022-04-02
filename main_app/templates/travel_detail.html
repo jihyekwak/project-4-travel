@@ -12,6 +12,11 @@
         </div>
         <div class="detail-content">
             <h2>{{travel.title}}</h2>
+            <p>Destination:
+                {% for destination in travel.destinations.all %}
+                    <span>{{destination.city}}</span>
+                {% endfor %}
+            </p>
             <p>Departure Date: {{travel.departure_date}}</p>
             <p>Return Date: {{travel.return_date}}</p>
             <p>Budget: {{travel.budget}}</p>
@@ -29,6 +34,7 @@
             <div class="itinerary-card-content">
                 <h3>Day{{itinerary.day}}</h3>
                     <p>Date: {{itinerary.date}}</p>
+                    <p>Destination: {{itinerary.destination}}</p>
                     <p>Transportation: {{itinerary.transportation}}</p>
                     <p>Accomodation: {{itinerary.accomodation}}</p>
                     <p>Thinkgs To Do:</p>
