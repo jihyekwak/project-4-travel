@@ -126,13 +126,16 @@ class Destination_Delete(DeleteView):
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
 
-def comment_update(request, pk, comment_id):
+def comment_update_delete(request, pk, comment_id):
     comment = Comment.objects.get(id=comment_id)
     form = CommentForm(request.POST or None, instance = comment)
     if form.is_valid():
         form.save()
         return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'itinerary_update.html', {'comment':comment, 'form':form})
+    if request.method == "POST":
+        comment.delete()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'comment_update.html', {'comment':comment, 'form':form})
 
 def login_view(request):
     if request.method == 'POST':
