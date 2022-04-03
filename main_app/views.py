@@ -6,8 +6,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary, Destination
-from .forms import ItineraryForm
+from .models import Travel, Itinerary, Destination, Comment
+from .forms import ItineraryForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -46,15 +46,23 @@ class Travel_Create(CreateView):
     template_name = 'travel_create.html'
     success_url = '/travels/'
 
-class Travel_Detail(DetailView):
-    model = Travel
-    template_name = 'travel_detail.html'
+# class Travel_Detail(DetailView):
+#     model = Travel
+#     template_name = 'travel_detail.html'
+
+def travel_detail(request, pk):
+    travel = Travel.objects.get(pk = pk)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'travel_detail.html', {'travel': travel, 'form':form})
 
 class Travel_Update(UpdateView):
     model = Travel
     fields = '__all__'
     template_name = 'travel_update.html'
-
+    
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
 
@@ -94,6 +102,19 @@ def itinerary_delete(request, pk, itinerary_id):
 def destination_list(request):
     destinations = Destination.objects.all()
     return render(request, 'destination_list.html', {'destinations': destinations})
+
+class Comment_Create(CreateView):
+    model = Comment
+    fields = '__all__'
+    template_name = 'travel_detail.html'
+
+    def get_success_url(self):
+        return reverse('travel_detail', kwargs={'pk': self.object.travel.id})
+    
+    def from_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.travel = self.request.travel
+        self.object.save()
 
 class Destination_Create(CreateView):
     model = Destination

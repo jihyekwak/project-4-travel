@@ -48,7 +48,7 @@ class Itinerary(models.Model):
     travel = models.ForeignKey(Travel, related_name='itineraries', on_delete = models.CASCADE)
 
     def __str__(self):
-        return 'Day' + str(self.day)
+        return 'Day' + str(self.day) + '_'+str(self.travel)
     
     class Meta:
         ordering = ['date']
@@ -57,5 +57,8 @@ class Comment(models.Model):
 
     text = models.TextField()
     author = models.ForeignKey(User, on_delete = models.CASCADE)
-    travel = models.ForeignKey(Travel, on_delete = models.CASCADE)
+    travel = models.ForeignKey(Travel, related_name='comments', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return 'Comment' + str(self.pk) + '_'+ str(self.travel)

@@ -38,13 +38,13 @@
             </div>
             {% endfor %}
         </div>
-        <!-- <div>
+        <div>
             <h2>Itineraries</h2>
             {% for itinerary in destination.itineraries.all %}
                 <a href="{% url 'travel_detail' itinerary.travel.pk %}">
                     <p>{{itinerary.travel.title}} Day{{itinerary.day}}</p>
                 </a>
             {% endfor %}
-        </div> -->
+        </div>
     
 {% endblock %}
