@@ -6,8 +6,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary, Destination
-from .forms import ItineraryForm
+from .models import Travel, Itinerary, Destination, Comment
+from .forms import ItineraryForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -22,8 +22,8 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['destinations'] = Destination.objects.order_by('?')[:2]
-        context['travels'] = Travel.objects.order_by('?')[:2]
+        context['destinations'] = Destination.objects.order_by('?')[:4]
+        context['travels'] = Travel.objects.order_by('?')[:4]
         return context
 
 class Travel_List(TemplateView):
@@ -46,15 +46,23 @@ class Travel_Create(CreateView):
     template_name = 'travel_create.html'
     success_url = '/travels/'
 
-class Travel_Detail(DetailView):
-    model = Travel
-    template_name = 'travel_detail.html'
+# class Travel_Detail(DetailView):
+#     model = Travel
+#     template_name = 'travel_detail.html'
+
+def travel_detail(request, pk):
+    travel = Travel.objects.get(pk = pk)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'travel_detail.html', {'travel': travel, 'form':form})
 
 class Travel_Update(UpdateView):
     model = Travel
     fields = '__all__'
     template_name = 'travel_update.html'
-
+    
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
 
@@ -117,6 +125,17 @@ class Destination_Delete(DeleteView):
     model = Destination
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
+
+def comment_update_delete(request, pk, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    form = CommentForm(request.POST or None, instance = comment)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    if request.method == "POST":
+        comment.delete()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'comment_update.html', {'comment':comment, 'form':form})
 
 def login_view(request):
     if request.method == 'POST':

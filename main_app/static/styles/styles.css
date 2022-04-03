@@ -1,6 +1,12 @@
 /* div {
     border: 1px dotted black;
 } */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;500&family=Ubuntu&display=swap');
+
+body {
+    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Roboto Slab', serif; */
+}
 
 .list-grid {
     margin: 20px;
@@ -31,6 +37,12 @@
     top: 50%;
     left: 20%;
     transform: translate(-50%, -50%);
+}
+
+.home-list-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
 /* Travel List Page */

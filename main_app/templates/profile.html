@@ -4,9 +4,19 @@
 
     <h1>Profile Page {{user.username}}</h1>
 
-    {% for travel in user.travel_set.all %}
-        <p>{{travel.title}}</p>
-        <p>{{travel.departure_date}} ~ {{travel.return_date}}</p>
+    <div class="list-grid">
+        {% for travel in user.travel_set.all %}
+        <div class="travel-card-content">
+            <a href="{% url 'travel_detail' travel.pk %}">
+                <div class="travel-card-img">
+                    <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                </div>
+                <div class="travel-card-text">
+                    <h3>{{travel.title}}</h3>
+                </div>
+            </a>
+        </div>
     {% endfor %}
+    </div>
 
 {% endblock %}

@@ -12,7 +12,7 @@
     <div>
         <h2>Destinations</h2>
         <a href="/destinations">view all</a>
-        <div class="list-grid">
+        <div class="home-list-flex">
         {% for destination in destinations%}
         <div class="destination-card-content">
             <a href="{% url 'destination_detail' destination.id %}">
@@ -30,19 +30,19 @@
     <div>
         <h2>Travels</h2>
         <a href="/travels">view all</a>
-        <div class="list-grid">
-        {% for travel in travels%}
-        <div class="travel-card-content">
-            <a href="{% url 'travel_detail' travel.pk %}">
-                <div class="travel-card-img">
-                    <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+        <div class="home-list-flex">
+            {% for travel in travels%}
+                <div class="travel-card-content">
+                    <a href="{% url 'travel_detail' travel.pk %}">
+                        <div class="travel-card-img">
+                            <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                        </div>
+                        <div class="travel-card-text">
+                            <h3>{{travel.title}}</h3>
+                        </div>
+                    </a>
                 </div>
-                <div class="travel-card-text">
-                    <h3>{{travel.title}}</h3>
-                </div>
-            </a>
+            {% endfor %}
         </div>
-    {% endfor %}
     </div>
-</div>
 {% endblock %}
