@@ -102,6 +102,7 @@
             <h2>Comments</h2>
             {% for comment in travel.comments.all %}
                 <p>{{comment.author}}: {{comment.text}}</p>
+                <a href="{% url 'comment_update' pk=travel.pk comment_id=comment.id %}"><button>Edit Comment</button></a>
             {% endfor%}
             <div>
                 <h3>Leave a comment</h3>

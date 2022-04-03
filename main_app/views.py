@@ -103,19 +103,6 @@ def destination_list(request):
     destinations = Destination.objects.all()
     return render(request, 'destination_list.html', {'destinations': destinations})
 
-class Comment_Create(CreateView):
-    model = Comment
-    fields = '__all__'
-    template_name = 'travel_detail.html'
-
-    def get_success_url(self):
-        return reverse('travel_detail', kwargs={'pk': self.object.travel.id})
-    
-    def from_valid(self, form):
-        self.object = form.save(commit = False)
-        self.object.travel = self.request.travel
-        self.object.save()
-
 class Destination_Create(CreateView):
     model = Destination
     fields = '__all__'
@@ -138,6 +125,14 @@ class Destination_Delete(DeleteView):
     model = Destination
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
+
+def comment_update(request, pk, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    form = CommentForm(request.POST or None, instance = comment)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'itinerary_update.html', {'comment':comment, 'form':form})
 
 def login_view(request):
     if request.method == 'POST':
