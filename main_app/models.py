@@ -52,3 +52,10 @@ class Itinerary(models.Model):
     
     class Meta:
         ordering = ['date']
+
+class Comment(models.Model):
+
+    text = models.TextField()
+    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    travel = models.ForeignKey(Travel, on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add = True)
