@@ -11,7 +11,7 @@
     </form>
     
     <p>{{header}} ({{travels|length}})</p>
-    <div class="list-grid">
+    <div class="list-flex">
         {% for travel in travels %}
         <div class="travel-card-content">
             <a href="{% url 'travel_detail' travel.pk %}">

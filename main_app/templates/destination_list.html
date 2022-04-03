@@ -4,7 +4,7 @@
     <h1>Destination List Page</h1>
     <a href="{% url 'destination_create' %}">Add new Destination</a>
 
-    <div class="list-grid">
+    <div class="list-flex">
         {% for destination in destinations %}
         <div class="destination-card-content">
             <a href="{% url 'destination_detail' destination.id %}">

@@ -37,7 +37,7 @@
         <div>
             {% for itinerary in travel.itineraries.all %}
             <div class="itinerary-card-content">
-                <h3>Day{{itinerary.day}}</h3>
+                <!-- <h3>Day{{itinerary.day}}</h3>
                     <p>Date: {{itinerary.date}}</p>
                     <p>Destination: {{itinerary.destination}}</p>
                     <p>Transportation: {{itinerary.transportation}}</p>
@@ -50,9 +50,9 @@
                     {% for meal in itinerary.meals %}
                         <span>{{meal}}</span>
                     {% endfor %}
-                    <p>Budget: {{itinerary.daily_budget}}</p>
+                    <p>Budget: {{itinerary.daily_budget}}</p> -->
 
-                <!-- <table>
+                <table>
                     <thead>
                         <tr>
                             <th>Day</th>
@@ -90,7 +90,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table> -->
+                </table>
                 <div class="">
                     <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
                     <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
