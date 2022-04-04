@@ -1,24 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="list-flex-container">
 
-    <h1>Profile Page {{user.username}}</h1>
-    <div class="list-content">
-    <div class="list-flex">
-        {% for travel in user.travel_set.all %}
-        <div class="travel-card-content">
-            <a href="{% url 'travel_detail' travel.pk %}">
-                <div class="travel-card-img">
-                    <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
-                </div>
-                <div class="travel-card-text">
-                    <h3>{{travel.title}}</h3>
-                </div>
-            </a>
+    <div class="list-flex-nav">
+            <h1>{{user.username}}</h1>
+            <p>Travel Plans: {{user.travel_set.all|length}}</p>
         </div>
-    {% endfor %}
-    </div>
+
+        <div class="list-content">
+            <div class="list-flex">
+                {% for travel in user.travel_set.all %}
+                <div class="travel-card-content">
+                    <a href="{% url 'travel_detail' travel.pk %}">
+                        <div class="travel-card-img">
+                            <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                        </div>
+                        <div class="travel-card-text">
+                            <h3>{{travel.title}}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
 </div>
-    
+
 
 {% endblock %}

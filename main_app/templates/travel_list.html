@@ -1,18 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="listpage-flex-container">
-    <div class="container-pagename">
-        <h1>Travels</h1>
-        <div>
-            <a href="{% url 'travel_create' %}">
-                <h3> + Start Travel Plan</h3>
-            </a>
-        </div>
-    </div>
+    <div class="list-flex-container">
 
-    <div class="container-nav-list">
-        <div class="category-nav">
+        <div class="list-flex-nav">
+            <h1>Travels</h1>
+            <div>
+                <a href="{% url 'travel_create' %}">
+                    <h3> + Start Travel Plan</h3>
+                </a>
+            </div>
             <div class="search-box">
                 <form class="search-travel">
                     <div>
@@ -45,11 +42,10 @@
                         </div>
                     </a>
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
 
     </div>
-</div>
 
 {% endblock %}
