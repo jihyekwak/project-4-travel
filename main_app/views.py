@@ -99,9 +99,26 @@ def itinerary_delete(request, pk, itinerary_id):
         return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, "itinerary_delete_confirmation.html", {'itinerary':itinerary})
 
-def destination_list(request):
-    destinations = Destination.objects.all()
-    return render(request, 'destination_list.html', {'destinations': destinations})
+# def destination_list(request):
+#     destinations = Destination.objects.all()
+#     return render(request, 'destination_list.html', {'destinations': destinations})
+
+class Destination_List(TemplateView):
+    template_name = 'destination_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        city = self.request.GET.get("city")
+        if city != None:
+            context['destinations'] = Destination.objects.filter(city__icontains=city)
+            context['header'] = f"Searching for {city}"
+        else:
+            context['destinations'] = Destination.objects.all()
+            context['header'] = "All Destination"
+        return context
+
+
+
 
 class Destination_Create(CreateView):
     model = Destination
