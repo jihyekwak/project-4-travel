@@ -19,7 +19,7 @@
         </div>
         <div class="home-list-flex">
             {% for destination in destinations%}
-                <div class="destination-card-content">
+                <div class="home-destination-card-content">
                     <a href="{% url 'destination_detail' destination.id %}">
                         <div class="destination-card-img">
                             <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
@@ -40,7 +40,7 @@
         </div>
         <div class="home-list-flex">
             {% for travel in travels%}
-                <div class="travel-card-content">
+                <div class="home-travel-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
                         <div class="travel-card-img">
                             <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">

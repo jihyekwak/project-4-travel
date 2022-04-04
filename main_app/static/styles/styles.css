@@ -6,6 +6,9 @@ body {
     margin: 5px 50px;
 }
 
+/* div {
+    border: 1px dotted black;
+} */
 /* .list-grid {
     margin: 20px;
     display: grid;
@@ -16,12 +19,12 @@ body {
 .list-flex {
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: center;
     flex-wrap: wrap;
     text-align: center;
-
 }
+
+
 
 main {
     padding: 50px 30px;
@@ -117,7 +120,7 @@ Home Page
 }
 
 .home-list {
-    margin: 100px auto;
+    margin: 100px 200px;
 }
 
 .home-list-flex {
@@ -141,14 +144,72 @@ Home Page
     color: #44545E;
 }
 
+.home-destination-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 360px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.home-destination-card-content a {
+    text-decoration: none;
+    color: #44545E; 
+}
+
+.home-travel-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 380px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.home-travel-card-content a {
+    text-decoration: none;
+    color: #44545E;
+}
+
+/* -------------
+List Page Flexbox
+---------------- */
+
+.listpage-flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-pagename {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.container-nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.category-nav {
+    width: 15%;
+}
+
+.list-content {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+}
+
 /* -------------
 Travel List Page 
 ---------------- */
 
 .travel-card-content {
-    min-width: 400px;
-    max-width: 400px;
-    height: 500px;
+    min-width: 300px;
+    max-width: 300px;
+    height: 400px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -158,8 +219,8 @@ Travel List Page
     color: #44545E;
 }
 
-.travel-card-img, .travel-card-text {
-    height: 350px;
+.travel-card-img {
+    height: 300px;
 }
 
 .travel-img {
@@ -247,15 +308,15 @@ Destination List Page
 ---------------- */
 
 .destination-card-content {
-    min-width: 400px;
-    max-width: 400px;
+    min-width: 300px;
+    max-width: 300px;
     height: 400px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .destination-card-img {
-    height: 350px;
+    height: 300px;
 }
 
 .destination-img {

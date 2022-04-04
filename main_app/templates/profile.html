@@ -3,7 +3,7 @@
 {% block content %}
 
     <h1>Profile Page {{user.username}}</h1>
-
+    <div class="list-content">
     <div class="list-flex">
         {% for travel in user.travel_set.all %}
         <div class="travel-card-content">
@@ -18,5 +18,7 @@
         </div>
     {% endfor %}
     </div>
+</div>
+    
 
 {% endblock %}

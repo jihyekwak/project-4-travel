@@ -1,29 +1,55 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Travel List Page</h1>
-    <form class="search-travel">
+<div class="listpage-flex-container">
+    <div class="container-pagename">
+        <h1>Travels</h1>
         <div>
-            <input type="text" name="title" placeholder="">
-            <input type="submit" value="Search">
-            <a href="{% url 'travel_list' %}">Clear Search</a>
-        </div>
-    </form>
-    
-    <p>{{header}} ({{travels|length}})</p>
-    <div class="list-flex">
-        {% for travel in travels %}
-        <div class="travel-card-content">
-            <a href="{% url 'travel_detail' travel.pk %}">
-                <div class="travel-card-img">
-                    <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
-                </div>
-                <div class="travel-card-text">
-                    <h3>{{travel.title}}</h3>
-                </div>
+            <a href="{% url 'travel_create' %}">
+                <h3> + Start Travel Plan</h3>
             </a>
         </div>
-    {% endfor %}
     </div>
-    
+
+    <div class="container-nav-list">
+        <div class="category-nav">
+            <div class="search-box">
+                <form class="search-travel">
+                    <div>
+                        <input type="text" name="title" placeholder="">
+                        <input type="submit" value="Search">
+                        <a href="{% url 'travel_list' %}">Clear Search</a>
+                    </div>
+                </form>
+                <p>{{header}} ({{travels|length}})</p>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="">All</a></li>
+                    <li><a href="">City</a></li>
+                    <li><a href="">Nature</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="list-content">
+            <div class="list-flex">
+                {% for travel in travels %}
+                <div class="travel-card-content">
+                    <a href="{% url 'travel_detail' travel.pk %}">
+                        <div class="travel-card-img">
+                            <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                        </div>
+                        <div class="travel-card-text">
+                            <h3>{{travel.title}}</h3>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Destination List Page</h1>
     <a href="{% url 'destination_create' %}">Add new Destination</a>
-
+<div class="list-content">
     <div class="list-flex">
         {% for destination in destinations %}
         <div class="destination-card-content">
@@ -18,5 +18,7 @@
         </div>
     {% endfor %}
     </div>
+</div>
+    
     
 {% endblock %}
