@@ -1,22 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Destination List Page</h1>
-    <a href="{% url 'destination_create' %}">Add new Destination</a>
-
-    <div class="list-grid">
-        {% for destination in destinations %}
-        <div class="destination-card-content">
-            <a href="{% url 'destination_detail' destination.id %}">
-                <div class="destination-card-img">
-                    <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
-                </div>
-                <div class="destination-card-text">
-                    <h3>{{destination.city}}</h3>
-                </div>
-            </a>
+<div class="listpage-flex-container">
+    <div class="container-pagename">
+        <h1>Destinations</h1>
+        <div>
+            <a href="{% url 'destination_create' %}">Add new Destination</a>
         </div>
-    {% endfor %}
     </div>
+
+    <div class="container-nav-list">
+        <div class="category-nav">
+            <div class="search-box">
+                <form class="search-travel">
+                    <div>
+                        <input type="text" name="city" placeholder="">
+                        <input type="submit" value="Search">
+                        <a href="{% url 'destination_list' %}">Clear Search</a>
+                    </div>
+                </form>
+                <p>{{header}} ({{destinations|length}})</p>
+            </div>
+        </div>
+
+
+        <div class="list-content">
+            <div class="list-flex">
+                {% for destination in destinations %}
+                <div class="destination-card-content">
+                    <a href="{% url 'destination_detail' destination.id %}">
+                        <div class="destination-card-img">
+                            <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+                        </div>
+                        <div class="destination-card-text">
+                            <h3>{{destination.city}}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
     
 {% endblock %}

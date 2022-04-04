@@ -1,24 +1,80 @@
-/* div {
-    border: 1px dotted black;
-} */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;500&family=Ubuntu&display=swap');
 
 body {
     font-family: 'Rubik', sans-serif;
     /* font-family: 'Roboto Slab', serif; */
+    margin: 5px 50px;
 }
 
-.list-grid {
+/* div {
+    border: 1px dotted black;
+} */
+/* .list-grid {
     margin: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
     gap: 30px;
+} */
+
+.list-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
-/* Home Page */
+
+
+main {
+    padding: 50px 30px;
+}
+
+/* -------------
+Navbar
+---------------- */
+
+nav {
+    padding: 15px 10px;
+    position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+    margin: 0 10px;
+	background-color: white;
+	z-index: 100;
+    text-align: center;
+}
+
+.nav-left {
+    float: left;
+}
+
+.nav-right {
+    float: right;
+}
+
+nav a {
+    text-decoration: none;
+    color: #7B98AA;
+	letter-spacing: 0.75px;
+	letter-spacing: .05rem;
+	padding: 3px 30px;
+	padding: .2rem 2rem;
+	text-transform: uppercase;
+    font-weight: 400;
+}
+
+nav a:hover {
+	color: #44545E;
+}
+
+/* -------------
+Home Page 
+---------------- */
 .home-header {
     width: 100%;
-    height: 500px;
+    height: 600px;
     position: relative;
     text-align: center;
 }
@@ -35,26 +91,135 @@ body {
 .home-header-text {
     position: absolute;
     top: 50%;
-    left: 20%;
+    left: 25%;
     transform: translate(-50%, -50%);
+    color : white;
+}
+
+.home-header-text h1 {
+    font-size: 40px;
+}
+
+.home-header-text h2 {
+    font-size: 25px;
+}
+
+.home-startplan-btn {
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    background-color: #CFF2F6;
+    color: #44545E;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.home-startplan-btn:hover {
+    transform : scale(1.2);
+    background-color: white;
+}
+
+.home-list {
+    margin: 100px 200px;
 }
 
 .home-list-flex {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    justify-content: center;
+    gap: 50px;
 }
 
-/* Travel List Page */
+.home-list-header {
+    text-align: center;
+    margin: 50px auto;
+    color: #44545E;
+}
 
-.travel-card-content {
-    width: 400px;
-    height: 600px;
+.home-list-header a{
+    /* text-decoration: none; */
+    color: black;
+    float: right;
+    margin-right: 200px;
+    color: #44545E;
+}
+
+.home-destination-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 360px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.travel-card-img, .travel-card-text {
+.home-destination-card-content a {
+    text-decoration: none;
+    color: #44545E; 
+}
+
+.home-travel-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 380px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.home-travel-card-content a {
+    text-decoration: none;
+    color: #44545E;
+}
+
+/* -------------
+List Page Flexbox
+---------------- */
+
+.listpage-flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-pagename {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.container-nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.category-nav {
+    width: 15%;
+}
+
+.list-content {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+}
+
+/* -------------
+Travel List Page 
+---------------- */
+
+.travel-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 400px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.travel-card-content a {
+    text-decoration: none;
+    color: #44545E;
+}
+
+.travel-card-img {
     height: 300px;
 }
 
@@ -64,10 +229,12 @@ body {
 }
 
 .travel-card-text {
-    padding: 5px 10px;
+    padding: 0 10px;
 }
 
-/* Travel Detail Page */
+/* -------------
+Travel Detail Page 
+---------------- */
 
 .detail-header {
     width: 100%;
@@ -95,7 +262,7 @@ body {
 
 .itinerary-card-content {
     margin: 0 0 20px 0;
-    border: 1px solid gray;
+    border: 1px solid #44545E;
     border-radius: 5px;
     padding: 10px;
 }
@@ -110,12 +277,12 @@ body {
     text-decoration: none;
 }
 
-/* table {
+table {
     width: 100%;
 }
 
 table, th, td {
-    border: 2px solid gray;
+    border: 2px solid #44545E;
     border-collapse: collapse;
     padding: 0 5px;
 }
@@ -134,12 +301,15 @@ td {
     align-items: center;
     margin-top: 25%;
     gap: 5px;
-} */
+}
 
-/* Destination List Page */
+/* -------------
+Destination List Page 
+---------------- */
 
 .destination-card-content {
-    width: 400px;
+    min-width: 300px;
+    max-width: 300px;
     height: 400px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -155,10 +325,18 @@ td {
 }
 
 .destination-card-text {
-    padding: 5px 10px;
+    padding: 0 10px;
 }
 
-/* Destination Detail Page */
+.destination-card-content a {
+    text-decoration: none;
+    color: #44545E; 
+}
+
+/* -------------
+Destination Detail Page 
+---------------- */
+
 .destination-detail-header {
     width: 100%;
     height: 400px;

@@ -3,36 +3,44 @@
 {% block content %}
     <!-- <h1>Travel Planner Home Page</h1> -->
     <div class="home-header">
-        <img class="home-header-img" src="https://images.unsplash.com/photo-1488703480497-dfcccd4894d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3269&q=80" alt="home header img">
+        <img class="home-header-img" src="https://images.unsplash.com/photo-1543993454-23889b990266?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3866&q=80" alt="home header img">
         <div class="home-header-text">
             <h1>Plan Your Travel</h1>
-            <h2>plan and share your travel</h2>
+            <h2>Start planning travel with your people<br>
+                and share the precious memories</h2>
+            <a href="{% url 'travel_create' %}"><button class="home-startplan-btn">Start Planning</button></a>
         </div>
     </div>
-    <div>
-        <h2>Destinations</h2>
-        <a href="/destinations">view all</a>
+
+    <div class="home-list">
+        <div class="home-list-header">
+            <h2>Destinations</h2>
+            <a href="/destinations">view all</a>
+        </div>
         <div class="home-list-flex">
-        {% for destination in destinations%}
-        <div class="destination-card-content">
-            <a href="{% url 'destination_detail' destination.id %}">
-                <div class="destination-card-img">
-                    <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+            {% for destination in destinations%}
+                <div class="home-destination-card-content">
+                    <a href="{% url 'destination_detail' destination.id %}">
+                        <div class="destination-card-img">
+                            <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+                        </div>
+                        <div class="destination-card-text">
+                            <h3>{{destination.city}}</h3>
+                        </div>
+                    </a>
                 </div>
-                <div class="destination-card-text">
-                    <h3>{{destination.city}}</h3>
-                </div>
-            </a>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-    </div>
-    <div>
-        <h2>Travels</h2>
-        <a href="/travels">view all</a>
+
+    <div class="home-list">
+        <div class="home-list-header">
+            <h2>Travels</h2>
+            <a href="/travels">view all</a>
+        </div>
         <div class="home-list-flex">
             {% for travel in travels%}
-                <div class="travel-card-content">
+                <div class="home-travel-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
                         <div class="travel-card-img">
                             <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
@@ -45,4 +53,5 @@
             {% endfor %}
         </div>
     </div>
+
 {% endblock %}

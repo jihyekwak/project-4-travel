@@ -3,8 +3,8 @@
 {% block content %}
 
     <h1>Profile Page {{user.username}}</h1>
-
-    <div class="list-grid">
+    <div class="list-content">
+    <div class="list-flex">
         {% for travel in user.travel_set.all %}
         <div class="travel-card-content">
             <a href="{% url 'travel_detail' travel.pk %}">
@@ -18,5 +18,7 @@
         </div>
     {% endfor %}
     </div>
+</div>
+    
 
 {% endblock %}
