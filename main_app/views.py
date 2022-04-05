@@ -54,6 +54,8 @@ class Travel_Create(CreateView):
 def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
     form = CommentForm(request.POST or None)
+    form.instance.travel = travel
+    form.instance.author = request.user
     if form.is_valid():
         form.save()
         return HttpResponseRedirect("/travels/"+str(pk))
@@ -77,6 +79,15 @@ class Itinerary_Create(CreateView):
     fields = '__all__'
     template_name = 'itinerary_create.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        travel = self.kwargs.get("pk")
+        context['travel'] = Travel.objects.get(pk=travel)
+        return context
+
+    def get_initial(self):
+        return {"travel": self.kwargs.get("pk")}
+
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.travel.id})
     
@@ -87,11 +98,12 @@ class Itinerary_Create(CreateView):
 
 def itinerary_update(request, pk, itinerary_id):
     itinerary = Itinerary.objects.get(id=itinerary_id)
+    travel = Travel.objects.get(pk=pk)
     form = ItineraryForm(request.POST or None, instance = itinerary)
     if form.is_valid():
         form.save()
         return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'itinerary_update.html', {'itineray':itinerary, 'form':form})
+    return render(request, 'itinerary_update.html', {'itineray':itinerary, 'form':form, 'travel':travel})
 
 def itinerary_delete(request, pk, itinerary_id):
     itinerary = Itinerary.objects.get(id=itinerary_id)
@@ -117,8 +129,6 @@ class Destination_List(TemplateView):
             context['destinations'] = Destination.objects.all()
             context['header'] = "All Destination"
         return context
-
-
 
 
 class Destination_Create(CreateView):

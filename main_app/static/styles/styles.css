@@ -336,3 +336,27 @@ td {
     margin-top: 25%;
     gap: 5px;
 }
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.comment p{
+    margin-top: 0px;
+}
+
+.comment-create-form {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-create-form textarea{
+    width: 800px;
+    height: 40px;
+}
+
+.comment-create-form input {
+    height : 20px;
+}

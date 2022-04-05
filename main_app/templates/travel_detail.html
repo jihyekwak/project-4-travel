@@ -91,24 +91,27 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="">
+                <!-- <div class="">
                     <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
                     <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
-                </div>
+                </div> -->
             </div>
         {% endfor %}
         </div>
         <div>
             <h2>Comments</h2>
             {% for comment in travel.comments.all %}
-                <p>{{comment.author}}: {{comment.text}}</p>
-                <a href="{% url 'comment_update_delete' pk=travel.pk comment_id=comment.id %}"><button>Edit / Delete Comment</button></a>
+                <div class="comment">
+                    <p>{{comment.author}}: {{comment.text}}</p>
+                    <a class="comment-edit-delete" href="{% url 'comment_update_delete' pk=travel.pk comment_id=comment.id %}"><button>Edit / Delete Comment</button></a>
+                </div>
+                
             {% endfor%}
             <div>
                 <h3>Leave a comment</h3>
-                <form class="create-form" method="post">
+                <form class="comment-create-form" method="post">
                     {% csrf_token %}
-                    {{form.as_p}}
+                    {{form.as_table}}
                     <input type="submit" value="Submit" />
                 </form>
             </div>
