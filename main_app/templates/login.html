@@ -2,12 +2,16 @@
 
 {% block content %}
 
-    <h1>Login</h1>
-    <form class="login create-form" action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-
-        <input type="submit" value="Submit">
-    </form>
+        <h1 class="create-page-h1">Login</h1>
+        <div class="login-form-div">
+            <div class="login-msg">
+                <h1>Welcome Back</h1>
+            </div>
+            <form class="login create-form" action="" method="post">
+                {% csrf_token %}
+                {{form.as_table}}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
 
 {% endblock %}

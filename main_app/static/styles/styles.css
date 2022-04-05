@@ -568,6 +568,10 @@ Create Form
     width: 200px;
 }
 
+.login label {
+    font-size: 18px;
+}
+
 .profile-update span {
     /* display: none; */
 }
@@ -577,4 +581,29 @@ label   {
     /* float: left; */
     /* clear: left; */
     /* width: 150px; */
+}
+
+.login-form-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: fit-content;
+    margin: auto auto;
+}
+
+.login-msg {
+    /* background-color: #CFF2F650; */
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+    color: #44545E;
+    width: 300px;
+}
+
+.login {
+    border-radius: 0 10px 10px 0;
+    /* background-color: #CFF2F650; */
+
+
 }
