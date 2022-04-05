@@ -2,11 +2,15 @@
 
 {% block content %}
 
-    <h1>Plan New Travel</h1>
-    <form class="create-form" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+    <h1 class="create-page-h1">Plan New Travel</h1>
+    <div class="create-form-div">
+        <a href="{% url 'destination_create' %}">
+            <p>Don't have your destination? Click here to add Destination</p>
+        </a>
+        <form class="create-form" method="post">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="Submit" />
+        </form>
 
 {% endblock %}

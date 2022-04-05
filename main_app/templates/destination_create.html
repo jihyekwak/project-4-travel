@@ -2,11 +2,12 @@
 
 {% block content %}
 
-    <h1>Add New Destination</h1>
-    <form class="create-form" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+    <h1 class="create-page-h1">Add New Destination</h1>
+    <div class="create-form-div">
+        <form class="create-form" method="post">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="Submit" />
+        </form>
 
 {% endblock %}
