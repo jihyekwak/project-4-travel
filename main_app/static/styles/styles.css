@@ -6,6 +6,10 @@ body {
     margin: 5px 50px;
 }
 
+p {
+    color: #44545E;
+}
+
 /* -------------
 Navbar
 ---------------- */
@@ -162,11 +166,54 @@ List Page Flexbox
 
 .list-flex-nav {
     width: 15%;
-    background-color: #CFF2F650;
     margin-top: 50px;
     position: fixed;
-    padding: 5px;
+    /* padding: 10px 5px 10px 10px;
+    border-radius: 5px; */
+}
+
+.list-flex-nav-top {
+    /* background-color: #CFF2F650; */
+    padding: 10px 5px 10px 10px;
     border-radius: 5px;
+}
+
+.list-flex-nav h1 {
+    margin-bottom: 5px;
+    color: #44545E;
+}
+
+.list-flex-nav a {
+    color: #44545E;
+}
+
+.add-btn {
+    background-color: #44545E;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+    width: fit-content;
+}
+
+.search-travel-input input{
+    border: none;
+    border-radius: 3px;
+    margin: 10px auto;
+    height: 20px;
+    border: 1px solid #7B98AA50;
+}
+
+.list-flex-nav-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-flex-nav-category li {
+    margin-bottom: 8px;
+}
+
+.list-flex-nav-category a {
+    text-decoration: none;
 }
 
 .list-content {

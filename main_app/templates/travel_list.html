@@ -4,28 +4,31 @@
     <div class="list-flex-container">
 
         <div class="list-flex-nav">
-            <h1>Travels</h1>
-            <div>
+            <div class="list-flex-nav-top">
+                <h1>Travels</h1>
+                <div class="search-box">
+                    <form class="search-travel">
+                        <div class="search-travel-input">
+                            <input type="text" name="title" placeholder="">
+                            <input type="submit" value="Search">
+                        </div>
+                    </form>
+                    <p>{{header}} ({{travels|length}})</p>
+                    <a href="{% url 'travel_list' %}">Clear Search</a>
+                </div>
+                <div class="list-flex-nav-category">
+                    <ul>
+                        <li><a href=""># All</a></li>
+                        <li><a href=""># City</a></li>
+                        <li><a href=""># Nature</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="list-flex-nav-bottom">
                 <a href="{% url 'travel_create' %}">
-                    <h3> + Start Travel Plan</h3>
+                    <p class="add-btn"> + Start Travel Plan</p>
                 </a>
-            </div>
-            <div class="search-box">
-                <form class="search-travel">
-                    <div>
-                        <input type="text" name="title" placeholder="">
-                        <input type="submit" value="Search">
-                        <a href="{% url 'travel_list' %}">Clear Search</a>
-                    </div>
-                </form>
-                <p>{{header}} ({{travels|length}})</p>
-            </div>
-            <div>
-                <ul>
-                    <li><a href="">All</a></li>
-                    <li><a href="">City</a></li>
-                    <li><a href="">Nature</a></li>
-                </ul>
             </div>
         </div>
 
