@@ -58,7 +58,7 @@ Home Page
 ---------------- */
 .home-header {
     width: 100%;
-    height: 600px;
+    height: 500px;
     position: relative;
     text-align: center;
 }
@@ -104,35 +104,35 @@ Home Page
 }
 
 .home-list {
-    margin: 100px 200px;
+    margin: 100px 100px;
+}
+
+.home-list-header {
+    text-align: center;
+    margin: 30px auto;
+    color: #44545E;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.home-list-header a{
+    color: #44545E;
+    align-self: flex-end;
 }
 
 .home-list-flex {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 50px;
-}
-
-.home-list-header {
-    text-align: center;
-    margin: 50px auto;
-    color: #44545E;
-}
-
-.home-list-header a{
-    /* text-decoration: none; */
-    color: black;
-    float: right;
-    margin-right: 200px;
-    color: #44545E;
+    justify-content: space-evenly;
 }
 
 .home-destination-card-content {
-    min-width: 300px;
+    min-width: 225px;
     max-width: 300px;
+    aspect-ratio: 1 /1;
     height: 360px;
-    background-color: white;
+    /* background-color: white; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -141,9 +141,23 @@ Home Page
     color: #44545E; 
 }
 
+.home-destination-card-img {
+    aspect-ratio: 1 /1;
+}
+
+.home-destination-img {
+    width: 100%;
+    height: 100%;
+}
+
+.home-destination-card-text {
+    padding: 0 10px;
+}
+
 .home-travel-card-content {
-    min-width: 300px;
+    min-width: 225px;
     max-width: 300px;
+    aspect-ratio: 1 /1;
     height: 380px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -152,6 +166,78 @@ Home Page
 .home-travel-card-content a {
     text-decoration: none;
     color: #44545E;
+}
+
+.home-travel-card-img {
+    aspect-ratio: 1 /1;
+}
+
+.home-travel-img {
+    width: 100%;
+    height: 100%;
+}
+
+.home-travel-card-text {
+    padding: 0 10px;
+}
+
+@media (max-width:1023px) {
+    .home-header {
+        height: 400px;
+    }
+
+    .home-header-text {
+        left: 50%;
+    }
+
+    .home-list {
+        margin: 100px 50px;
+    }
+}
+
+@media (max-width:950px) {
+    body {
+        margin: 5px 0px;
+    }
+
+    main {
+        padding: 50px 0px;
+    }
+
+    .home-header {
+        height: 300px;
+    }
+
+    .home-header-text {
+        left: 50%;
+    }
+
+    .home-header-text h1 {
+        font-size: 30px;
+    }
+
+    .home-header-text h2 {
+        font-size: 20px;
+    }
+
+    .home-list {
+        margin: 80px 10px;
+    }
+    .home-list-flex {
+        justify-content: center;
+    }
+
+    .home-travel-card-content {
+        min-width: 250px;
+
+    }
+}
+
+@media (max-width:899px) {
+    .home-list-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 /* -------------

@@ -21,10 +21,10 @@
             {% for destination in destinations%}
                 <div class="home-destination-card-content">
                     <a href="{% url 'destination_detail' destination.id %}">
-                        <div class="destination-card-img">
-                            <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+                        <div class="home-destination-card-img">
+                            <img class="home-destination-img" src="{{destination.img}}" alt="{{destination.city}}">
                         </div>
-                        <div class="destination-card-text">
+                        <div class="home-destination-card-text">
                             <h3>{{destination.city}}</h3>
                         </div>
                     </a>
@@ -42,10 +42,10 @@
             {% for travel in travels%}
                 <div class="home-travel-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
-                        <div class="travel-card-img">
-                            <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                        <div class="home-travel-card-img">
+                            <img class="home-travel-img" src="{{travel.img}}" alt="{{travel.title}}">
                         </div>
-                        <div class="travel-card-text">
+                        <div class="home-travel-card-text">
                             <h3>{{travel.title}}</h3>
                         </div>
                     </a>
