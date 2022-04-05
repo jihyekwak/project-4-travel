@@ -5,6 +5,7 @@
 
     <div class="list-flex-nav">
             <h1>{{user.username}}</h1>
+            <a href="{% url 'profile_update' user.pk %}">Edit Profile</a>
             <p>Travel Plans: {{user.travel_set.all|length}}</p>
         </div>
 

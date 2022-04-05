@@ -1,4 +1,5 @@
 from dataclasses import field
+from pyexpat import model
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
@@ -196,3 +197,11 @@ def signup_view(request):
 def profile(request, username):
     user = User.objects.get(username = username)
     return render(request, 'profile.html', {'user':user})
+
+class Profile_Update(UpdateView):
+    model = User
+    fields = ['username', 'first_name', 'last_name']
+    template_name = 'profile_update.html'
+
+    def get_success_url(self):
+        return reverse('profile', kwargs={'username': self.object.username})

@@ -165,6 +165,8 @@ List Page Flexbox
     background-color: #CFF2F650;
     margin-top: 50px;
     position: fixed;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .list-content {
