@@ -44,9 +44,10 @@ class Travel_List(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class Travel_Create(CreateView):
     model = Travel
-    fields = ['destinations', 'title', 'img', 'departure_date', 'return_date', 'budget', 'travelers']
+    fields = ['destinations', 'title', 'image', 'img_url', 'departure_date', 'return_date', 'budget', 'travelers']
     template_name = 'travel_create.html'
     success_url = '/travels/'
+
 
 # class Travel_Detail(DetailView):
 #     model = Travel

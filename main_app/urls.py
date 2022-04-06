@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('travels/', views.Travel_List.as_view(), name='travel_list'),
@@ -29,3 +32,5 @@ urlpatterns = [
     path('user/<int:pk>/update', views.Profile_Update.as_view(), name='profile_update')
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
