@@ -2,11 +2,16 @@
 
 {% block content %}
 
-    <h1>Add New Itinerary</h1>
-    <form class="create-form" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+    <h1>{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
+
+    <div class="create-form-div">
+        <h2>Add New Itinerary</h2>
+        <form class="create-form" method="post">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+
 
 {% endblock %}

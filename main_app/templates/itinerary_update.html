@@ -2,11 +2,14 @@
 
 {% block content %}
 
-    <h1>Travel Itinerary Update Page</h1>
+    <h1>{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
+    <h2>Itinerary Update</h2>
+
     <form class="create-form" method="post">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Submit" />
     </form>
+    <a href="{% url 'travel_detail' travel.pk %}"><button>Cancle</button></a>
     
 {% endblock %}

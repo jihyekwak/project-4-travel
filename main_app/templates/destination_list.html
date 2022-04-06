@@ -1,28 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="listpage-flex-container">
-    <div class="container-pagename">
-        <h1>Destinations</h1>
-        <div>
-            <a href="{% url 'destination_create' %}">Add new Destination</a>
-        </div>
-    </div>
+    <div class="list-flex-container">
 
-    <div class="container-nav-list">
-        <div class="category-nav">
-            <div class="search-box">
-                <form class="search-travel">
-                    <div>
-                        <input type="text" name="city" placeholder="">
-                        <input type="submit" value="Search">
-                        <a href="{% url 'destination_list' %}">Clear Search</a>
-                    </div>
-                </form>
-                <p>{{header}} ({{destinations|length}})</p>
+        <div class="list-flex-nav">
+            <div class="list-flex-nav-top">
+                <h1>Destinations</h1>
+                <a href="{% url 'destination_create' %}">
+                    <p>+ Add new Destination</p>
+                </a>
+                <div class="search-box">
+                    <form class="search-travel">
+                        <div class="search-travel-input">
+                            <input type="text" name="city" placeholder="">
+                            <input type="submit" value="Search">
+                        </div>
+                    </form>
+                    <p>{{header}} ({{destinations|length}})</p>
+                    <a href="{% url 'destination_list' %}">Clear Search</a>
+                </div>
             </div>
         </div>
-
 
         <div class="list-content">
             <div class="list-flex">
@@ -40,7 +38,7 @@
                 {% endfor %}
             </div>
         </div>
+        
     </div>
-</div>
     
 {% endblock %}

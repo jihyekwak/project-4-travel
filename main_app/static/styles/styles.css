@@ -6,33 +6,17 @@ body {
     margin: 5px 50px;
 }
 
-/* div {
-    border: 1px dotted black;
-} */
-/* .list-grid {
-    margin: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
-    gap: 30px;
-} */
-
-.list-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-
-
-main {
-    padding: 50px 30px;
+p {
+    color: #44545E;
 }
 
 /* -------------
 Navbar
 ---------------- */
+
+main {
+    padding: 50px 30px;
+}
 
 nav {
     padding: 15px 10px;
@@ -40,7 +24,7 @@ nav {
 	top: 0;
 	left: 0;
 	right: 0;
-    margin: 0 10px;
+    margin: 0 40px;
 	background-color: white;
 	z-index: 100;
     text-align: center;
@@ -74,7 +58,7 @@ Home Page
 ---------------- */
 .home-header {
     width: 100%;
-    height: 600px;
+    height: 500px;
     position: relative;
     text-align: center;
 }
@@ -120,35 +104,35 @@ Home Page
 }
 
 .home-list {
-    margin: 100px 200px;
+    margin: 100px 100px;
+}
+
+.home-list-header {
+    text-align: center;
+    margin: 30px auto;
+    color: #44545E;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.home-list-header a{
+    color: #44545E;
+    align-self: flex-end;
 }
 
 .home-list-flex {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 50px;
-}
-
-.home-list-header {
-    text-align: center;
-    margin: 50px auto;
-    color: #44545E;
-}
-
-.home-list-header a{
-    /* text-decoration: none; */
-    color: black;
-    float: right;
-    margin-right: 200px;
-    color: #44545E;
+    justify-content: space-evenly;
 }
 
 .home-destination-card-content {
-    min-width: 300px;
+    min-width: 225px;
     max-width: 300px;
+    aspect-ratio: 1 /1;
     height: 360px;
-    background-color: white;
+    /* background-color: white; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -157,9 +141,23 @@ Home Page
     color: #44545E; 
 }
 
+.home-destination-card-img {
+    aspect-ratio: 1 /1;
+}
+
+.home-destination-img {
+    width: 100%;
+    height: 100%;
+}
+
+.home-destination-card-text {
+    padding: 0 10px;
+}
+
 .home-travel-card-content {
-    min-width: 300px;
+    min-width: 225px;
     max-width: 300px;
+    aspect-ratio: 1 /1;
     height: 380px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -170,36 +168,188 @@ Home Page
     color: #44545E;
 }
 
+.home-travel-card-img {
+    aspect-ratio: 1 /1;
+}
+
+.home-travel-img {
+    width: 100%;
+    height: 100%;
+}
+
+.home-travel-card-text {
+    padding: 0 10px;
+}
+
+@media (max-width:1023px) {
+    .home-header {
+        height: 400px;
+    }
+
+    .home-header-text {
+        left: 50%;
+    }
+
+    .home-list {
+        margin: 100px 50px;
+    }
+}
+
+@media (max-width:950px) {
+    body {
+        margin: 5px 0px;
+    }
+
+    main {
+        padding: 50px 0px;
+    }
+
+    nav {
+        margin: 0;
+    }
+
+    .home-header {
+        height: 300px;
+    }
+
+    .home-header-text {
+        left: 50%;
+    }
+
+    .home-header-text h1 {
+        font-size: 30px;
+    }
+
+    .home-header-text h2 {
+        font-size: 20px;
+    }
+
+    .home-list {
+        margin: 80px 10px;
+    }
+    .home-list-flex {
+        justify-content: center;
+    }
+
+    .home-travel-card-content {
+        min-width: 250px;
+
+    }
+}
+
+@media (max-width:899px) {
+    .home-list-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
 /* -------------
 List Page Flexbox
 ---------------- */
 
-.listpage-flex-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.container-pagename {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 10px;
-}
-
-.container-nav-list {
+.list-flex-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.category-nav {
+.list-flex-nav {
     width: 15%;
+    margin-top: 50px;
+    position: fixed;
+    /* padding: 10px 5px 10px 10px;
+    border-radius: 5px; */
+}
+
+.list-flex-nav-top {
+    /* background-color: #CFF2F650; */
+    padding: 10px 5px 10px 10px;
+    border-radius: 5px;
+}
+
+.list-flex-nav h1 {
+    margin-bottom: 5px;
+    color: #44545E;
+}
+
+.list-flex-nav a {
+    color: #44545E;
+}
+
+.add-btn {
+    background-color: #44545E;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+    width: fit-content;
+}
+
+.search-travel-input input{
+    border: none;
+    border-radius: 3px;
+    margin: 10px auto;
+    height: 20px;
+    border: 1px solid #7B98AA50;
+}
+
+.list-flex-nav-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-flex-nav-category li {
+    margin-bottom: 8px;
+}
+
+.list-flex-nav-category a {
+    text-decoration: none;
 }
 
 .list-content {
     display: flex;
     justify-content: center;
     width: 85%;
+    padding-left: 15%;
+    margin-top: 50px
+}
+
+.list-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+/* -------------
+Destination List Page 
+---------------- */
+
+.destination-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 400px;
+    background-color: white;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.destination-card-content a {
+    text-decoration: none;
+    color: #44545E; 
+}
+
+.destination-card-img {
+    height: 300px;
+}
+
+.destination-img {
+    width: 100%;
+    height: 100%;
+}
+
+.destination-card-text {
+    padding: 0 10px;
 }
 
 /* -------------
@@ -211,7 +361,7 @@ Travel List Page
     max-width: 300px;
     height: 400px;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .travel-card-content a {
@@ -233,105 +383,9 @@ Travel List Page
 }
 
 /* -------------
-Travel Detail Page 
+Profile Page 
 ---------------- */
 
-.detail-header {
-    width: 100%;
-    height: 400px;
-    position: relative;
-    text-align: center;
-}
-
-.detail-header-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    overflow: hidden;
-    margin: auto;
-    display: block;
-}
-
-.detail-header-text {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-}
-
-.itinerary-card-content {
-    margin: 0 0 20px 0;
-    border: 1px solid #44545E;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.detail-itinerary-add {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-}
-
-.detail-itinerary-add a{
-    text-decoration: none;
-}
-
-table {
-    width: 100%;
-}
-
-table, th, td {
-    border: 2px solid #44545E;
-    border-collapse: collapse;
-    padding: 0 5px;
-}
-
-th {
-    height: 30px;
-}
-
-td {
-    vertical-align: top;
-}
-
-.detail-itinerary-edit-delete {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 25%;
-    gap: 5px;
-}
-
-/* -------------
-Destination List Page 
----------------- */
-
-.destination-card-content {
-    min-width: 300px;
-    max-width: 300px;
-    height: 400px;
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.destination-card-img {
-    height: 300px;
-}
-
-.destination-img {
-    width: 100%;
-    height: 100%;
-}
-
-.destination-card-text {
-    padding: 0 10px;
-}
-
-.destination-card-content a {
-    text-decoration: none;
-    color: #44545E; 
-}
 
 /* -------------
 Destination Detail Page 
@@ -347,4 +401,290 @@ Destination Detail Page
     height: 100%;
     object-fit: cover;
     overflow: hidden;
+}
+
+/* -------------
+Travel Detail Page 
+---------------- */
+
+.detail-header {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    text-align: center;
+}
+
+.detail-header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    /* margin: auto;
+    display: block; */
+}
+
+.detail-header-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.travel-edit-delete-btn {
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 100px;
+    padding: 5px;
+    background-color: white;
+    color: #44545E;
+    margin: auto 5px;
+}
+
+.detail-content {
+    margin: 30px 100px;
+}
+
+.detail-content h2 {
+    color: #44545E;
+}
+
+.detail-content p, li {
+    font-size: 19px;
+    color: #44545E;
+}
+
+.itinerary {
+    margin: 30px 100px;
+}
+
+.itinerary h2 {
+    color: #44545E;
+}
+
+
+.itinerary-card-content {
+    margin: 0 0 20px 0;
+    /* border: 1px solid #44545E; */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.detail-itinerary-add {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.detail-itinerary-add a{
+    text-decoration: none;
+}
+
+.itinerary-add-btn {
+    background-color: #44545E;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: fit-content;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border: 2px solid #44545E80;
+    border-collapse: collapse;
+    padding: 0 5px;
+    color: #44545E;
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    vertical-align: top;
+}
+
+.detail-itinerary-edit-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    gap: 5px;
+}
+
+.itinerary-edit-delete-btn {
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
+}
+
+.travel-comment {
+    margin: 30px 100px;
+}
+
+.travel-comment h2 {
+    color: #44545E;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.comment-list p{
+    margin-top: 0px;
+    color: #44545E;
+}
+
+.comment-create-form {
+    display: flex;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.comment-create-form span {
+    color: #44545E;
+}
+
+.comment-create-form textarea{
+    width: 800px;
+    height: 40px;
+}
+
+.comment-create-form label {
+    display: none;
+}
+
+.comment-create-form input {
+    height : 25px;
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
+}
+
+/* -------------
+Create Form 
+---------------- */
+
+.create-page-h1 {
+    color: #44545E;
+}
+
+.create-form-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: none;   
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #7B98AA70;
+}
+
+.create-form label {
+    font-size: 20px;
+    color: #44545E;
+}
+
+.create-form input, select {
+    width: 500px;
+    height: 20px;
+    border: none;  
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.create-form select {
+    width: 510px;
+}
+
+.create-form textarea {
+    border: none;  
+    border-radius: 5px;
+}
+
+.create-form input[type=submit] {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #44545E;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin: 10px auto;
+}
+
+#id_destination, #id_travel {
+    height: 30px;
+}
+
+#id_destinations {
+    height: 100px;
+}
+
+#id_travelers {
+    height: 50px;
+}
+
+.login input {
+    width: 200px;
+}
+
+.login label {
+    font-size: 18px;
+}
+
+.profile-update span {
+    /* display: none; */
+}
+
+label   {
+    /* display: inline-block; */
+    /* float: left; */
+    /* clear: left; */
+    /* width: 150px; */
+}
+
+.login-form-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: fit-content;
+    margin: auto auto;
+}
+
+.login-msg {
+    /* background-color: #CFF2F650; */
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+    color: #44545E;
+    width: 300px;
+}
+
+.login {
+    border-radius: 0 10px 10px 0;
+    /* background-color: #CFF2F650; */
+
+
+}
+
+button:hover {
+    transform: scale(1.1);
 }
