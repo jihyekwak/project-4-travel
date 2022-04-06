@@ -4,7 +4,9 @@
 
     <h1>Destination Detail Page</h1>
         <div class="destination-detail-header">
-            <img class="destination-detail-header-img" src="{{destination.img}}" alt="{{destination.city}}">
+            {% if destination.image %}
+            <img class="destination-detail-header-img" src="{{destination.image.url}}" alt="{{destination.city}}">
+            {% endif %}
         </div>
         <div class="destination-detail-content">
             <h2>{{destination.city}}</h2>

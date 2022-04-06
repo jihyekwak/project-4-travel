@@ -4,7 +4,7 @@
 
     <h1 class="create-page-h1">Add New Destination</h1>
     <div class="create-form-div">
-        <form class="create-form" method="post">
+        <form class="create-form" method="post" enctype = "multipart/form-data">
             {% csrf_token %}
             {{form.as_table}}
             <input type="submit" value="Submit" />

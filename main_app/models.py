@@ -9,7 +9,7 @@ class Destination(models.Model):
 
     city = models.CharField(max_length = 50)
     country = models.CharField(max_length = 50)
-    img = models.CharField(max_length=250)
+    image = models.ImageField(upload_to = "destination_images/", blank=True, null=True)
     description = models.TextField()
     things_to_do = ArrayField(models.CharField(max_length = 250), blank = True)
 

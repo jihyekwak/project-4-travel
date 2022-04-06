@@ -38,7 +38,9 @@
                 <div class="travel-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
                         <div class="travel-card-img">
+                            {% if travel.image is not None %}
                             <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+                            {% endif %}
                         </div>
                         <div class="travel-card-text">
                             <h3>{{travel.title}}</h3>
