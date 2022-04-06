@@ -8,30 +8,32 @@
             <img class="destination-detail-header-img" src="{{destination.image.url}}" alt="{{destination.city}}">
             {% endif %}
         </div>
-        <div class="destination-detail-content">
+        <div class="detail-section destination-detail-content">
             <h2>{{destination.city}}</h2>
             <h3>{{destination.country}}</h3>
             <p>{{destination.description}}</p>
             {% for thing_to_do in destination.things_to_do %}
                 <p>{{thing_to_do}}</p>
             {% endfor %}
+            <div>
+                <a href="{% url 'destination_update' destination.id %}"><button class="travel-edit-delete-btn">Edit</button></a>
+                <a href="{% url 'destination_delete' destination.id %}"><button class="travel-edit-delete-btn">Delete</button></a>
+            </div>
         </div>
-        <div>
-            <a href="{% url 'destination_update' destination.id %}"><button>Edit</button></a>
-            <a href="{% url 'destination_delete' destination.id %}"><button>Delete</button></a>
-        </div>
-        <div>
+
+        <div class="detail-section">
             <a href="{% url 'travel_create' %}">
-                <h3>Start Travel Plan</h3>
+                <h3 class="add-btn">Start Travel Plan</h3>
             </a>
         </div>
-        <div>
+
+        <div class="detail-section">
             <h2>Travels</h2>
             {% for travel in destination.travel_set.all %}
             <div class="travel-card-content">
                 <a href="{% url 'travel_detail' travel.pk %}">
                     <div class="travel-card-img">
-                        <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                        <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
                     </div>
                     <div class="travel-card-text">
                         <h3>{{travel.title}}</h3>
@@ -40,7 +42,7 @@
             </div>
             {% endfor %}
         </div>
-        <div>
+        <div class="detail-section">
             <h2>Itineraries</h2>
             {% for itinerary in destination.itineraries.all %}
                 <a href="{% url 'travel_detail' itinerary.travel.pk %}">

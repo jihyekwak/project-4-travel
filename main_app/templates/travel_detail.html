@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="detail-content">
+        <div class="detail-section detail-content">
             <h2>{{travel.title}}</h2>
             <ul>
                 <li><p>Destination:
@@ -38,7 +38,7 @@
             {% endif %}
         </div>
 
-        <div class="itinerary">
+        <div class="detail-section itinerary">
             <div class="detail-itinerary-add">
                 <h2>Itinerary</h2>
                 {% if user.is_authenticated and user in travel.travelers.all  %}
@@ -115,7 +115,7 @@
             </div>
         </div>
         
-        <div class="travel-comment">
+        <div class="detail-section travel-comment">
             <h2>Comments</h2>
             {% for comment in travel.comments.all %}
                 <div class="comment-list">
