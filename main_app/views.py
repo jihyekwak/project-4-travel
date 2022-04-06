@@ -41,6 +41,7 @@ class Travel_List(TemplateView):
             context['header'] = "All Travels"
         return context
 
+@method_decorator(login_required, name='dispatch')
 class Travel_Create(CreateView):
     model = Travel
     fields = ['destinations', 'title', 'img', 'departure_date', 'return_date', 'budget', 'travelers']
@@ -55,12 +56,14 @@ def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
     form = CommentForm(request.POST or None)
     form.instance.travel = travel
-    form.instance.author = request.user
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/travels/"+str(pk))
+    if request.user.is_authenticated:
+        form.instance.author = request.user
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, 'travel_detail.html', {'travel': travel, 'form':form})
 
+@method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):
     model = Travel
     fields = '__all__'
@@ -69,11 +72,13 @@ class Travel_Update(UpdateView):
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
 
+@method_decorator(login_required, name='dispatch')
 class Travel_Delete(DeleteView):
     model = Travel
     template_name = 'travel_delete_confirmation.html'
     success_url = '/travels/'
 
+@method_decorator(login_required, name='dispatch')
 class Itinerary_Create(CreateView):
     model = Itinerary
     fields = '__all__'
@@ -96,6 +101,7 @@ class Itinerary_Create(CreateView):
         self.object.travel = self.request.travel
         self.object.save()
 
+@login_required
 def itinerary_update(request, pk, itinerary_id):
     itinerary = Itinerary.objects.get(id=itinerary_id)
     travel = Travel.objects.get(pk=pk)
@@ -105,6 +111,7 @@ def itinerary_update(request, pk, itinerary_id):
         return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, 'itinerary_update.html', {'itineray':itinerary, 'form':form, 'travel':travel})
 
+@login_required
 def itinerary_delete(request, pk, itinerary_id):
     itinerary = Itinerary.objects.get(id=itinerary_id)
     if request.method == "POST":
@@ -130,7 +137,7 @@ class Destination_List(TemplateView):
             context['header'] = "All Destination"
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class Destination_Create(CreateView):
     model = Destination
     fields = '__all__'
@@ -141,6 +148,7 @@ class Destination_Detail(DetailView):
     model = Destination
     template_name = 'destination_detail.html'
 
+@method_decorator(login_required, name='dispatch')
 class Destination_Update(UpdateView):
     model = Destination
     fields = '__all__'
@@ -149,11 +157,13 @@ class Destination_Update(UpdateView):
     def get_success_url(self):
         return reverse('destination_detail', kwargs={'pk': self.object.pk})
 
+@method_decorator(login_required, name='dispatch')
 class Destination_Delete(DeleteView):
     model = Destination
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
 
+@login_required
 def comment_update_delete(request, pk, comment_id):
     comment = Comment.objects.get(id=comment_id)
     form = CommentForm(request.POST or None, instance = comment)
@@ -204,10 +214,12 @@ def signup_view(request):
         form = UserCreationForm()
         return render(request, 'signup.html', {'form':form})
 
+@login_required
 def profile(request, username):
     user = User.objects.get(username = username)
     return render(request, 'profile.html', {'user':user})
 
+@method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):
     model = User
     fields = ['username', 'first_name', 'last_name']
