@@ -24,7 +24,7 @@ nav {
 	top: 0;
 	left: 0;
 	right: 0;
-    margin: 0 10px;
+    margin: 0 40px;
 	background-color: white;
 	z-index: 100;
     text-align: center;
@@ -204,6 +204,10 @@ Home Page
         padding: 50px 0px;
     }
 
+    nav {
+        margin: 0;
+    }
+
     .home-header {
         height: 300px;
     }
@@ -327,7 +331,7 @@ Destination List Page
     max-width: 300px;
     height: 400px;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .destination-card-content a {
@@ -357,7 +361,7 @@ Travel List Page
     max-width: 300px;
     height: 400px;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .travel-card-content a {
@@ -427,9 +431,41 @@ Travel Detail Page
     color: white;
 }
 
+.travel-edit-delete-btn {
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 100px;
+    padding: 5px;
+    background-color: white;
+    color: #44545E;
+    margin: auto 5px;
+}
+
+.detail-content {
+    margin: 30px 100px;
+}
+
+.detail-content h2 {
+    color: #44545E;
+}
+
+.detail-content p, li {
+    font-size: 19px;
+    color: #44545E;
+}
+
+.itinerary {
+    margin: 30px 100px;
+}
+
+.itinerary h2 {
+    color: #44545E;
+}
+
+
 .itinerary-card-content {
     margin: 0 0 20px 0;
-    border: 1px solid #44545E;
+    /* border: 1px solid #44545E; */
     border-radius: 5px;
     padding: 10px;
 }
@@ -438,10 +474,19 @@ Travel Detail Page
     display: flex;
     flex-direction: row;
     align-items: baseline;
+    gap: 10px;
 }
 
 .detail-itinerary-add a{
     text-decoration: none;
+}
+
+.itinerary-add-btn {
+    background-color: #44545E;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: fit-content;
 }
 
 table {
@@ -449,9 +494,10 @@ table {
 }
 
 table, th, td {
-    border: 2px solid #44545E;
+    border: 2px solid #44545E80;
     border-collapse: collapse;
     padding: 0 5px;
+    color: #44545E;
 }
 
 th {
@@ -466,23 +512,45 @@ td {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 25%;
+    margin-top: 10%;
     gap: 5px;
 }
 
-.comment {
+.itinerary-edit-delete-btn {
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
+}
+
+.travel-comment {
+    margin: 30px 100px;
+}
+
+.travel-comment h2 {
+    color: #44545E;
+}
+
+.comment-list {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.comment p{
+.comment-list p{
     margin-top: 0px;
+    color: #44545E;
 }
 
 .comment-create-form {
     display: flex;
     gap: 10px;
+    padding: 0 10px;
+}
+
+.comment-create-form span {
+    color: #44545E;
 }
 
 .comment-create-form textarea{
@@ -490,8 +558,17 @@ td {
     height: 40px;
 }
 
+.comment-create-form label {
+    display: none;
+}
+
 .comment-create-form input {
-    height : 20px;
+    height : 25px;
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
 }
 
 /* -------------
@@ -606,4 +683,8 @@ label   {
     /* background-color: #CFF2F650; */
 
 
+}
+
+button:hover {
+    transform: scale(1.1);
 }
