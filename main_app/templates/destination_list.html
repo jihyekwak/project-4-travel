@@ -28,7 +28,9 @@
                 <div class="destination-card-content">
                     <a href="{% url 'destination_detail' destination.id %}">
                         <div class="destination-card-img">
-                            <img class="destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+                            {% if destination.image %}
+                            <img class="destination-img" src="{{destination.image.url}}" alt="{{destination.city}}">
+                            {% endif %}
                         </div>
                         <div class="destination-card-text">
                             <h3>{{destination.city}}</h3>

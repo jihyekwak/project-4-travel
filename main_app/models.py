@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
+from django.forms import ImageField
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Destination(models.Model):
 
     city = models.CharField(max_length = 50)
     country = models.CharField(max_length = 50)
-    img = models.CharField(max_length=250)
+    image = models.ImageField(upload_to = "destination_images/", blank=True, null=True)
     description = models.TextField()
     things_to_do = ArrayField(models.CharField(max_length = 250), blank = True)
 
@@ -21,8 +22,8 @@ class Destination(models.Model):
 class Travel(models.Model):
 
     title = models.CharField(max_length=50)
-    img = models.CharField(max_length=250)
-    destinations = models.ManyToManyField(Destination, null=True, blank=True)
+    image = models.ImageField(upload_to = "travel_images/", blank=True, null=True)
+    destinations = models.ManyToManyField(Destination, blank=True)
     departure_date = models.DateField(auto_now = False, auto_now_add = False)
     return_date = models.DateField(auto_now = False, auto_now_add = False)
     budget = models.IntegerField()

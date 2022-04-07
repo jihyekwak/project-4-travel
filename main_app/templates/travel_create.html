@@ -7,7 +7,7 @@
         <a href="{% url 'destination_create' %}">
             <p>Don't have your destination? Click here to add Destination</p>
         </a>
-        <form class="create-form" method="post">
+        <form class="create-form" method="post" enctype = "multipart/form-data">
             {% csrf_token %}
             {{form.as_table}}
             <input type="submit" value="Submit" />

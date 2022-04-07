@@ -32,7 +32,7 @@
             <div class="travel-card-content">
                 <a href="{% url 'travel_detail' travel.pk %}">
                     <div class="travel-card-img">
-                        <img class="travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                        <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
                     </div>
                     <div class="travel-card-text">
                         <h3>{{travel.title}}</h3>

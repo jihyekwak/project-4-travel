@@ -441,26 +441,34 @@ Travel Detail Page
     margin: auto 5px;
 }
 
-.detail-content {
+.detail-section {
     margin: 30px 100px;
 }
 
-.detail-content h2 {
+.detail-section h2, h3, p {
     color: #44545E;
 }
+
+/* .detail-content {
+    margin: 30px 100px;
+} */
+
+/* .detail-content h2 {
+    color: #44545E;
+} */
 
 .detail-content p, li {
     font-size: 19px;
     color: #44545E;
 }
 
-.itinerary {
+/* .itinerary {
     margin: 30px 100px;
-}
+} */
 
-.itinerary h2 {
+/* .itinerary h2 {
     color: #44545E;
-}
+} */
 
 
 .itinerary-card-content {
@@ -524,13 +532,13 @@ td {
     color: #44545E;
 }
 
-.travel-comment {
+/* .travel-comment {
     margin: 30px 100px;
-}
+} */
 
-.travel-comment h2 {
+/* .travel-comment h2 {
     color: #44545E;
-}
+} */
 
 .comment-list {
     display: flex;

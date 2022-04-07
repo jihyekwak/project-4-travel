@@ -22,7 +22,9 @@
                 <div class="home-destination-card-content">
                     <a href="{% url 'destination_detail' destination.id %}">
                         <div class="home-destination-card-img">
-                            <img class="home-destination-img" src="{{destination.img}}" alt="{{destination.city}}">
+                            {% if destination.image %}
+                            <img class="home-destination-img" src="{{destination.image.url}}" alt="{{destination.city}}">
+                            {% endif %}
                         </div>
                         <div class="home-destination-card-text">
                             <h3>{{destination.city}}</h3>
@@ -43,7 +45,9 @@
                 <div class="home-travel-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
                         <div class="home-travel-card-img">
-                            <img class="home-travel-img" src="{{travel.img}}" alt="{{travel.title}}">
+                            {% if travel.image %}
+                            <img class="home-travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+                            {% endif %}
                         </div>
                         <div class="home-travel-card-text">
                             <h3>{{travel.title}}</h3>
