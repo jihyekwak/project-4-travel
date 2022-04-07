@@ -1,15 +1,19 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.contrib.auth.models import User
-from django.forms import ImageField
+# from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+class CustomUser(AbstractUser):
+    
+        profile_image = models.ImageField(upload_to = "profile_images/", blank=True, null=True)
 
 class Destination(models.Model):
 
     city = models.CharField(max_length = 50)
     country = models.CharField(max_length = 50)
-    image = models.ImageField(upload_to = "destination_images/", blank=True, null=True)
+    image = models.ImageField(upload_to = "destination_images/", blank=True)
     description = models.TextField()
     things_to_do = ArrayField(models.CharField(max_length = 250), blank = True)
 
@@ -22,12 +26,12 @@ class Destination(models.Model):
 class Travel(models.Model):
 
     title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to = "travel_images/", blank=True, null=True)
+    image = models.ImageField(upload_to = "travel_images/", blank=True)
     destinations = models.ManyToManyField(Destination, blank=True)
     departure_date = models.DateField(auto_now = False, auto_now_add = False)
     return_date = models.DateField(auto_now = False, auto_now_add = False)
     budget = models.IntegerField()
-    travelers = models.ManyToManyField(User)
+    travelers = models.ManyToManyField(CustomUser)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
@@ -57,7 +61,7 @@ class Itinerary(models.Model):
 class Comment(models.Model):
 
     text = models.TextField()
-    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
     travel = models.ForeignKey(Travel, related_name='comments', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
 
