@@ -2,12 +2,14 @@
 
 {% block content %}
 
-    <h1>Destination Update Page</h1>
-    <form class="create-form" method="post" enctype = "multipart/form-data">
-        {% csrf_token %}
-        {{form.as_table}}
-        <input type="submit" value="Submit" />
-        <a href="{% url 'destination_detail' destination.pk %}"><button>Cancle</button></a>
-    </form>
+    <h1 class="create-page-h1">Destination Update Page</h1>
+    <div class="create-form-div">
+        <form class="create-form" method="post" enctype = "multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit" />
+            <a class="form-cancel" href="{% url 'destination_detail' destination.pk %}">Cancel</a>
+        </form>
+    </div>
     
 {% endblock %}
