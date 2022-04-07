@@ -3,11 +3,12 @@
 {% block content %}
 
     <h1>Edit your Travel</h1>
-    <form class="create-form" method="post">
+    <form class="create-form" method="post" enctype = "multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form.as_table}}
         <input type="submit" value="Submit" />
+        <a href="{% url 'travel_detail' travel.pk%}"><button>Cancel</button></a>
     </form>
-    <a href="{% url 'travel_detail' travel.pk%}"><button>Cancel</button></a>
+
 
 {% endblock %}

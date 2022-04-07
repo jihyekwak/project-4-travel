@@ -3,9 +3,9 @@
 {% block content %}
 
     <h1>Profile Update Page</h1>
-    <form class="profile-update login create-form" method="post">
+    <form class="profile-update login create-form" method="post" enctype = "multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form.as_table}}
         <input type="submit" value="Submit" />
     </form>
     
