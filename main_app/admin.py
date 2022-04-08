@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Travel, Itinerary, Destination, Comment, CustomUser
+from .models import Travel, Itinerary, Destination, Comment, CustomUser, Tag, List
 from .forms import CustomUserCreationForm
 from django.contrib.auth.admin import UserAdmin
 
@@ -27,4 +27,5 @@ admin.site.register(Travel)
 admin.site.register(Itinerary)
 admin.site.register(Destination)
 admin.site.register(Comment)
-
+admin.site.register(Tag)
+admin.site.register(List)

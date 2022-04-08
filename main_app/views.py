@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary, Destination, Comment
+from .models import Travel, Itinerary, Destination, Comment, Tag, List
 from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -32,6 +32,7 @@ class Travel_List(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['tags'] = Tag.objects.all()
         title = self.request.GET.get("title")
         if title != None:
             context['travels'] = Travel.objects.filter(title__icontains=title)
@@ -141,9 +142,13 @@ class Destination_List(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         city = self.request.GET.get("city")
+        continent = self.request.GET.get("continent")
         if city != None:
             context['destinations'] = Destination.objects.filter(city__icontains=city)
             context['header'] = f"Searching for {city}"
+        elif continent !=None:
+            context['destinations'] = Destination.objects.filter(continent__icontains=continent)
+            context['header'] = f"Searching for {continent}"
         else:
             context['destinations'] = Destination.objects.all()
             context['header'] = "All Destination"
@@ -229,7 +234,8 @@ def signup_view(request):
 @login_required
 def profile(request, username):
     user = get_user_model().objects.get(username = username)
-    return render(request, 'profile.html', {'user':user})
+    tags = Tag.objects.all()
+    return render(request, 'profile.html', {'user':user, 'tags': tags})
 
 @method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):

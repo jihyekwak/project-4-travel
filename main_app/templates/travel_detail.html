@@ -33,6 +33,11 @@
                     {% endfor %}
                 </p></li>
                 {% endif %}
+                <li><p>Tags:
+                    {% for tag in travel.tags.all %}
+                    <span>{{tag.tag}}</span>
+                {% endfor %}
+                </p></li>
             </ul>
             {% if user.is_authenticated and user in travel.travelers.all  %}
             <div>

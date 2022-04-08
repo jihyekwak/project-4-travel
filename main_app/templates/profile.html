@@ -12,9 +12,9 @@
             <p>Travel Plans: {{user.travel_set.all|length}}</p>
             <div class="list-flex-nav-category">
                 <ul>
-                    <li><a href=""># All</a></li>
-                    <li><a href=""># City</a></li>
-                    <li><a href=""># Nature</a></li>
+                    {% for tag in tags %}
+                        <li><a href="">{{tag}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

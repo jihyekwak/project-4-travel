@@ -40,6 +40,9 @@ class Tag(models.Model):
 
     tag = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.tag
+
 class Travel(models.Model):
 
     title = models.CharField(max_length=50)

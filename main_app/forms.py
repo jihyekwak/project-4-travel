@@ -32,4 +32,4 @@ class TravelForm(forms.ModelForm):
 
     class Meta:
         model = Travel
-        fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers']
+        fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers', 'tags']

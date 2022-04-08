@@ -19,6 +19,18 @@
                     <p>{{header}} ({{destinations|length}})</p>
                     <a href="{% url 'destination_list' %}">Clear Search</a>
                 </div>
+                <div class="list-flex-nav-category">
+                    <ul>
+                        <li><a href="{% url 'destination_list' %}">All</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=Antartica" name="continent">Antartica</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=Africa" name="continent">Africa</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=Asia" name="continent">Aisa</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=Europe" name="continent">Europe</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=North America" name="continent">North America</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=Oceania" name="continent">Oceania</a></li>
+                        <li><a href="{% url 'destination_list' %}?continent=South America" name="continent">South America</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
