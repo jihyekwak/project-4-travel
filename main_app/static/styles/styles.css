@@ -780,6 +780,10 @@ input[type="checkbox"] {
     text-align: right;
 }
 
+.errorlist {
+    display: none;
+}
+
 button:hover {
     transform: scale(1.1);
 }

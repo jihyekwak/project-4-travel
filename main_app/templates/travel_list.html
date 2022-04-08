@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
     <div class="list-flex-container">
 
@@ -38,8 +38,10 @@
                 <div class="travel-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
                         <div class="travel-card-img">
-                            {% if travel.image is not None %}
+                            {% if travel.image %}
                             <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+                            {% else %}
+                            <img class="travel-img" src="{% static 'images/simon-maage-C9dhUVP-o6w-unsplash.jpg' %}" alt="">
                             {% endif %}
                         </div>
                         <div class="travel-card-text">

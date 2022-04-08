@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
     <!-- <h1>Travel Detail Page</h1> -->
         <div class="detail-header">
+            {% if travel.image %}
             <img class="detail-header-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+            {% else %}
+            <img class="detail-header-img" src="{% static 'images/simon-maage-C9dhUVP-o6w-unsplash.jpg' %}" alt="">
+            {% endif %}
             <div class="detail-header-text">
                 <h1>{{travel.title}}</h1>
                 <h2>{{travel.departure_date}} ~ {{travel.return_date}}</h2>

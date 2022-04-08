@@ -7,7 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('travels/', views.Travel_List.as_view(), name='travel_list'),
-    path('travels/new', views.Travel_Create.as_view(), name='travel_create'),
+    path('travels/new', views.travel_create, name='travel_create'),
     path('travels/<int:pk>', views.travel_detail, name='travel_detail'),
     path('travels/<int:pk>/update', views.Travel_Update.as_view(), name='travel_update'),
     path('travels/<int:pk>/delete', views.Travel_Delete.as_view(), name='travel_delete'),
