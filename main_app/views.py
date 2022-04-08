@@ -1,5 +1,4 @@
-from dataclasses import field
-from pyexpat import model
+from urllib import request
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
@@ -8,12 +7,13 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Travel, Itinerary, Destination, Comment
-from .forms import ItineraryForm, CommentForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import get_user_model
 
 
 # Create your views here.
@@ -46,7 +46,10 @@ class Travel_Create(CreateView):
     model = Travel
     fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers']
     template_name = 'travel_create.html'
-    success_url = '/travels/'
+    # success_url = '/travels/'
+
+    def get_success_url(self):
+        return reverse('travel_detail', kwargs={'pk': self.object.pk})
 
 
 # class Travel_Detail(DetailView):
@@ -203,7 +206,7 @@ def logout_view(request):
 
 def signup_view(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -212,18 +215,18 @@ def signup_view(request):
         else:
             return render(request, 'signup.html', {'form':form})
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
         return render(request, 'signup.html', {'form':form})
 
 @login_required
 def profile(request, username):
-    user = User.objects.get(username = username)
+    user = get_user_model().objects.get(username = username)
     return render(request, 'profile.html', {'user':user})
 
 @method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):
-    model = User
-    fields = ['username', 'first_name', 'last_name']
+    model = get_user_model()
+    form_class = CustomUserChangeForm
     template_name = 'profile_update.html'
 
     def get_success_url(self):

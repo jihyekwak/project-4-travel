@@ -31,6 +31,4 @@ urlpatterns = [
     path('user/<username>', views.profile, name='profile'),
     path('user/<int:pk>/update', views.Profile_Update.as_view(), name='profile_update')
 
-]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

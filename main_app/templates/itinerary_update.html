@@ -2,14 +2,16 @@
 
 {% block content %}
 
-    <h1>{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
+    <h1 class="create-page-h1">{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
     <h2>Itinerary Update</h2>
+    <div class="create-form-div">
+        <form class="create-form" method="post" enctype = "multipart/form-data">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="Submit" />
+            <a class="form-cancel" href="{% url 'travel_detail' travel.pk %}">Cancel</a>
+        </form>
+    </div>
 
-    <form class="create-form" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
-    <a href="{% url 'travel_detail' travel.pk %}"><button>Cancle</button></a>
     
 {% endblock %}
