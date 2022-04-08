@@ -33,10 +33,11 @@
                 <a href="{% url 'travel_detail' travel.pk %}">
                     <div class="travel-card-img">
                         <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+                        <div class="profile-travel-card-text">
+                            <h2>{{travel.title}}</h2>
+                        </div>
                     </div>
-                    <div class="travel-card-text">
-                        <h3>{{travel.title}}</h3>
-                    </div>
+
                 </a>
             </div>
             {% endfor %}

@@ -34,13 +34,21 @@ nav {
     float: left;
 }
 
+.nav-center {
+    float: center;
+}
+
 .nav-right {
     float: right;
 }
 
-.profile-image {
-    margin-right: -20px;
+/* .profile-image {
+    margin-right: -30px;
 }
+
+.username {
+    margin-right: -30px;
+} */
 
 nav a {
     text-decoration: none;
@@ -61,6 +69,41 @@ nav a:hover {
     width: 30px;
     height: 30px;
     border-radius: 15px;
+    margin-right: -25px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: -25px;
+}
+
+.dropdown-btn {
+    /* position: relative;
+    display: inline-block; */
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    color: #44545E;
+    padding: 12px 6px;
+    margin-top: 26px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    font-size: 15px;
+    display: inline;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /* -------------
@@ -395,6 +438,31 @@ Travel List Page
 /* -------------
 Profile Page 
 ---------------- */
+
+.travel-card-img {
+    position: relative;
+    text-align: center;
+}
+
+.profile-travel-card-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.profile-travel-card-text h2 {
+    color: white;
+}
+
+.travel-card-content:hover .profile-travel-card-text {
+    display: block;
+}
+
+.travel-card-content:hover .travel-img {
+    opacity: 0.8;
+}
 
 
 /* -------------

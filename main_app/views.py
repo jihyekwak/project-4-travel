@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
@@ -45,7 +46,10 @@ class Travel_Create(CreateView):
     model = Travel
     fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers']
     template_name = 'travel_create.html'
-    success_url = '/travels/'
+    # success_url = '/travels/'
+
+    def get_success_url(self):
+        return reverse('travel_detail', kwargs={'pk': self.object.pk})
 
 
 # class Travel_Detail(DetailView):
