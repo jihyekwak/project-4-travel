@@ -1,5 +1,3 @@
-from re import T
-from urllib import request
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
