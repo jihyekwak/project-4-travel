@@ -96,10 +96,13 @@ class List(models.Model):
 
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     item = models.CharField(max_length=250)
-    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
+    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES, blank=True)
     is_completed = models.BooleanField(default = False)
-    due_date = models.DateField(auto_now = False, auto_now_add = False, blank=True)
+    due_date = models.DateField(auto_now = False, auto_now_add = False, blank=True, null=True)
     travel = models.ForeignKey(Travel, related_name='lists', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return 'List' + str(self.pk) + '_'+ str(self.travel) + self.category
 
 class Comment(models.Model):
 
