@@ -18,26 +18,14 @@
         <div class="detail-section detail-content">
             <h2>{{travel.title}}</h2>
             <ul>
-                <li><p>Destination:
-                    {% for destination in travel.destinations.all %}
-                    <span>{{destination.city}}</span>
-                {% endfor %}
-                </p></li>
+                <li><p>Destination: {{ travel.destinations.all|join:", "}}</p></li>
                 <li><p>Departure Date: {{travel.departure_date}}</p></li>
                 <li><p>Return Date: {{travel.return_date}}</p></li>
                 <li><p>Budget: {{travel.budget}}</p></li>
                 {% if user.is_authenticated and user in travel.travelers.all %}
-                <li><p>Travelers: 
-                    {% for traveler in travel.travelers.all %}
-                        <span>{{traveler.username}}</span>
-                    {% endfor %}
-                </p></li>
+                <li><p>Travelers: {{ travel.travelers.all|join:", "}}</p></li>
                 {% endif %}
-                <li><p>Tags:
-                    {% for tag in travel.tags.all %}
-                    <span>{{tag.tag}}</span>
-                {% endfor %}
-                </p></li>
+                <li><p>Tags: {{ travel.tags.all|join:", "}}</p></li>
             </ul>
             {% if user.is_authenticated and user in travel.travelers.all  %}
             <div>

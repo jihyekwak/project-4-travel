@@ -1,3 +1,4 @@
+from re import T
 from urllib import request
 from django.shortcuts import render
 from django.urls import reverse
@@ -7,7 +8,7 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Travel, Itinerary, Destination, Comment, Tag, List
-from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, TagForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -42,24 +43,24 @@ class Travel_List(TemplateView):
             context['header'] = "All Travels"
         return context
 
-# @method_decorator(login_required, name='dispatch')
-# class Travel_Create(CreateView):
-#     model = Travel
-#     fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers']
-#     template_name = 'travel_create.html'
-#     # success_url = '/travels/'
-
 @login_required
 def travel_create(request):
-    form = TravelForm(request.POST, request.FILES or None)
+    form = TravelForm(request.POST, request.FILES)
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            if request.user.is_authenticated:
-                form.instance.travelers.add(str(request.user.pk))
-                return HttpResponseRedirect("/travels/"+str(form.instance.pk))
+            form.instance.travelers.add(str(request.user.pk))
+            form.instance.save()
+            tags = form.cleaned_data['tags'].split(',')
+            for tag in tags:
+                tag=tag.strip()
+                tag, created = Tag.objects.get_or_create(name=tag)
+                form.instance.tags.add(tag)
+            destinations = form.cleaned_data['destinations']
+            for destination in destinations:
+                form.instance.destinations.add(destination)
+            return HttpResponseRedirect("/travels/")
     return render(request, 'travel_create.html', {'form':form})
-
 
 # class Travel_Detail(DetailView):
 #     model = Travel

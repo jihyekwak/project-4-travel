@@ -732,7 +732,7 @@ input[type="checkbox"] {
     height: 100px;
 }
 
-#id_travelers, #id_tags  {
+#id_travelers {
     height: 50px;
 }
 

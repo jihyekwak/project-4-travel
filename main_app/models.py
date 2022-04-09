@@ -38,10 +38,10 @@ class Destination(models.Model):
 
 class Tag(models.Model):
 
-    tag = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.tag
+        return self.name
 
 class Travel(models.Model):
 
