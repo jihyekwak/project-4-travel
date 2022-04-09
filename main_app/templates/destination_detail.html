@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
     <h1>Destination Detail Page</h1>
@@ -33,7 +33,11 @@
             <div class="travel-card-content">
                 <a href="{% url 'travel_detail' travel.pk %}">
                     <div class="travel-card-img">
+                        {% if travel.image %}
                         <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+                        {% else %}
+                        <img class="travel-img" src="{% static 'images/simon-maage-C9dhUVP-o6w-unsplash.jpg' %}" alt="">
+                        {% endif %}
                     </div>
                     <div class="travel-card-text">
                         <h3>{{travel.title}}</h3>

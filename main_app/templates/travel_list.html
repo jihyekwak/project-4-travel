@@ -18,9 +18,9 @@
                 </div>
                 <div class="list-flex-nav-category">
                     <ul>
-                        <li><a href=""># All</a></li>
-                        <li><a href=""># City</a></li>
-                        <li><a href=""># Nature</a></li>
+                        {% for tag in tags %}
+                            <li><a href="{% url 'travel_list' %}?tag={{tag}}" name="tag">{{tag}}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

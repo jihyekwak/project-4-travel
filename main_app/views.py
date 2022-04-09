@@ -1,3 +1,4 @@
+from re import T
 from urllib import request
 from django.shortcuts import render
 from django.urls import reverse
@@ -6,8 +7,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary, Destination, Comment
-from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm
+from .models import Travel, Itinerary, Destination, Comment, Tag, List
+from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, TagForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -32,33 +33,38 @@ class Travel_List(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['tags'] = Tag.objects.all()
         title = self.request.GET.get("title")
+        tag = self.request.GET.get("tag")
         if title != None:
             context['travels'] = Travel.objects.filter(title__icontains=title)
             context['header'] = f"Searching for {title}"
+        elif tag !=None:
+            context['travels'] = Travel.objects.filter(tags__name__icontains=tag)
+            context['header'] = f"Searching for {tag}"
         else:
             context['travels'] = Travel.objects.all()
             context['header'] = "All Travels"
         return context
 
-# @method_decorator(login_required, name='dispatch')
-# class Travel_Create(CreateView):
-#     model = Travel
-#     fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers']
-#     template_name = 'travel_create.html'
-#     # success_url = '/travels/'
-
 @login_required
 def travel_create(request):
-    form = TravelForm(request.POST, request.FILES or None)
+    form = TravelForm(request.POST, request.FILES)
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            if request.user.is_authenticated:
-                form.instance.travelers.add(str(request.user.pk))
-                return HttpResponseRedirect("/travels/"+str(form.instance.pk))
+            form.instance.travelers.add(str(request.user.pk))
+            form.instance.save()
+            tags = form.cleaned_data['tags'].split(',')
+            for tag in tags:
+                tag=tag.strip()
+                tag, created = Tag.objects.get_or_create(name=tag)
+                form.instance.tags.add(tag)
+            destinations = form.cleaned_data['destinations']
+            for destination in destinations:
+                form.instance.destinations.add(destination)
+            return HttpResponseRedirect("/travels/")
     return render(request, 'travel_create.html', {'form':form})
-
 
 # class Travel_Detail(DetailView):
 #     model = Travel
@@ -80,9 +86,22 @@ class Travel_Update(UpdateView):
     model = Travel
     fields = '__all__'
     template_name = 'travel_update.html'
+    # form_class = TravelForm
     
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
+
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.save()
+    #     self.object.tags = self.request.GET.getlist("tags")
+    #     self.object.tags.set(self.request.GET.getlist("tags"))
+    #     form.save_m2m()
+    #     return super(Travel_Update, self).form_valid(form)
+
+        # tags = request.GET.getlist("tags")
+        # self.object.tags.set(*tags)
+
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Delete(DeleteView):
@@ -141,9 +160,13 @@ class Destination_List(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         city = self.request.GET.get("city")
+        continent = self.request.GET.get("continent")
         if city != None:
             context['destinations'] = Destination.objects.filter(city__icontains=city)
             context['header'] = f"Searching for {city}"
+        elif continent !=None:
+            context['destinations'] = Destination.objects.filter(continent__icontains=continent)
+            context['header'] = f"Searching for {continent}"
         else:
             context['destinations'] = Destination.objects.all()
             context['header'] = "All Destination"
@@ -229,7 +252,8 @@ def signup_view(request):
 @login_required
 def profile(request, username):
     user = get_user_model().objects.get(username = username)
-    return render(request, 'profile.html', {'user':user})
+    tags = Tag.objects.all()
+    return render(request, 'profile.html', {'user':user, 'tags': tags})
 
 @method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):

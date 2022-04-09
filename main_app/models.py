@@ -1,7 +1,9 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 # from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from django.forms import DateField
 
 # Create your models here.
 
@@ -9,10 +11,21 @@ class CustomUser(AbstractUser):
     
         profile_image = models.ImageField(upload_to = "profile_images/", blank=True, null=True)
 
+CONTINENT_CHOICES = {
+    ("Africa", "Africa"),
+    ("Antarctica", "Antarctica"),
+    ("Asia", "Asia"),
+    ("Europe", "Europe"),
+    ("North America", "North America"),
+    ("Oceania", "Oceania"),
+    ("Sourth America", "South America"),
+}
+
 class Destination(models.Model):
 
     city = models.CharField(max_length = 50)
     country = models.CharField(max_length = 50)
+    continent = models.CharField(max_length= 50, choices= CONTINENT_CHOICES, null=True)
     image = models.ImageField(upload_to = "destination_images/", blank=True)
     description = models.TextField()
     things_to_do = ArrayField(models.CharField(max_length = 250), blank = True)
@@ -23,6 +36,13 @@ class Destination(models.Model):
     class Meta:
         ordering = ['country']
 
+class Tag(models.Model):
+
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
 class Travel(models.Model):
 
     title = models.CharField(max_length=50)
@@ -32,6 +52,7 @@ class Travel(models.Model):
     return_date = models.DateField(auto_now = False, auto_now_add = False)
     budget = models.IntegerField()
     travelers = models.ManyToManyField(CustomUser)
+    tags = models.ManyToManyField(Tag)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
@@ -57,6 +78,28 @@ class Itinerary(models.Model):
     
     class Meta:
         ordering = ['date']
+
+CATEGORY_CHOICES = {
+    ("To Do List", "To Do List"), 
+    ("Check List", "Check List"),
+    ("Packing List", "Packing List"), 
+}
+
+PRIORITY_CHOICES = {
+    ("High", "High"), 
+    ("Medium", "Medium"), 
+    ("Low", "Low"), 
+    ("None", "None")
+}
+
+class List(models.Model):
+
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    item = models.CharField(max_length=250)
+    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
+    is_completed = models.BooleanField(default = False)
+    due_date = models.DateField(auto_now = False, auto_now_add = False, blank=True)
+    travel = models.ForeignKey(Travel, related_name='lists', on_delete=models.CASCADE)
 
 class Comment(models.Model):
 
