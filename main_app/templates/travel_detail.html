@@ -34,6 +34,11 @@
             </div>
             {% endif %}
         </div>
+        <div>
+            {% for list in travel.lists.all %}
+                {{ list.category }}
+            {% endfor %}
+        </div>
 
         <div class="detail-section itinerary">
             <div class="detail-itinerary-add">
