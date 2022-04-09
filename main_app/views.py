@@ -35,9 +35,13 @@ class Travel_List(TemplateView):
         context = super().get_context_data(**kwargs)
         context['tags'] = Tag.objects.all()
         title = self.request.GET.get("title")
+        tag = self.request.GET.get("tag")
         if title != None:
             context['travels'] = Travel.objects.filter(title__icontains=title)
             context['header'] = f"Searching for {title}"
+        elif tag !=None:
+            context['travels'] = Travel.objects.filter(tags__name__icontains=tag)
+            context['header'] = f"Searching for {tag}"
         else:
             context['travels'] = Travel.objects.all()
             context['header'] = "All Travels"
@@ -82,9 +86,22 @@ class Travel_Update(UpdateView):
     model = Travel
     fields = '__all__'
     template_name = 'travel_update.html'
+    # form_class = TravelForm
     
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
+
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.save()
+    #     self.object.tags = self.request.GET.getlist("tags")
+    #     self.object.tags.set(self.request.GET.getlist("tags"))
+    #     form.save_m2m()
+    #     return super(Travel_Update, self).form_valid(form)
+
+        # tags = request.GET.getlist("tags")
+        # self.object.tags.set(*tags)
+
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Delete(DeleteView):
