@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for list in lists %}
+<p>{{list.item}}</p>
+<button class="list-edit">Edit</button>
+<form class="list-edit-form" action="" method="post">
+    {% csrf_token %}
+    {{list_form.as_table}}
+    <input type="submit" value="Submit" />
+</form>
+{% endfor %}
+
+
+{% endblock %}

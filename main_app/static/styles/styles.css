@@ -852,3 +852,12 @@ button:hover {
 /* #image-clear_id {
     display: inline;
 } */
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

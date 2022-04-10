@@ -70,9 +70,10 @@ def travel_create(request):
 
 def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
-    packing_list = List.objects.filter(category__icontains= 'Packing')
-    check_list = List.objects.filter(category__icontains = 'check')
-    todo_list = List.objects.filter(category__icontains = 'to do')
+    lists = List.objects.filter(travel = pk)
+    packing_list = lists.filter(category__icontains= 'Packing')
+    check_list = lists.filter(category__icontains = 'check')
+    todo_list = lists.filter(category__icontains = 'to do')
     list_form = ListForm(request.POST)
     comment_form = CommentForm(request.POST)
     if request.method == "POST":
@@ -83,6 +84,7 @@ def travel_detail(request, pk):
             return HttpResponseRedirect("/travels/"+str(pk))
         if comment_form.is_valid():
             comment_form.instance.author = request.user
+            comment_form.instance.travel = travel
             comment_form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'comment_form':comment_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
@@ -203,6 +205,24 @@ class Destination_Delete(DeleteView):
     model = Destination
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
+
+# def list_update(request, pk):
+#     travel = Travel.objects.get(pk = pk)
+#     lists = List.objects.filter(travel = pk)
+#     list_form = ListForm(request.POST or None)
+#     if request.method == 'POST':
+#         if list_form.is_valid():
+#             list_form.instance.travel = travel
+#             list_form.save()
+#             return HttpResponseRedirect("/travels/"+str(pk))
+#     return render(request, 'list_update.html', {'lists': lists, 'list_form': list_form})
+
+@login_required
+def is_completed(request, pk, item_id):
+    list_item = List.objects.get(id= item_id)
+    list_item.is_completed = True
+    list_item.save()
+    return HttpResponseRedirect('/travels/'+str(pk))
 
 @login_required
 def comment_update_delete(request, pk, comment_id):

@@ -36,28 +36,40 @@
         </div>
         <div class="detail-section checklists">
             <h2>Lists</h2>
+            <div class="checklist-edit-delete">
+
+            </div>
             <div class = "checklist-container">
                 <div class = "checklist-card-content">
                     <h4>Check List</h4>
                     <ul>
-                        {% for item in check_list.all %}
-                            <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                        {% for item in check_list %}
+                            {% if item.is_completed == False %}
+                                <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
                 <div class = "checklist-card-content">
                     <h4>To Do List</h4>
                     <ul>
-                        {% for item in todo_list.all %}
-                            <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                        {% for item in todo_list %}
+                            {% if item.is_completed == False %}
+                                <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
                 <div class = "checklist-card-content">
                     <h4>Packing List</h4>
                     <ul>
-                        {% for item in packing_list.all %}
-                            <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                        {% for item in packing_list %}
+                            {% if item.is_completed == False %}
+                                <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -155,7 +167,7 @@
             {% for comment in travel.comments.all %}
                 <div class="comment-list">
                     <p>{{comment.author}}: {{comment.text}}</p>
-                    {% if user.is_authenticated and user is comment.author %}
+                    {% if user.is_authenticated and user == comment.author %}
                     <a class="comment-edit-delete" href="{% url 'comment_update_delete' pk=travel.pk comment_id=comment.id %}"><button>Edit / Delete Comment</button></a>
                     {%endif%}
                 </div>               
