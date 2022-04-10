@@ -439,6 +439,13 @@ Travel List Page
 Profile Page 
 ---------------- */
 
+.profile-page-profile-image {
+    width: 150px;
+    background-color: #CFF2F6;
+    border-radius: 75px;
+
+}
+
 .travel-card-img {
     position: relative;
     text-align: center;

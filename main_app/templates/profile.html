@@ -5,6 +5,11 @@
 
     <div class="list-flex-nav">
         <div class="list-flex-nav-top">
+            {% if user.profile_image %}
+            <img class="profile-page-profile-image" src="{{user.profile_image.url}}" alt="">
+            {% else %}
+            <img  class="profile-page-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+            {% endif %}
             <h1>{{user.username}}</h1>
             <a href="{% url 'profile_update' user.pk %}">
                 <p>Edit Profile</p>
