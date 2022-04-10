@@ -46,10 +46,14 @@
                         {% for item in check_list %}
                             {% if item.is_completed == False %}
                                 <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                                {% if user.is_authenticated and user in travel.travelers.all  %}
+                                    <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                                {% endif %}
                             {% else %}
-                            <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                            <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
+                                <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                {% if user.is_authenticated and user in travel.travelers.all  %}
+                                    <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -60,7 +64,14 @@
                         {% for item in todo_list %}
                             {% if item.is_completed == False %}
                                 <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                                {% if user.is_authenticated and user in travel.travelers.all  %}
+                                    <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                                {% endif %}
+                            {% else %}
+                                <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                {% if user.is_authenticated and user in travel.travelers.all  %}
+                                    <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -71,7 +82,14 @@
                         {% for item in packing_list %}
                             {% if item.is_completed == False %}
                                 <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                {% if user.is_authenticated and user in travel.travelers.all  %}
                                 <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
+                                {% endif %}
+                            {% else %}
+                                <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
+                                {% if user.is_authenticated and user in travel.travelers.all  %}
+                                    <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </ul>
