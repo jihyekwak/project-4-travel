@@ -540,6 +540,28 @@ Travel Detail Page
     color: #44545E;
 }
 
+.checklists {
+    display: flex;
+    flex-direction: column;
+}
+
+.checklist-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.checklist-card-content {
+    width: 30%;
+    background-color: #CFF2F6;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.checklist-card-content h4 {
+    color: #44545E;
+}
 /* .itinerary {
     margin: 30px 100px;
 } */

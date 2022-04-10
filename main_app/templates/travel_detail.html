@@ -34,10 +34,74 @@
             </div>
             {% endif %}
         </div>
-        <div>
-            {% for list in travel.lists.all %}
-                {{ list.category }}
-            {% endfor %}
+        <div class="detail-section checklists">
+            <h2>Lists</h2>
+            <div class = "checklist-container">
+                <div class = "checklist-card-content">
+                    <h4>Check List</h4>
+                    <ul>
+                        {% for item in check_list.all %}
+                            <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class = "checklist-card-content">
+                    <h4>To Do List</h4>
+                    <ul>
+                        {% for item in todo_list.all %}
+                            <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class = "checklist-card-content">
+                    <h4>Packing List</h4>
+                    <ul>
+                        {% for item in packing_list.all %}
+                            <li>{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- <table>
+                <thead>
+                    <tr>
+                        <th><h4>Check List</h4></th>
+                        <th><h4>To Do List</h4></th>
+                        <th><h4>Packing List</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <ul>
+                                {% for item in check_list.all %}
+                                    <li>{{item}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                {% for item in todo_list.all %}
+                                    <li>{{item}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                {% for item in packing_list.all %}
+                                    <li>{{item}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+            <!-- <h4>Packing List</h4>
+            {{packing_list.all|join:", "}}
+            <h4>Check List</h4>
+            {{check_list.all|join:", "}}
+            <h4>To Do List</h4>
+            {{todo_list.all|join:", "}} -->
         </div>
 
         <div class="detail-section itinerary">

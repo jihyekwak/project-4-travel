@@ -70,6 +70,9 @@ def travel_create(request):
 
 def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
+    packing_list = List.objects.filter(category__icontains= 'Packing')
+    check_list = List.objects.filter(category__icontains = 'ckeck')
+    todo_list = List.objects.filter(category__icontains = 'to do')
     form = CommentForm(request.POST or None)
     form.instance.travel = travel
     if request.user.is_authenticated:
@@ -77,7 +80,7 @@ def travel_detail(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'travel_detail.html', {'travel': travel, 'form':form})
+    return render(request, 'travel_detail.html', {'travel': travel, 'form':form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):

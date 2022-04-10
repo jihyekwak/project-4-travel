@@ -100,7 +100,10 @@ class List(models.Model):
     travel = models.ForeignKey(Travel, related_name='lists', on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'List' + str(self.pk) + '_'+ str(self.travel) + self.category
+        return self.item
+
+    class Meta:
+        ordering = ['category']
 
 class Comment(models.Model):
 
