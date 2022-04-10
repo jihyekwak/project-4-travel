@@ -167,7 +167,7 @@
                 <form class="comment-create-form" method="post">
                     <span>{{user.username}}</span>
                     {% csrf_token %}
-                    {{fcommnet_form.as_table}}
+                    {{comment_form.as_table}}
                     <input type="submit" value="Submit" />
                 </form>
             </div>

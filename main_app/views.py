@@ -74,19 +74,18 @@ def travel_detail(request, pk):
     check_list = List.objects.filter(category__icontains = 'check')
     todo_list = List.objects.filter(category__icontains = 'to do')
     list_form = ListForm(request.POST)
-    commnet_form = CommentForm(request.POST)
+    comment_form = CommentForm(request.POST)
     if request.method == "POST":
-
 
         if list_form.is_valid():
             list_form.instance.travel = travel
             list_form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
-        if commnet_form.is_valid():
-            commnet_form.instance.author = request.user
-            commnet_form.save()
+        if comment_form.is_valid():
+            comment_form.instance.author = request.user
+            comment_form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'commnet_form':commnet_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+    return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'comment_form':comment_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):
