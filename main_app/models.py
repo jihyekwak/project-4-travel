@@ -103,7 +103,7 @@ class List(models.Model):
         return self.item
 
     class Meta:
-        ordering = ['category']
+        ordering = ['category', 'is_completed']
 
 class Comment(models.Model):
 

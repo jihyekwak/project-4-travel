@@ -224,6 +224,12 @@ def is_completed(request, pk, item_id):
     list_item.save()
     return HttpResponseRedirect('/travels/'+str(pk))
 
+def is_not_done(request, pk, item_id):
+    list_item = List.objects.get(id= item_id)
+    list_item.is_completed = False
+    list_item.save()
+    return HttpResponseRedirect('/travels/'+str(pk))
+
 @login_required
 def comment_update_delete(request, pk, comment_id):
     comment = Comment.objects.get(id=comment_id)

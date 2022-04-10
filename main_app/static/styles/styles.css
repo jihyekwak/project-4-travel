@@ -861,3 +861,7 @@ button:hover {
 .show {
     display: block;
 }
+
+.is_completed {
+    color: #44545E80;
+}
