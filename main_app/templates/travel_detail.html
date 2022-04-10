@@ -41,7 +41,7 @@
                     <h4>Check List</h4>
                     <ul>
                         {% for item in check_list.all %}
-                            <li>{{item}}</li>
+                            <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -49,7 +49,7 @@
                     <h4>To Do List</h4>
                     <ul>
                         {% for item in todo_list.all %}
-                            <li>{{item}}</li>
+                            <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -57,51 +57,20 @@
                     <h4>Packing List</h4>
                     <ul>
                         {% for item in packing_list.all %}
-                            <li>{{item}}</li>
+                            <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
-            <!-- <table>
-                <thead>
-                    <tr>
-                        <th><h4>Check List</h4></th>
-                        <th><h4>To Do List</h4></th>
-                        <th><h4>Packing List</h4></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <ul>
-                                {% for item in check_list.all %}
-                                    <li>{{item}}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                        <td>
-                            <ul>
-                                {% for item in todo_list.all %}
-                                    <li>{{item}}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                        <td>
-                            <ul>
-                                {% for item in packing_list.all %}
-                                    <li>{{item}}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
-            <!-- <h4>Packing List</h4>
-            {{packing_list.all|join:", "}}
-            <h4>Check List</h4>
-            {{check_list.all|join:", "}}
-            <h4>To Do List</h4>
-            {{todo_list.all|join:", "}} -->
+            <div class="checklist-new">
+                <h4>+ Add list</h4>
+                <!-- <h3>Leave a comment</h3> -->
+                <form class="create-checklist-form" method="post">
+                    {% csrf_token %}
+                    {{list_form.as_p}}
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
         </div>
 
         <div class="detail-section itinerary">
@@ -198,7 +167,7 @@
                 <form class="comment-create-form" method="post">
                     <span>{{user.username}}</span>
                     {% csrf_token %}
-                    {{form.as_table}}
+                    {{fcommnet_form.as_table}}
                     <input type="submit" value="Submit" />
                 </form>
             </div>

@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Travel, Itinerary, Destination, Comment, Tag, List
-from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, TagForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, ListForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -71,16 +71,22 @@ def travel_create(request):
 def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
     packing_list = List.objects.filter(category__icontains= 'Packing')
-    check_list = List.objects.filter(category__icontains = 'ckeck')
+    check_list = List.objects.filter(category__icontains = 'check')
     todo_list = List.objects.filter(category__icontains = 'to do')
-    form = CommentForm(request.POST or None)
-    form.instance.travel = travel
-    if request.user.is_authenticated:
-        form.instance.author = request.user
-        if form.is_valid():
-            form.save()
+    list_form = ListForm(request.POST)
+    commnet_form = CommentForm(request.POST)
+    if request.method == "POST":
+
+
+        if list_form.is_valid():
+            list_form.instance.travel = travel
+            list_form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'travel_detail.html', {'travel': travel, 'form':form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+        if commnet_form.is_valid():
+            commnet_form.instance.author = request.user
+            commnet_form.save()
+            return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'commnet_form':commnet_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):

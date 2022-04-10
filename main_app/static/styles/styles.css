@@ -562,14 +562,49 @@ Travel Detail Page
 .checklist-card-content h4 {
     color: #44545E;
 }
-/* .itinerary {
-    margin: 30px 100px;
-} */
 
-/* .itinerary h2 {
+.checklist-new {
+    margin: 0 25px;
+}
+
+.checklist-new h4 {
     color: #44545E;
-} */
+}
 
+.create-checklist-form {
+    margin: auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #7B98AA50;
+    border-radius: 10px;
+    color: #44545E;
+}
+
+.create-checklist-form input {
+    width: 150px;
+    border: 1px solid #44545E50;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.create-checklist-form input[type="submit"] {
+    height : 25px;
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
+}
+
+#id_priority, #id_category {
+    width: 150px;
+    border: 1px solid #44545E50;
+    border-radius: 5px;
+    height: 25px;
+}
 
 .itinerary-card-content {
     margin: 0 0 20px 0;
