@@ -14,6 +14,7 @@
                     {% if user.is_authenticated and user in travel.travelers.all  %}
                     <div>
                         <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Done</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
                         <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
                     </div>
                     {% endif %}
@@ -24,6 +25,7 @@
                     {% if user.is_authenticated and user in travel.travelers.all  %}
                     <div>
                         <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">To Do</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
                         <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
                     </div>
                     {% endif %}
@@ -40,6 +42,7 @@
                     {% if user.is_authenticated and user in travel.travelers.all  %}
                     <div>
                         <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Done</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
                         <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
                     </div>
                     {% endif %}
@@ -50,6 +53,7 @@
                     {% if user.is_authenticated and user in travel.travelers.all  %}
                     <div>
                         <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">To Do</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
                         <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
                     </div>
                     {% endif %}
@@ -66,6 +70,7 @@
                     {% if user.is_authenticated and user in travel.travelers.all  %}
                     <div>
                         <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Done</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
                         <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
                     </div>
                     {% endif %}
@@ -76,6 +81,7 @@
                     {% if user.is_authenticated and user in travel.travelers.all  %}
                     <div>
                         <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">To Do</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
                         <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
                     </div>
                     {% endif %}

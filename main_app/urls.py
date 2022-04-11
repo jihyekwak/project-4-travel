@@ -19,6 +19,7 @@ urlpatterns = [
     path('travels/<int:pk>/checklists', views.checklist_list, name='checklist_list'),
     path('travels/<int:pk>/checklists/<int:item_id>/completed', views.is_completed, name="is_completed"),
     path('travels/<int:pk>/checklists/<int:item_id>/notdone', views.is_not_done, name="is_not_done"),
+    path('travels/<int:pk>/checklists/<int:item_id>/update', views.checklist_update, name="checklist_update"),
     path('travels/<int:pk>/checklists/<int:item_id>/delete', views.checklist_delete, name="checklist_delete"),
 
     path('travels/<int:pk>/comments/<int:comment_id>/update', views.comment_update_delete, name='comment_update_delete'),

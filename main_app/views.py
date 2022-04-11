@@ -250,6 +250,14 @@ def checklist_delete(request, pk, item_id):
     list_item.delete()
     return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
 
+def checklist_update(request, pk, item_id):
+    list = List.objects.get(id=item_id)
+    # travel = Travel.objects.get(pk=pk)
+    form = ListForm(request.POST or None, instance = list)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk)+"/checklists/")
+    return render(request, 'checklist_update.html', {'list':list, 'form':form})
 
 @login_required
 def comment_update_delete(request, pk, comment_id):

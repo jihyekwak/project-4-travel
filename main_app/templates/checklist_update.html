@@ -2,15 +2,16 @@
 
 {% block content %}
 
-{% for list in lists %}
-<p>{{list.item}}</p>
-<button class="list-edit">Edit</button>
-<form class="list-edit-form" action="" method="post">
-    {% csrf_token %}
-    {{list_form.as_table}}
-    <input type="submit" value="Submit" />
-</form>
-{% endfor %}
-
+<h4>{{list.travel}} / checklist / {{list.category}}</h4>
+<h1>Check List Edit Form</h1>
+<div class="checklist-new">
+    <h3>{{list.category}} / {{list.item}}</h3>
+    <form class="create-checklist-form" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" />
+        <a class="form-cancel" href="{% url 'checklist_list' pk=list.travel.pk %}">Cancel</a>
+    </form>
+</div>
 
 {% endblock %}
