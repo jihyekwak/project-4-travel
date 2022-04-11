@@ -154,7 +154,14 @@
             <h2>Comments</h2>
             {% for comment in travel.comments.all %}
                 <div class="comment-list">
-                    <p>{{comment.author}}: {{comment.text}}</p>
+                    <div class="comment-author">
+                        {% if user.profile_image %}
+                            <img class="comment-profile-image" src="{{user.profile_image.url}}" alt="">
+                        {% else %}
+                            <img class="comment-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+                        {% endif %}
+                        <span>{{comment.author}}: {{comment.text}}</span>
+                    </div>
                     {% if user.is_authenticated and user == comment.author %}
                     <a class="comment-edit-delete" href="{% url 'comment_update_delete' pk=travel.pk comment_id=comment.id %}"><button>Edit / Delete Comment</button></a>
                     {%endif%}
@@ -163,9 +170,16 @@
 
             <!-- {% if user.is_authenticated%} -->
             <div class="comment-new">
-                <!-- <h3>Leave a comment</h3> -->
+                <h3>Leave a comment</h3>
                 <form class="comment-create-form" method="post">
-                    <span>{{user.username}}</span>
+                    <div class="comment-author">
+                        {% if user.profile_image %}
+                            <img class="comment-profile-image" src="{{user.profile_image.url}}" alt="">
+                        {% else %}
+                            <img class="comment-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+                        {% endif %}
+                        <span>{{user.username}}</span>
+                    </div>
                     {% csrf_token %}
                     {{comment_form.as_table}}
                     <input type="submit" value="Submit" />

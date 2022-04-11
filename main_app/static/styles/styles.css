@@ -629,15 +629,28 @@ td {
     justify-content: space-between;
 }
 
-.comment-list p{
-    margin-top: 0px;
+.comment-author {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.comment-list span{
+    margin: 0 5px;
     color: #44545E;
 }
 
 .comment-create-form {
     display: flex;
     gap: 10px;
-    padding: 0 10px;
+    margin: 10px 0;
+
 }
 
 .comment-create-form span {
