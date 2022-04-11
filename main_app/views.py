@@ -217,7 +217,7 @@ class Destination_Delete(DeleteView):
 #             return HttpResponseRedirect("/travels/"+str(pk))
 #     return render(request, 'list_update.html', {'lists': lists, 'list_form': list_form})
 
-def list_list(request, pk):
+def checklist_list(request, pk):
     travel = Travel.objects.get(pk = pk)
     lists = List.objects.filter(travel = pk)
     packing_list = lists.filter(category__icontains= 'Packing')
@@ -229,21 +229,27 @@ def list_list(request, pk):
         if list_form.is_valid():
             list_form.instance.travel = travel
             list_form.save()
-            return HttpResponseRedirect("/travels/"+str(pk)+"/lists")
-    return render(request, 'list_list.html', {'travel': travel, 'list_form':list_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+            return HttpResponseRedirect("/travels/"+str(pk)+"/checklists")
+    return render(request, 'checklist_list.html', {'travel': travel, 'list_form':list_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
 
 @login_required
 def is_completed(request, pk, item_id):
     list_item = List.objects.get(id= item_id)
     list_item.is_completed = True
     list_item.save()
-    return HttpResponseRedirect('/travels/'+str(pk)+"/lists")
+    return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
 
 def is_not_done(request, pk, item_id):
     list_item = List.objects.get(id= item_id)
     list_item.is_completed = False
     list_item.save()
-    return HttpResponseRedirect('/travels/'+str(pk)+"/lists")
+    return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
+
+def checklist_delete(request, pk, item_id):
+    list_item = List.objects.get(id= item_id)
+    list_item.delete()
+    return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
+
 
 @login_required
 def comment_update_delete(request, pk, comment_id):
