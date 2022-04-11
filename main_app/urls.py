@@ -16,6 +16,7 @@ urlpatterns = [
     path('travels/<int:pk>/itineraries/<int:itinerary_id>/update', views.itinerary_update, name='itinerary_update'),
     path('travels/<int:pk>/itineraries/<int:itinerary_id>/delete', views.itinerary_delete, name='itinerary_delete'),
 
+    path('travels/<int:pk>/lists', views.list_list, name='list_list'),
     path('travels/<int:pk>/lists/<int:item_id>/completed', views.is_completed, name="is_completed"),
     path('travels/<int:pk>/lists/<int:item_id>/notdone', views.is_not_done, name="is_not_done"),
 
@@ -32,6 +33,8 @@ urlpatterns = [
     path('signup/', views.signup_view, name="signup"),
 
     path('user/<username>', views.profile, name='profile'),
-    path('user/<int:pk>/update', views.Profile_Update.as_view(), name='profile_update')
+    path('user/<int:pk>/update', views.Profile_Update.as_view(), name='profile_update'),
+
+    path('users/', views.Users.as_view(), name='users')
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% for user in users %}
+<p>{{user}}</p>
+{% if user.profile_image %}
+            <img class="profile-page-profile-image" src="{{user.profile_image.url}}" alt="">
+            {% else %}
+            <img  class="profile-page-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+            {% endif %}
+<p>Travel Plan Postings: {{user.travel_set.all|length}}</p>
+<a href="{% url 'profile' user.username %}">{{user}} Profile Page</a>
+{% endfor%}
+
+{% endblock %}

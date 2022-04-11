@@ -35,74 +35,41 @@
             {% endif %}
         </div>
         <div class="detail-section checklists">
-            <h2>Lists</h2>
-            <div class="checklist-edit-delete">
-
+            <div class="detail-itinerary-add">
+            <h2>Check List</h2>
+            <a href="{% url 'list_list' pk=travel.pk %}"><button class="itinerary-add-btn">+ Update Check Lists</button></a>
             </div>
             <div class = "checklist-container">
-                <div class = "checklist-card-content">
-                    <h4>Check List</h4>
-                    <ul>
+                <div class = "travel-detail-checklist checklist-card-content">
+                    <h4>To Confirm</h4>
                         {% for item in check_list %}
                             {% if item.is_completed == False %}
-                                <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                {% if user.is_authenticated and user in travel.travelers.all  %}
-                                    <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
-                                {% endif %}
+                            <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% else %}
-                                <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                {% if user.is_authenticated and user in travel.travelers.all  %}
-                                    <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
-                                {% endif %}
+                            <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% endif %}
                         {% endfor %}
-                    </ul>
                 </div>
-                <div class = "checklist-card-content">
-                    <h4>To Do List</h4>
-                    <ul>
+                <div class = "travel-detail-checklist checklist-card-content">
+                    <h4>To Do</h4>
                         {% for item in todo_list %}
                             {% if item.is_completed == False %}
-                                <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                {% if user.is_authenticated and user in travel.travelers.all  %}
-                                    <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
-                                {% endif %}
+                            <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% else %}
-                                <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                {% if user.is_authenticated and user in travel.travelers.all  %}
-                                    <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
-                                {% endif %}
+                            <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% endif %}
                         {% endfor %}
-                    </ul>
                 </div>
-                <div class = "checklist-card-content">
-                    <h4>Packing List</h4>
-                    <ul>
+                <div class = "travel-detail-checklist checklist-card-content">
+                    <h4>To Pack</h4>
                         {% for item in packing_list %}
                             {% if item.is_completed == False %}
-                                <li>{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                {% if user.is_authenticated and user in travel.travelers.all  %}
-                                <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}">Done</a>
-                                {% endif %}
+                            <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% else %}
-                                <li class="is_completed">{{item}} {% if item.due_date%}({{item.due_date}}){% endif %}{% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %}</li>
-                                {% if user.is_authenticated and user in travel.travelers.all  %}
-                                    <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}">To do</a>
-                                {% endif %}
+                            <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% endif %}
                         {% endfor %}
-                    </ul>
                 </div>
-            </div>
-            <div class="checklist-new">
-                <h4>+ Add list</h4>
-                <!-- <h3>Leave a comment</h3> -->
-                <form class="create-checklist-form" method="post">
-                    {% csrf_token %}
-                    {{list_form.as_p}}
-                    <input type="submit" value="Submit" />
-                </form>
             </div>
         </div>
 

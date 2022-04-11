@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary, Destination, Comment, Tag, List
+from .models import CustomUser, Travel, Itinerary, Destination, Comment, Tag, List
 from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, ListForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -217,18 +217,33 @@ class Destination_Delete(DeleteView):
 #             return HttpResponseRedirect("/travels/"+str(pk))
 #     return render(request, 'list_update.html', {'lists': lists, 'list_form': list_form})
 
+def list_list(request, pk):
+    travel = Travel.objects.get(pk = pk)
+    lists = List.objects.filter(travel = pk)
+    packing_list = lists.filter(category__icontains= 'Packing')
+    check_list = lists.filter(category__icontains = 'check')
+    todo_list = lists.filter(category__icontains = 'to do')
+    list_form = ListForm(request.POST)
+    if request.method == "POST":
+
+        if list_form.is_valid():
+            list_form.instance.travel = travel
+            list_form.save()
+            return HttpResponseRedirect("/travels/"+str(pk)+"/lists")
+    return render(request, 'list_list.html', {'travel': travel, 'list_form':list_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+
 @login_required
 def is_completed(request, pk, item_id):
     list_item = List.objects.get(id= item_id)
     list_item.is_completed = True
     list_item.save()
-    return HttpResponseRedirect('/travels/'+str(pk))
+    return HttpResponseRedirect('/travels/'+str(pk)+"/lists")
 
 def is_not_done(request, pk, item_id):
     list_item = List.objects.get(id= item_id)
     list_item.is_completed = False
     list_item.save()
-    return HttpResponseRedirect('/travels/'+str(pk))
+    return HttpResponseRedirect('/travels/'+str(pk)+"/lists")
 
 @login_required
 def comment_update_delete(request, pk, comment_id):
@@ -295,3 +310,12 @@ class Profile_Update(UpdateView):
 
     def get_success_url(self):
         return reverse('profile', kwargs={'username': self.object.username})
+
+
+class Users(TemplateView):
+    template_name='users.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = CustomUser.objects.all()
+        return context

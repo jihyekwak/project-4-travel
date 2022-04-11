@@ -42,14 +42,6 @@ nav {
     float: right;
 }
 
-/* .profile-image {
-    margin-right: -30px;
-}
-
-.username {
-    margin-right: -30px;
-} */
-
 nav a {
     text-decoration: none;
     color: #7B98AA;
@@ -534,14 +526,6 @@ Travel Detail Page
     color: #44545E;
 }
 
-/* .detail-content {
-    margin: 30px 100px;
-} */
-
-/* .detail-content h2 {
-    color: #44545E;
-} */
-
 .detail-content p, li {
     font-size: 19px;
     color: #44545E;
@@ -564,53 +548,18 @@ Travel Detail Page
     background-color: #CFF2F6;
     border-radius: 10px;
     padding-left: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .checklist-card-content h4 {
     color: #44545E;
+    text-align: center;
 }
 
-.checklist-new {
-    margin: 0 25px;
-}
-
-.checklist-new h4 {
-    color: #44545E;
-}
-
-.create-checklist-form {
-    margin: auto auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 10px;
-    background-color: #7B98AA50;
-    border-radius: 10px;
-    color: #44545E;
-}
-
-.create-checklist-form input {
-    width: 150px;
-    border: 1px solid #44545E50;
-    border-radius: 5px;
-    height: 20px;
-}
-
-.create-checklist-form input[type="submit"] {
-    height : 25px;
-    border: 2px solid #44545E;
-    border-radius: 20px;
-    width: 60px;
-    background-color: white;
-    color: #44545E;
-}
-
-#id_priority, #id_category {
-    width: 150px;
-    border: 1px solid #44545E50;
-    border-radius: 5px;
-    height: 25px;
+.travel-detail-checklist p {
+    margin: 4px 10px;
 }
 
 .itinerary-card-content {
@@ -674,14 +623,6 @@ td {
     color: #44545E;
 }
 
-/* .travel-comment {
-    margin: 30px 100px;
-} */
-
-/* .travel-comment h2 {
-    color: #44545E;
-} */
-
 .comment-list {
     display: flex;
     flex-direction: row;
@@ -719,6 +660,73 @@ td {
     width: 60px;
     background-color: white;
     color: #44545E;
+}
+
+/* -------------
+Check List Update Page 
+---------------- */
+
+.is_completed {
+    color: #44545E80;
+}
+
+.item-content-card {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    background-color: white;
+    margin: 4px 10px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.item-content-card p {
+    margin: 10px 0;
+}
+
+.checklist-new {
+    margin: 0 25px;
+}
+
+.checklist-new h3 {
+    color: #44545E;
+    margin: 30px 0 0 5px;
+}
+
+.create-checklist-form {
+    margin: auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #7B98AA50;
+    border-radius: 10px;
+    color: #44545E;
+}
+
+.create-checklist-form input {
+    width: 150px;
+    border: 1px solid #44545E50;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.create-checklist-form input[type="submit"] {
+    height : 25px;
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
+}
+
+#id_priority, #id_category {
+    width: 150px;
+    border: 1px solid #44545E50;
+    border-radius: 5px;
+    height: 25px;
 }
 
 /* -------------
@@ -850,25 +858,4 @@ input[type="checkbox"] {
 
 button:hover {
     transform: scale(1.1);
-}
-
-/* #id_image a {
-    display: inline;
-} */
-
-/* #image-clear_id {
-    display: inline;
-} */
-
-
-.hide {
-    display: none;
-}
-
-.show {
-    display: block;
-}
-
-.is_completed {
-    color: #44545E80;
 }
