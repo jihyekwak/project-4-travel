@@ -55,7 +55,11 @@ def travel_create(request):
             form.instance.save()
             tags = form.cleaned_data['tags'].split(',')
             for tag in tags:
-                tag=tag.strip()
+                tag=tag.strip().lower()
+                if "#" not in tag:
+                    tag="#"+tag
+                if len(tag) == 0:
+                    tag.delete()
                 tag, created = Tag.objects.get_or_create(name=tag)
                 form.instance.tags.add(tag)
             destinations = form.cleaned_data['destinations']
@@ -177,7 +181,7 @@ class Destination_List(TemplateView):
             context['header'] = f"Searching for {continent}"
         else:
             context['destinations'] = Destination.objects.all()
-            context['header'] = "All Destination"
+            context['header'] = "All Destinations"
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -205,17 +209,6 @@ class Destination_Delete(DeleteView):
     model = Destination
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
-
-# def list_update(request, pk):
-#     travel = Travel.objects.get(pk = pk)
-#     lists = List.objects.filter(travel = pk)
-#     list_form = ListForm(request.POST or None)
-#     if request.method == 'POST':
-#         if list_form.is_valid():
-#             list_form.instance.travel = travel
-#             list_form.save()
-#             return HttpResponseRedirect("/travels/"+str(pk))
-#     return render(request, 'list_update.html', {'lists': lists, 'list_form': list_form})
 
 def checklist_list(request, pk):
     travel = Travel.objects.get(pk = pk)
@@ -313,8 +306,12 @@ def signup_view(request):
 @login_required
 def profile(request, username):
     user = get_user_model().objects.get(username = username)
-    tags = Tag.objects.all()
-    return render(request, 'profile.html', {'user':user, 'tags': tags})
+    travels = Travel.objects.filter(travelers__username__icontains = username)
+    tags = Tag.objects.filter(travel__travelers__username = username).distinct()
+    tag = request.GET.get("tag")
+    if tag != None:
+        travels = travels.filter(tags__name__icontains = tag)
+    return render(request, 'profile.html', {'user':user, 'travels':travels, 'tags':tags, 'tag':tag, })
 
 @method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):

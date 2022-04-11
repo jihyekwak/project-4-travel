@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<h4>{{list.travel}} / checklist / {{list.category}}</h4>
+<div class="pagetop-nav">
+    <a href="{% url 'travel_detail' list.travel.pk %}">{{list.travel.title}}</a> / <a href="{% url 'checklist_list' pk=list.travel.pk %}">Check List</a> / <a href="">{{list.category}} - {{list.item}}</a>
+</div>
+
 <h1>Check List Edit Form</h1>
 <div class="checklist-new">
     <h3>{{list.category}} / {{list.item}}</h3>

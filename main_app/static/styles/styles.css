@@ -15,7 +15,7 @@ Navbar
 ---------------- */
 
 main {
-    padding: 50px 30px;
+    padding: 60px 30px;
 }
 
 nav {
@@ -96,6 +96,15 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.pagetop-nav a {
+    color: #44545E;
+    text-decoration: none;
+}
+
+.pagetop-nav a:hover {
+    text-decoration: underline;
 }
 
 /* -------------

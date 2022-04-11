@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<div class="pagetop-nav">
+    <a href="{% url 'profile' user.username%}">My Travel</a> / 
+</div>
+
 <div class="list-flex-container">
 
     <div class="list-flex-nav">
@@ -17,8 +22,9 @@
             <p>Travel Plans: {{user.travel_set.all|length}}</p>
             <div class="list-flex-nav-category">
                 <ul>
+                    <li><a href="{% url 'profile' user.username %}">All</a></li>
                     {% for tag in tags %}
-                        <li><a href="">{{tag}}</a></li>
+                        <li><a href="{% url 'profile' user.username %}?tag={{tag}}" name="tag">{{tag}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -33,7 +39,7 @@
 
     <div class="list-content">
         <div class="list-flex">
-            {% for travel in user.travel_set.all %}
+            {% for travel in travels %}
             <div class="travel-card-content">
                 <a href="{% url 'travel_detail' travel.pk %}">
                     <div class="travel-card-img">

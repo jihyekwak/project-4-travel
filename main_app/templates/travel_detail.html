@@ -2,6 +2,10 @@
 {% load static %}
 {% block content %}
 
+<div class="pagetop-nav">
+    <a href="{% url 'travel_list' %}">Travels</a> / <a href="">{{travel.title}}</a> 
+</div>
+
     <!-- <h1>Travel Detail Page</h1> -->
         <div class="detail-header">
             {% if travel.image %}

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<div class="pagetop-nav">
+    <a href="{% url 'travel_list' %}">Travels</a> / <a href="">{{header}}</a> 
+</div>
+
     <div class="list-flex-container">
 
         <div class="list-flex-nav">
