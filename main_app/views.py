@@ -311,7 +311,10 @@ def profile(request, username):
     tag = request.GET.get("tag")
     if tag != None:
         travels = travels.filter(tags__name__icontains = tag)
-    return render(request, 'profile.html', {'user':user, 'travels':travels, 'tags':tags, 'tag':tag, })
+        nav = f"{tag}"
+    else:
+        nav = "All Travels"
+    return render(request, 'profile.html', {'user':user, 'travels':travels, 'tags':tags, 'tag':tag, 'nav':nav})
 
 @method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):

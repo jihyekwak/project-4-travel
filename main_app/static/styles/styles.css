@@ -98,6 +98,16 @@ nav a:hover {
     width: 100%;
 }
 
+.pagetop-nav {
+    position: fixed;
+    width: 100%;
+    top: 60px;
+    z-index: 100;
+    background-color: white;
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+}
+
 .pagetop-nav a {
     color: #44545E;
     text-decoration: none;
