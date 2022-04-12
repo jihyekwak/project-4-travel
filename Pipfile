@@ -11,6 +11,9 @@ dj-database-url = "*"
 psycopg2 = "*"
 whitenoise = "*"
 Pillow = "*"
+cloudinary = "*"
+python-decouple = "*"
+dj3-cloudinary-storage = "*"
 
 [dev-packages]
 
