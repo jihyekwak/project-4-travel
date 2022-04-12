@@ -302,7 +302,7 @@ def signup_view(request):
 @login_required
 def profile(request, username):
     user = get_user_model().objects.get(username = username)
-    travels = Travel.objects.filter(travelers__username__icontains = username)
+    travels = Travel.objects.filter(travelers__username = username)
     tags = Tag.objects.filter(travel__travelers__username = username).distinct()
     tag = request.GET.get("tag")
     if tag != None:
