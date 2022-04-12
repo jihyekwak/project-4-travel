@@ -87,6 +87,21 @@ def travel_detail(request, pk):
             return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'comment_form':comment_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
 
+@login_required
+def comment_update(request, pk, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    form = CommentForm(request.POST or None, instance = comment)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'comment_update.html', {'comment':comment, 'form':form})
+
+@login_required
+def comment_delete(request, pk, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
+    return HttpResponseRedirect("/travels/"+str(pk))
+
 @method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):
     model = Travel
@@ -241,18 +256,6 @@ def checklist_update(request, pk, item_id):
         form.save()
         return HttpResponseRedirect("/travels/"+str(pk)+"/checklists/")
     return render(request, 'checklist_update.html', {'list':list, 'form':form})
-
-@login_required
-def comment_update_delete(request, pk, comment_id):
-    comment = Comment.objects.get(id=comment_id)
-    form = CommentForm(request.POST or None, instance = comment)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/travels/"+str(pk))
-    if request.method == "POST":
-        comment.delete()
-        return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'comment_update.html', {'comment':comment, 'form':form})
 
 def login_view(request):
     if request.method == 'POST':

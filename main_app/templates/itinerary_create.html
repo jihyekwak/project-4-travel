@@ -1,21 +1,41 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="pagetop-nav">
     <a href="{% url 'profile' user.username%}">My Travel</a> / <a href="{% url 'travel_detail' travel.pk %}">{{travel.title}}</a> / <a href="">Add Itinerary</a>
 </div>
 
-    <h1>{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
+<div class="form-page">
+    <div class="form-page-left">
+        {% if travel.image %}
+        <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+        {% else %}
+        <img class="travel-img" src="{% static 'images/simon-maage-C9dhUVP-o6w-unsplash.jpg' %}" alt="">
+        {% endif %}
+        <h1>{{travel.title}}</h1>
+        <h3>{{travel.departure_date}}~{{travel.return_date}}</h3>
+        <p>Destinations: {{ travel.destinations.all|join:", "}}</p>
+        <p>Budget: {{travel.budget}}</p>
+        <p>Travelers: {{ travel.travelers.all|join:", "}}</p>
+        <p>Itineraries: </p>
+        {% for itinerary in travel.itineraries.all %}
+            <div class="itinerary-card">
+                <span>Day{{itinerary.day}}</span>
+                <span>({{itinerary.date}})</span>
+                <span>{{itinerary.destination}}</span>
+            </div>
+        {% endfor %}
 
-    <div class="create-form-div">
+</div>
+    <div class="form-page-right">
         <h2>Add New Itinerary</h2>
         <form class="create-form" method="post">
             {% csrf_token %}
-            {{form.as_table}}
+            {{form.as_p}}
             <input type="submit" value="Submit" />
         </form>
     </div>
-
+</div>
 
 {% endblock %}

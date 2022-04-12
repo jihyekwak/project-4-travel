@@ -2,14 +2,27 @@
 
 {% block content %}
 
-    <h1 class="create-page-h1">Destination Update Page</h1>
-    <div class="create-form-div">
+<div class="pagetop-nav">
+    <a href="{% url 'destination_list' %}">Destination</a> / <a href="{% url 'destination_detail' destination.pk%}">{{destination.city}}</a> / <a href="">Edit Destination</a>
+</div>
+
+<div class="form-page">
+    <div class="form-page-left">
+        <h1>{{destination.city}}</h1>
+        <h3>Update Desination</h3>
+    </div>
+
+    <div class="form-page-right">
         <form class="create-form" method="post" enctype = "multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <input type="submit" value="Submit" />
-            <a class="form-cancel" href="{% url 'destination_detail' destination.pk %}">Cancel</a>
+            <div class="cancel-delete-btn">
+                <a class="form-cancel" href="{% url 'destination_detail' destination.pk %}">Cancel</a>
+                <a class="form-cancel" href="{% url 'destination_delete' destination.id %}">Delete</a>
+            </div>
         </form>
     </div>
+</div>
     
 {% endblock %}

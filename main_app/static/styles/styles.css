@@ -101,7 +101,7 @@ nav a:hover {
     color: #44545E;
     padding: 12px 6px;
     margin-top: 26px;
-    z-index: 1;
+    z-index: 11;
 }
 
 .dropdown-content a {
@@ -119,7 +119,7 @@ nav a:hover {
     position: fixed;
     width: 100%;
     top: 60px;
-    z-index: 100;
+    z-index: 10;
     background-color: white;
     margin: 0 0 10px 0;
     padding: 20px 0;
@@ -543,6 +543,7 @@ Destination Detail Page
 .destination-detail-header {
     width: 100%;
     height: 400px;
+    margin-top: 60px;
 }
 
 .destination-detail-header-img {
@@ -561,6 +562,7 @@ Travel Detail Page
     height: 400px;
     position: relative;
     text-align: center;
+    margin-top: 60px;
 }
 
 .detail-header-img {
@@ -688,7 +690,7 @@ td {
 }
 
 .itinerary-edit-delete-btn {
-    border: 2px solid #44545E;
+    border: 2px solid #44545E70;
     border-radius: 20px;
     width: 60px;
     background-color: white;
@@ -698,7 +700,8 @@ td {
 .comment-list {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: center;
 }
 
 .comment-author {
@@ -818,25 +821,37 @@ Check List Update Page
 Create Form 
 ---------------- */
 
-.create-page-h1 {
+.form-page {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.form-page-left {
     color: #44545E;
 }
 
-.create-form-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.form-page-right {
+    text-align: center;
+    color: #44545E;
 }
+
+/* -------------
+Create Form - Destination
+---------------- */
 
 .create-form {
     width: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    border: 4px solid #44545E50;   
-    border-radius: 10px;
+    /* gap: 10px; */
+    border: 6px solid #44545E50;   
+    border-radius: 40px;
     padding: 25px;
     background-color: #7B98AA70;
+    text-align: center;
 }
 
 .create-form label {
@@ -856,8 +871,34 @@ Create Form
     padding: 5px;
 }
 
+/* input select*/
 .create-form select {
     width: 510px;
+}
+
+#id_destination, #id_travel, #id_continent {
+    height: 30px;
+}
+
+#id_destinations, #id_travelers, #id_tags {
+    height: 100px;
+}
+
+/* travel create tag input */
+input#id_tags {
+    height: 30px;
+}
+
+/* itinerary create page */
+.form-page img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50px;
+}
+
+.itinerary-card {
+    background-color: #CFF2F6;
+    border-radius: 10px;
 }
 
 .create-form textarea {
@@ -866,6 +907,7 @@ Create Form
     width: 500px;
 }
 
+/* input submit button */
 .create-form input[type=submit] {
     width: 100px;
     height: 40px;
@@ -881,17 +923,50 @@ input[type="checkbox"] {
     width: 30px;
 }
 
-#id_destination, #id_travel {
+/* -------------
+Comment Edit Form
+---------------- */
+
+.comment-edit-form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 4px solid #44545E50;   
+    border-radius: 10px;
+    padding: 25px;
+    background-color: #7B98AA70;
+    color: #44545E;
+}
+
+#id_text {
     height: 30px;
+    border: none;  
+    border-radius: 5px;
+    width: 500px;
 }
 
-#id_destinations {
-    height: 100px;
+.comment-edit-form input[type=submit] {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #44545E;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin: 10px auto;
 }
 
-#id_travelers {
-    height: 50px;
+.comment-edit-form label {
+    font-size: 20px;
+    color: #44545E;
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 50px;
 }
+
+
 
 .login-form-div {
     display: flex;
@@ -943,4 +1018,35 @@ input[type="checkbox"] {
 
 button:hover {
     transform: scale(1.1);
+}
+
+/* -------------
+Delete Confirm Form
+---------------- */
+.delete-confirm {
+    color: #44545E;
+    text-align: center;
+    margin: auto auto;
+}
+
+strong {
+    font-size: 25px;
+}
+
+.cancel-delete-btn {
+    text-align: right;
+    margin: 30px 0;
+}
+
+.cancel-delete-btn a {
+    margin: 0 5px;
+}
+
+.cancel-delete-btn input {
+    border: none;
+    background-color: white;
+    color: #44545E;
+    text-decoration: underline;
+    font-size: 17px;
+
 }

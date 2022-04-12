@@ -4,7 +4,11 @@
 <div class="pagetop-nav">
     <a href="{% url 'travel_detail' travel.pk %}">{{travel.title}}</a> / <a href="">Check List</a>
 </div>
+
+<div class="form-page">
 <h1 class="create-page-h1">{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
+<div class="create-form-div">
+
 <h2>Check List</h2>
 <div class = "checklist-container">
     <div class = "checklist-card-content">
@@ -100,5 +104,7 @@
         <input type="submit" value="Submit" />
     </form>
 </div>
+</div>
 
+</div>
 {% endblock %}

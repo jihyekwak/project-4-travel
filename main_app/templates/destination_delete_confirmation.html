@@ -2,13 +2,21 @@
 
 {% block content %}
     
-    <h1>Delete Destination</h1>
-    <p>Are you sure you want to delete <strong>{{Destination}}</strong>?</p>
-    
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Delete">
-    </form>
-    <a href="{% url 'destination_detail' destination.id %}"><button>Cancel</button></a>
+<div class="pagetop-nav">
+    <a href="{% url 'destination_list' %}">Destination</a> / <a href="{% url 'destination_detail' destination.pk%}">{{destination.city}}</a> / <a href="">Delete Destination</a>
+</div>
 
+<div class="form-page">
+    <div class="delete-confirm">
+        <h1>Delete Destination</h1>
+        <h3>Are you sure you want to delete <strong>{{destination.city}}</strong>?</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="cancel-delete-btn">
+                <input type="submit" value="Yes, Delete">
+                <a class="form-cancel" href="{% url 'destination_detail' destination.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

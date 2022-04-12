@@ -22,7 +22,8 @@ urlpatterns = [
     path('travels/<int:pk>/checklists/<int:item_id>/update', views.checklist_update, name="checklist_update"),
     path('travels/<int:pk>/checklists/<int:item_id>/delete', views.checklist_delete, name="checklist_delete"),
 
-    path('travels/<int:pk>/comments/<int:comment_id>/update', views.comment_update_delete, name='comment_update_delete'),
+    path('travels/<int:pk>/comments/<int:comment_id>/update', views.comment_update, name='comment_update'),
+    path('travels/<int:pk>/comments/<int:comment_id>/delete', views.comment_delete, name='comment_delete'),
 
     path('destinations/', views.Destination_List.as_view(), name='destination_list'),
     path('destinations/new', views.Destination_Create.as_view(), name='destination_create'),

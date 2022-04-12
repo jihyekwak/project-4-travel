@@ -2,12 +2,22 @@
 
 {% block content %}
 
-    <h1 class="create-page-h1">Add New Destination</h1>
-    <div class="create-form-div">
-        <form class="create-form" method="post" enctype = "multipart/form-data">
-            {% csrf_token %}
-            {{form.as_table}}
-            <input type="submit" value="Submit" />
-        </form>
+    <div class="pagetop-nav">
+        <a href="{% url 'destination_list' %}">Destinations</a> / <a href="">New Destination</a>
+    </div>
+
+    <div class="form-page">
+        <div class="form-page-left">
+            <h1>New Destination</h1>
+        </div>
+
+        <div class="form-page-right">
+            <form class="create-form" method="post" enctype = "multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

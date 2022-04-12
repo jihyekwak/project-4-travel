@@ -167,7 +167,10 @@
                         <span>{{comment.author}}: {{comment.text}}</span>
                     </div>
                     {% if user.is_authenticated and user == comment.author %}
-                    <a class="comment-edit-delete" href="{% url 'comment_update_delete' pk=travel.pk comment_id=comment.id %}"><button>Edit / Delete Comment</button></a>
+                    <div class="cacel-delete-btn">
+                        <a class="comment-edit-delete" href="{% url 'comment_update' pk=travel.pk comment_id=comment.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a class="comment-edit-delete" href="{% url 'comment_delete' pk=travel.pk comment_id=comment.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
                     {%endif%}
                 </div>               
             {% endfor%}

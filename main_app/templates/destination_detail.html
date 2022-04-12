@@ -6,7 +6,7 @@
     <a href="{% url 'destination_list' %}">Destinations</a> / <a href="{% url 'destination_list' %}?continent={{destination.continent}}">{{destination.continent}} </a> / <a href="">{{destination.country}}</a> / <a href="">{{destination.city}}</a>
 </div>
 
-    <h1>Destination Detail Page</h1>
+    <!-- <h1>Destination Detail Page</h1> -->
         <div class="destination-detail-header">
             {% if destination.image %}
             <img class="destination-detail-header-img" src="{{destination.image.url}}" alt="{{destination.city}}">

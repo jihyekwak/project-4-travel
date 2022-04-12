@@ -2,16 +2,17 @@
 
 {% block content %}
 
-    <h1>Comment Edit Page</h1>
-    <form class="create-form" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+    <h1 class="create-page-h1">Comment Edit Page</h1>
+    <div class="create-form-div">
+        <form class="comment-edit-form" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit" />
+            <div>
+                <a class="form-cancel" href="{% url 'travel_detail' comment.travel.pk %}">Cancel</a>
+                <a class="form-cancel" href="{% url 'comment_delete' pk=comment.travel.pk comment_id=comment.id %}">Delete</a>
+            </div>
+        </form>
+    </div>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Delete">
-    </form>
-    
 {% endblock %}
