@@ -23,9 +23,9 @@
             <!-- <p>Travel Plans: {{user.travel_set.all|length}}</p> -->
             <div class="list-flex-nav-category">
                 <ul class="tag-ul">
-                    <li ><a class="{% if nav == 'All Travels' %} active {% endif %}" href="{% url 'profile' user.username %}">All</a></li>
+                    <li class="{% if nav == 'All Travels' %} active {% endif %}"><a href="{% url 'profile' user.username %}">All</a></li>
                     {% for tag in tags %}
-                        <li><a class="{% if nav == tag.name %} active {% endif %}" href="{% url 'profile' user.username %}?tag={{tag}}" name="tag" value="{{tag}}">#{{tag}}</a></li>
+                        <li class="{% if nav == tag.name %} active {% endif %}"><a href="{% url 'profile' user.username %}?tag={{tag}}" name="tag" value="{{tag}}">#{{tag}}</a></li>
                     {% endfor %}
                 </ul>
             </div>

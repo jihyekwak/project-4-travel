@@ -181,12 +181,15 @@ class Destination_List(TemplateView):
         if city != None:
             context['destinations'] = Destination.objects.filter(city__icontains=city)
             context['header'] = f"Searching for {city}"
+            context['nav'] = f"{city}"
         elif continent !=None:
             context['destinations'] = Destination.objects.filter(continent__icontains=continent)
             context['header'] = f"Searching for {continent}"
+            context['nav'] = f"{continent}"
         else:
             context['destinations'] = Destination.objects.all()
             context['header'] = "All Destinations"
+            context['nav'] = "All"
         return context
 
 @method_decorator(login_required, name='dispatch')

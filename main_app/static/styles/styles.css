@@ -360,15 +360,16 @@ List Page Flexbox
 
 .tag-ul li {
     display: inline;
-    background-color: #7B98AA50;
+    background-color: #7B98AA40;
     border-radius: 5px;
     padding: 2px 4px;
     font-size: 15px;
     line-height: 200%;
 }
 
-.active {
+li.active {
     font-weight: bold;
+    background-color: #7B98AA80;
 }
 
 .add-btn {
@@ -553,6 +554,11 @@ Destination Detail Page
     overflow: hidden;
 }
 
+.destination-travel-list {
+    display: flex;
+    flex-direction: row;
+}
+
 /* -------------
 Travel Detail Page 
 ---------------- */
@@ -593,7 +599,7 @@ Travel Detail Page
 }
 
 .detail-section {
-    margin: 30px 100px;
+    margin: 30px 50px;
 }
 
 .detail-section h2, h3, p {
@@ -966,52 +972,6 @@ Comment Edit Form
     width: 50px;
 }
 
-
-
-.login-form-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: fit-content;
-    margin: auto auto;
-}
-
-.login-msg {
-    /* background-color: #CFF2F650; */
-    padding: 10px;
-    border-radius: 10px 0 0 10px;
-    color: #44545E;
-    width: 300px;
-}
-
-.login {
-    border-radius: 0 10px 10px 0;
-    /* background-color: #CFF2F650; */
-}
-
-.login input {
-    width: 200px;
-}
-
-.login label {
-    font-size: 18px;
-}
-
-
-.helptext {
-    color: #44545E;
-    display: block;
-    margin-top: 5px;
-    width: 500px;
-}
-
-.form-cancel {
-    color: #44545E;
-    text-align: right;
-}
-
 .errorlist {
     display: none;
 }
@@ -1048,5 +1008,88 @@ strong {
     color: #44545E;
     text-decoration: underline;
     font-size: 17px;
+}
 
+.form-cancel {
+    color: #44545E;
+    text-align: right;
+}
+
+/* -------------
+Signup, Login Form
+---------------- */
+
+.login-page {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.login-img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    display: block;
+}
+
+.login-form {
+    position: absolute;
+    margin-top: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    border: 6px solid #44545E50;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-msg {
+    padding: 10px;
+    color: white;
+    width: 300px;
+}
+
+.login-create-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #7B98AA70;
+    padding: 25px;
+    color: #44545E;
+}
+
+.login-create-form input {
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.login-create-form label {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.login-create-form input[type=submit] {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #44545E;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin: 10px auto;
+}
+
+.helptext {
+    color: #44545E;
+    display: block;
+    /* margin-top: 5px; */
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.helptext li {
+    font-size: 16px;
 }
