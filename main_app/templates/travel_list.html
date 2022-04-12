@@ -22,9 +22,10 @@
                     <a href="{% url 'travel_list' %}">Clear Search</a>
                 </div>
                 <div class="list-flex-nav-category">
-                    <ul>
+                    <ul class="tag-ul">
+                        <li ><a class="{% if nav == 'All Travels' %} active {% endif %}" href="{% url 'travel_list' %}">All</a></li>
                         {% for tag in tags %}
-                            <li><a href="{% url 'travel_list' %}?tag={{tag}}" name="tag">{{tag}}</a></li>
+                            <li><a class="{% if nav == tag.name %} active {% endif %}" href="{% url 'travel_list' %}?tag={{tag}}" name="tag" value="{{tag}}">#{{tag}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

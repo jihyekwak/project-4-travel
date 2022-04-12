@@ -105,7 +105,7 @@ nav a:hover {
     z-index: 100;
     background-color: white;
     margin: 0 0 10px 0;
-    padding: 0 0 10px 0;
+    padding: 0 0 20px 0;
 }
 
 .pagetop-nav a {
@@ -341,6 +341,19 @@ List Page Flexbox
     color: #44545E;
 }
 
+.tag-ul li {
+    display: inline;
+    background-color: #7B98AA50;
+    border-radius: 5px;
+    padding: 2px 4px;
+    font-size: 15px;
+    line-height: 200%;
+}
+
+.active {
+    font-weight: bold;
+}
+
 .add-btn {
     background-color: #44545E;
     color: white;
@@ -384,6 +397,7 @@ List Page Flexbox
     justify-content: center;
     flex-wrap: wrap;
     text-align: center;
+    margin-top: 20px;
 }
 
 /* -------------
@@ -425,7 +439,7 @@ Travel List Page
     max-width: 300px;
     height: 400px;
     background-color: white;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .travel-card-content a {
@@ -452,10 +466,19 @@ Profile Page
 
 .profile-page-profile-image {
     width: 150px;
+    height: 150px;
     background-color: #CFF2F6;
     border-radius: 75px;
 
 }
+
+.profile-travel-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 300px;
+    background-color: white;
+}
+
 
 .travel-card-img {
     position: relative;
@@ -474,14 +497,27 @@ Profile Page
     color: white;
 }
 
-.travel-card-content:hover .profile-travel-card-text {
+.profile-travel-card-content:hover .profile-travel-card-text {
     display: block;
 }
 
-.travel-card-content:hover .travel-img {
+.profile-travel-card-content:hover .travel-img {
     opacity: 0.8;
 }
 
+.edit-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+.edit-profile img {
+    opacity: 0.7;
+    width: 20px;
+    margin-right: 3px;
+}
 
 /* -------------
 Destination Detail Page 

@@ -52,25 +52,19 @@ def travel_create(request):
         if form.is_valid():
             form.save()
             form.instance.travelers.add(str(request.user.pk))
-            form.instance.save()
             tags = form.cleaned_data['tags'].split(',')
             for tag in tags:
                 tag=tag.strip().lower()
-                if "#" not in tag:
-                    tag="#"+tag
-                if len(tag) == 0:
-                    tag.delete()
-                tag, created = Tag.objects.get_or_create(name=tag)
-                form.instance.tags.add(tag)
+                if '#' in tag:
+                    tag = tag.replace('#', '')
+                if len(tag) != 0:
+                    tag, created = Tag.objects.get_or_create(name=tag)
+                    form.instance.tags.add(tag)
             destinations = form.cleaned_data['destinations']
             for destination in destinations:
                 form.instance.destinations.add(destination)
             return HttpResponseRedirect("/travels/")
     return render(request, 'travel_create.html', {'form':form})
-
-# class Travel_Detail(DetailView):
-#     model = Travel
-#     template_name = 'travel_detail.html'
 
 def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
@@ -161,10 +155,6 @@ def itinerary_delete(request, pk, itinerary_id):
         itinerary.delete()
         return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, "itinerary_delete_confirmation.html", {'itinerary':itinerary})
-
-# def destination_list(request):
-#     destinations = Destination.objects.all()
-#     return render(request, 'destination_list.html', {'destinations': destinations})
 
 class Destination_List(TemplateView):
     template_name = 'destination_list.html'
