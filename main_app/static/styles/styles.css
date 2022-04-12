@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;500&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Rubik:ital,wght@0,400;0,500;1,700&family=Ubuntu&display=swap');
 
 body {
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
     /* font-family: 'Roboto Slab', serif; */
+    font-family: 'Ubuntu', sans-serif;
     margin: 5px 50px;
 }
 
@@ -19,7 +20,7 @@ main {
 }
 
 nav {
-    padding: 15px 10px;
+    padding: 20px 10px;
     position: fixed;
 	top: 0;
 	left: 0;
@@ -30,12 +31,30 @@ nav {
     text-align: center;
 }
 
+.logo {
+    margin-left: 0px;
+    font-size: 23px;
+    color: black;
+    padding-left: 0;
+    font-weight: 700;
+    /* font-style: italic; */
+    /* letter-spacing: -1px; */
+    /* font-family: 'Roboto Slab', serif; */
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
+
+}
+
 .nav-left {
     float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .nav-center {
     float: center;
+    margin-bottom: 0;
 }
 
 .nav-right {
@@ -71,8 +90,6 @@ nav a:hover {
 }
 
 .dropdown-btn {
-    /* position: relative;
-    display: inline-block; */
     cursor: pointer;
 }
 
@@ -105,7 +122,7 @@ nav a:hover {
     z-index: 100;
     background-color: white;
     margin: 0 0 10px 0;
-    padding: 0 0 20px 0;
+    padding: 20px 0;
 }
 
 .pagetop-nav a {
