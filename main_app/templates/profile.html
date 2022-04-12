@@ -16,10 +16,13 @@
             <img  class="profile-page-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
             {% endif %}
             <h1>{{user.username}}</h1>
+
+            {% if user.is_authenticated and user is user.username%}
             <a class="edit-profile" href="{% url 'profile_update' user.pk %}">
                 <img  class="setting-icon" src="{% static 'images/outline_settings_black_24dp.png' %}" alt="">
                 <span>Edit Profile</span>
             </a>
+            {% endif %}
             <!-- <p>Travel Plans: {{user.travel_set.all|length}}</p> -->
             <div class="list-flex-nav-category">
                 <ul class="tag-ul">
@@ -30,12 +33,13 @@
                 </ul>
             </div>
         </div>
-
+        {% if user.is_authenticated and user is user.username%}
         <div class="list-flex-nav-bottom">
             <a href="{% url 'travel_create' %}">
                 <p class="add-btn"> + Start Travel Plan</p>
             </a>
         </div>
+        {% endif %}
     </div>
 
     <div class="list-content">

@@ -59,6 +59,24 @@
             </div>
         </div>
 
+        <div class="list-travelers">
+            <div class="list-travelers-top">
+                <h3>Travelers</h3>
+                {% for user in users %}
+                    <div class="travelers-card">
+                        {% if user.profile_image %}
+                            <img class="comment-profile-image" src="{{user.profile_image.url}}" alt="">
+                        {% else %}
+                            <img class="comment-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+                        {% endif %}
+                        <a href="{% url 'profile' user.username %}">
+                            <span>{{user}}</span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}

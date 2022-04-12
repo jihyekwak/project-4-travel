@@ -38,6 +38,6 @@ urlpatterns = [
     path('user/<username>', views.profile, name='profile'),
     path('user/<int:pk>/update', views.Profile_Update.as_view(), name='profile_update'),
 
-    path('users/', views.Users.as_view(), name='users')
+    # path('users/', views.Users.as_view(), name='users')
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

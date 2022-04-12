@@ -32,6 +32,7 @@ class Travel_List(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tags'] = Tag.objects.all()
+        context['users'] = CustomUser.objects.all()
         title = self.request.GET.get("title")
         tag = self.request.GET.get("tag")
         if title != None:
@@ -302,7 +303,7 @@ def signup_view(request):
 @login_required
 def profile(request, username):
     user = get_user_model().objects.get(username = username)
-    travels = Travel.objects.filter(travelers__username__icontains = username)
+    travels = Travel.objects.filter(travelers__username = username)
     tags = Tag.objects.filter(travel__travelers__username = username).distinct()
     tag = request.GET.get("tag")
     if tag != None:
@@ -322,10 +323,10 @@ class Profile_Update(UpdateView):
         return reverse('profile', kwargs={'username': self.object.username})
 
 
-class Users(TemplateView):
-    template_name='users.html'
+# class Users(TemplateView):
+#     template_name='users.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['users'] = CustomUser.objects.all()
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['users'] = CustomUser.objects.all()
+#         return context
