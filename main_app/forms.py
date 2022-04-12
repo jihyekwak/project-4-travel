@@ -27,14 +27,19 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'first_name', 'last_name', 'email',  'profile_image']
-        
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class TravelForm(forms.ModelForm):
 
+    departure_date = forms.DateField(widget = DateInput)
+    return_date = forms.DateField(widget = DateInput)
     tags = forms.CharField(max_length = 100)
 
     class Meta:
         model = Travel
-        fields = ['destinations', 'title', 'image', 'departure_date', 'return_date', 'budget', 'travelers']
+        fields = ['destinations', 'title', 'image', 'departure_date' ,'return_date', 'budget', 'travelers']
 
 class TagForm(forms.ModelForm):
 

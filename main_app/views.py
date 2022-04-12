@@ -76,7 +76,6 @@ def travel_detail(request, pk):
     list_form = ListForm(request.POST)
     comment_form = CommentForm(request.POST)
     if request.method == "POST":
-
         if list_form.is_valid():
             list_form.instance.travel = travel
             list_form.save()
@@ -106,24 +105,31 @@ def comment_delete(request, pk, comment_id):
 @method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):
     model = Travel
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = TravelForm
     template_name = 'travel_update.html'
     # form_class = TravelForm
     
     def get_success_url(self):
         return reverse('travel_detail', kwargs={'pk': self.object.pk})
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.save()
-    #     self.object.tags = self.request.GET.getlist("tags")
-    #     self.object.tags.set(self.request.GET.getlist("tags"))
-    #     form.save_m2m()
-    #     return super(Travel_Update, self).form_valid(form)
+    def get_initial(self):
+        taglist = Tag.objects.filter(travel = self.object.pk).values_list('name', flat=True)
+        return {"tags": ', '.join(taglist)}
 
-        # tags = request.GET.getlist("tags")
-        # self.object.tags.set(*tags)
-
+    def form_valid(self, form):
+        self.object.tags.clear()
+        self.object = form.save(commit=False)
+        tags = form.cleaned_data['tags'].split(',')
+        for tag in tags:
+            tag=tag.strip().lower()
+            if '#' in tag:
+                tag = tag.replace('#', '')
+            if len(tag) != 0:
+                tag, created = Tag.objects.get_or_create(name=tag)
+                self.object.tags.add(tag)
+        self.object.save()
+        return super(Travel_Update, self).form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Delete(DeleteView):
