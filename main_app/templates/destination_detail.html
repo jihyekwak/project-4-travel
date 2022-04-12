@@ -2,7 +2,11 @@
 {% load static %}
 {% block content %}
 
-    <h1>Destination Detail Page</h1>
+<div class="pagetop-nav">
+    <a href="{% url 'destination_list' %}">Destinations</a> / <a href="{% url 'destination_list' %}?continent={{destination.continent}}">{{destination.continent}} </a> / <a href="">{{destination.country}}</a> / <a href="">{{destination.city}}</a>
+</div>
+
+    <!-- <h1>Destination Detail Page</h1> -->
         <div class="destination-detail-header">
             {% if destination.image %}
             <img class="destination-detail-header-img" src="{{destination.image.url}}" alt="{{destination.city}}">
@@ -10,11 +14,14 @@
         </div>
         <div class="detail-section destination-detail-content">
             <h2>{{destination.city}}</h2>
-            <h3>{{destination.country}}</h3>
+            <h3>{{destination.continent}} / {{destination.country}}</h3>
             <p>{{destination.description}}</p>
-            {% for thing_to_do in destination.things_to_do %}
-                <p>{{thing_to_do}}</p>
-            {% endfor %}
+            <h3>Things To Do</h3>
+            <ul>
+                {% for thing_to_do in destination.things_to_do %}
+                    <li><p>{{thing_to_do}}</p></li>
+                {% endfor %}
+            </ul>
             <div>
                 <a href="{% url 'destination_update' destination.id %}"><button class="travel-edit-delete-btn">Edit</button></a>
                 <a href="{% url 'destination_delete' destination.id %}"><button class="travel-edit-delete-btn">Delete</button></a>
@@ -29,23 +36,26 @@
 
         <div class="detail-section">
             <h2>Travels</h2>
-            {% for travel in destination.travel_set.all %}
-            <div class="travel-card-content">
-                <a href="{% url 'travel_detail' travel.pk %}">
-                    <div class="travel-card-img">
-                        {% if travel.image %}
-                        <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
-                        {% else %}
-                        <img class="travel-img" src="{% static 'images/simon-maage-C9dhUVP-o6w-unsplash.jpg' %}" alt="">
-                        {% endif %}
+            <div class="destination-travel-list">
+                {% for travel in destination.travel_set.all %}
+                    <div class="travel-card-content">
+                        <a href="{% url 'travel_detail' travel.pk %}">
+                            <div class="travel-card-img">
+                                {% if travel.image %}
+                                    <img class="travel-img" src="{{travel.image.url}}" alt="{{travel.title}}">
+                                {% else %}
+                                    <img class="travel-img" src="{% static 'images/simon-maage-C9dhUVP-o6w-unsplash.jpg' %}" alt="">
+                                {% endif %}
+                            </div>
+                        <div class="travel-card-text">
+                            <h3>{{travel.title}}</h3>
+                        </div>
+                        </a>
                     </div>
-                    <div class="travel-card-text">
-                        <h3>{{travel.title}}</h3>
-                    </div>
-                </a>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
+        
         <div class="detail-section">
             <h2>Itineraries</h2>
             {% for itinerary in destination.itineraries.all %}

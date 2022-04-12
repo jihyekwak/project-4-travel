@@ -2,6 +2,10 @@
 {% load static %}
 {% block content %}
 
+<div class="pagetop-nav">
+    <a href="{% url 'travel_list' %}">Travels</a> / <a href="">{{travel.title}}</a> 
+</div>
+
     <!-- <h1>Travel Detail Page</h1> -->
         <div class="detail-header">
             {% if travel.image %}
@@ -34,10 +38,43 @@
             </div>
             {% endif %}
         </div>
-        <div>
-            {% for list in travel.lists.all %}
-                {{ list.category }}
-            {% endfor %}
+        <div class="detail-section checklists">
+            <div class="detail-itinerary-add">
+            <h2>Check List</h2>
+            <a href="{% url 'checklist_list' pk=travel.pk %}"><button class="itinerary-add-btn">+ Update Check Lists</button></a>
+            </div>
+            <div class = "checklist-container">
+                <div class = "travel-detail-checklist checklist-card-content">
+                    <h4>To Confirm</h4>
+                        {% for item in check_list %}
+                            {% if item.is_completed == False %}
+                            <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                            {% else %}
+                            <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+                <div class = "travel-detail-checklist checklist-card-content">
+                    <h4>To Do</h4>
+                        {% for item in todo_list %}
+                            {% if item.is_completed == False %}
+                            <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                            {% else %}
+                            <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+                <div class = "travel-detail-checklist checklist-card-content">
+                    <h4>To Pack</h4>
+                        {% for item in packing_list %}
+                            {% if item.is_completed == False %}
+                            <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                            {% else %}
+                            <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+            </div>
         </div>
 
         <div class="detail-section itinerary">
@@ -121,20 +158,37 @@
             <h2>Comments</h2>
             {% for comment in travel.comments.all %}
                 <div class="comment-list">
-                    <p>{{comment.author}}: {{comment.text}}</p>
-                    {% if user.is_authenticated and user is comment.author %}
-                    <a class="comment-edit-delete" href="{% url 'comment_update_delete' pk=travel.pk comment_id=comment.id %}"><button>Edit / Delete Comment</button></a>
+                    <div class="comment-author">
+                        {% if user.profile_image %}
+                            <img class="comment-profile-image" src="{{user.profile_image.url}}" alt="">
+                        {% else %}
+                            <img class="comment-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+                        {% endif %}
+                        <span>{{comment.author}}: {{comment.text}}</span>
+                    </div>
+                    {% if user.is_authenticated and user == comment.author %}
+                    <div class="cacel-delete-btn">
+                        <a class="comment-edit-delete" href="{% url 'comment_update' pk=travel.pk comment_id=comment.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a class="comment-edit-delete" href="{% url 'comment_delete' pk=travel.pk comment_id=comment.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
                     {%endif%}
                 </div>               
             {% endfor%}
 
             <!-- {% if user.is_authenticated%} -->
             <div class="comment-new">
-                <!-- <h3>Leave a comment</h3> -->
+                <h3>Leave a comment</h3>
                 <form class="comment-create-form" method="post">
-                    <span>{{user.username}}</span>
+                    <div class="comment-author">
+                        {% if user.profile_image %}
+                            <img class="comment-profile-image" src="{{user.profile_image.url}}" alt="">
+                        {% else %}
+                            <img class="comment-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+                        {% endif %}
+                        <span>{{user.username}}</span>
+                    </div>
                     {% csrf_token %}
-                    {{form.as_table}}
+                    {{comment_form.as_table}}
                     <input type="submit" value="Submit" />
                 </form>
             </div>

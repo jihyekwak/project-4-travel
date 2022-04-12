@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<div class="pagetop-nav">
+    <a href="{% url 'destination_list' %}">Destinations</a> / <a href="">{{nav}}</a> 
+</div>
+
     <div class="list-flex-container">
 
         <div class="list-flex-nav">
@@ -20,15 +25,15 @@
                     <a href="{% url 'destination_list' %}">Clear Search</a>
                 </div>
                 <div class="list-flex-nav-category">
-                    <ul>
-                        <li><a href="{% url 'destination_list' %}">All</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=Antartica" name="continent">Antartica</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=Africa" name="continent">Africa</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=Asia" name="continent">Aisa</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=Europe" name="continent">Europe</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=North America" name="continent">North America</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=Oceania" name="continent">Oceania</a></li>
-                        <li><a href="{% url 'destination_list' %}?continent=South America" name="continent">South America</a></li>
+                    <ul class="tag-ul">
+                        <li class="{% if nav == 'All' %} active {% endif %}" ><a href="{% url 'destination_list' %}">All</a></li>
+                        <li class="{% if nav == 'Antartica' %} active {% endif %}"><a href="{% url 'destination_list' %}?continent=Antartica" name="continent">Antartica</a></li>
+                        <li class="{% if nav == 'Africa' %} active {% endif %}" ><a href="{% url 'destination_list' %}?continent=Africa" name="continent">Africa</a></li>
+                        <li class="{% if nav == 'Asia' %} active {% endif %}" ><a href="{% url 'destination_list' %}?continent=Asia" name="continent">Aisa</a></li>
+                        <li class="{% if nav == 'Europe' %} active {% endif %}"><a href="{% url 'destination_list' %}?continent=Europe" name="continent">Europe</a></li>
+                        <li class="{% if nav == 'North America' %} active {% endif %}" ><a href="{% url 'destination_list' %}?continent=North America" name="continent">North America</a></li>
+                        <li class="{% if nav == 'Oceania' %} active {% endif %}" ><a href="{% url 'destination_list' %}?continent=Oceania" name="continent">Oceania</a></li>
+                        <li class="{% if nav == 'South America' %} active {% endif %}"><a href="{% url 'destination_list' %}?continent=South America" name="continent">South America</a></li>
                     </ul>
                 </div>
             </div>

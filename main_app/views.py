@@ -5,8 +5,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Travel, Itinerary, Destination, Comment, Tag, List
-from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, TagForm
+from .models import CustomUser, Travel, Itinerary, Destination, Comment, Tag, List
+from .forms import CustomUserCreationForm, CustomUserChangeForm, ItineraryForm, CommentForm, TravelForm, ListForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -52,32 +52,55 @@ def travel_create(request):
         if form.is_valid():
             form.save()
             form.instance.travelers.add(str(request.user.pk))
-            form.instance.save()
             tags = form.cleaned_data['tags'].split(',')
             for tag in tags:
-                tag=tag.strip()
-                tag, created = Tag.objects.get_or_create(name=tag)
-                form.instance.tags.add(tag)
+                tag=tag.strip().lower()
+                if '#' in tag:
+                    tag = tag.replace('#', '')
+                if len(tag) != 0:
+                    tag, created = Tag.objects.get_or_create(name=tag)
+                    form.instance.tags.add(tag)
             destinations = form.cleaned_data['destinations']
             for destination in destinations:
                 form.instance.destinations.add(destination)
             return HttpResponseRedirect("/travels/")
     return render(request, 'travel_create.html', {'form':form})
 
-# class Travel_Detail(DetailView):
-#     model = Travel
-#     template_name = 'travel_detail.html'
-
 def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
-    form = CommentForm(request.POST or None)
-    form.instance.travel = travel
-    if request.user.is_authenticated:
-        form.instance.author = request.user
-        if form.is_valid():
-            form.save()
+    lists = List.objects.filter(travel = pk)
+    packing_list = lists.filter(category__icontains= 'Packing')
+    check_list = lists.filter(category__icontains = 'check')
+    todo_list = lists.filter(category__icontains = 'to do')
+    list_form = ListForm(request.POST)
+    comment_form = CommentForm(request.POST)
+    if request.method == "POST":
+
+        if list_form.is_valid():
+            list_form.instance.travel = travel
+            list_form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'travel_detail.html', {'travel': travel, 'form':form})
+        if comment_form.is_valid():
+            comment_form.instance.author = request.user
+            comment_form.instance.travel = travel
+            comment_form.save()
+            return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'comment_form':comment_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+
+@login_required
+def comment_update(request, pk, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    form = CommentForm(request.POST or None, instance = comment)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/travels/"+str(pk))
+    return render(request, 'comment_update.html', {'comment':comment, 'form':form})
+
+@login_required
+def comment_delete(request, pk, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
+    return HttpResponseRedirect("/travels/"+str(pk))
 
 @method_decorator(login_required, name='dispatch')
 class Travel_Update(UpdateView):
@@ -148,10 +171,6 @@ def itinerary_delete(request, pk, itinerary_id):
         return HttpResponseRedirect("/travels/"+str(pk))
     return render(request, "itinerary_delete_confirmation.html", {'itinerary':itinerary})
 
-# def destination_list(request):
-#     destinations = Destination.objects.all()
-#     return render(request, 'destination_list.html', {'destinations': destinations})
-
 class Destination_List(TemplateView):
     template_name = 'destination_list.html'
 
@@ -162,12 +181,15 @@ class Destination_List(TemplateView):
         if city != None:
             context['destinations'] = Destination.objects.filter(city__icontains=city)
             context['header'] = f"Searching for {city}"
+            context['nav'] = f"{city}"
         elif continent !=None:
             context['destinations'] = Destination.objects.filter(continent__icontains=continent)
             context['header'] = f"Searching for {continent}"
+            context['nav'] = f"{continent}"
         else:
             context['destinations'] = Destination.objects.all()
-            context['header'] = "All Destination"
+            context['header'] = "All Destinations"
+            context['nav'] = "All"
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -196,17 +218,47 @@ class Destination_Delete(DeleteView):
     template_name = 'destination_delete_confirmation.html'
     success_url = "/destinations/"
 
+def checklist_list(request, pk):
+    travel = Travel.objects.get(pk = pk)
+    lists = List.objects.filter(travel = pk)
+    packing_list = lists.filter(category__icontains= 'Packing')
+    check_list = lists.filter(category__icontains = 'check')
+    todo_list = lists.filter(category__icontains = 'to do')
+    list_form = ListForm(request.POST)
+    if request.method == "POST":
+
+        if list_form.is_valid():
+            list_form.instance.travel = travel
+            list_form.save()
+            return HttpResponseRedirect("/travels/"+str(pk)+"/checklists")
+    return render(request, 'checklist_list.html', {'travel': travel, 'list_form':list_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+
 @login_required
-def comment_update_delete(request, pk, comment_id):
-    comment = Comment.objects.get(id=comment_id)
-    form = CommentForm(request.POST or None, instance = comment)
+def is_completed(request, pk, item_id):
+    list_item = List.objects.get(id= item_id)
+    list_item.is_completed = True
+    list_item.save()
+    return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
+
+def is_not_done(request, pk, item_id):
+    list_item = List.objects.get(id= item_id)
+    list_item.is_completed = False
+    list_item.save()
+    return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
+
+def checklist_delete(request, pk, item_id):
+    list_item = List.objects.get(id= item_id)
+    list_item.delete()
+    return HttpResponseRedirect('/travels/'+str(pk)+"/checklists")
+
+def checklist_update(request, pk, item_id):
+    list = List.objects.get(id=item_id)
+    # travel = Travel.objects.get(pk=pk)
+    form = ListForm(request.POST or None, instance = list)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/travels/"+str(pk))
-    if request.method == "POST":
-        comment.delete()
-        return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'comment_update.html', {'comment':comment, 'form':form})
+        return HttpResponseRedirect("/travels/"+str(pk)+"/checklists/")
+    return render(request, 'checklist_update.html', {'list':list, 'form':form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -250,8 +302,15 @@ def signup_view(request):
 @login_required
 def profile(request, username):
     user = get_user_model().objects.get(username = username)
-    tags = Tag.objects.all()
-    return render(request, 'profile.html', {'user':user, 'tags': tags})
+    travels = Travel.objects.filter(travelers__username__icontains = username)
+    tags = Tag.objects.filter(travel__travelers__username = username).distinct()
+    tag = request.GET.get("tag")
+    if tag != None:
+        travels = travels.filter(tags__name__icontains = tag)
+        nav = f"{tag}"
+    else:
+        nav = "All Travels"
+    return render(request, 'profile.html', {'user':user, 'travels':travels, 'tags':tags, 'tag':tag, 'nav':nav})
 
 @method_decorator(login_required, name='dispatch')
 class Profile_Update(UpdateView):
@@ -261,3 +320,12 @@ class Profile_Update(UpdateView):
 
     def get_success_url(self):
         return reverse('profile', kwargs={'username': self.object.username})
+
+
+class Users(TemplateView):
+    template_name='users.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = CustomUser.objects.all()
+        return context

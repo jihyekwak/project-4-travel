@@ -2,7 +2,7 @@ from dataclasses import field
 from django import forms
 # from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import Itinerary, Comment, CustomUser, Travel, Tag
+from .models import Itinerary, Comment, CustomUser, Travel, Tag, List
 
 class ItineraryForm(forms.ModelForm):
 
@@ -41,3 +41,9 @@ class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
         fields = '__all__'
+
+class ListForm(forms.ModelForm):
+
+    class Meta:
+        model = List
+        fields = ['category', 'item', 'priority', 'due_date']

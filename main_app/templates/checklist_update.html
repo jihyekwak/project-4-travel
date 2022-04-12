@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="pagetop-nav">
+    <a href="{% url 'travel_detail' list.travel.pk %}">{{list.travel.title}}</a> / <a href="{% url 'checklist_list' pk=list.travel.pk %}">Check List</a> / <a href="">{{list.category}} - {{list.item}}</a>
+</div>
+
+<div class="form-page">
+    <h1 class="create-page-h1">Check List Edit Form</h1>
+    <div class="create-form-div">
+    <div class="checklist-new">
+        <h3>{{list.category}} / {{list.item}}</h3>
+        <form class="create-checklist-form" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit" />
+            <a class="form-cancel" href="{% url 'checklist_list' pk=list.travel.pk %}">Cancel</a>
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

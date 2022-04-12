@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;500&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Rubik:ital,wght@0,400;0,500;1,700&family=Ubuntu&display=swap');
 
 body {
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
     /* font-family: 'Roboto Slab', serif; */
+    font-family: 'Ubuntu', sans-serif;
     margin: 5px 50px;
 }
 
@@ -15,11 +16,11 @@ Navbar
 ---------------- */
 
 main {
-    padding: 50px 30px;
+    padding: 60px 30px;
 }
 
 nav {
-    padding: 15px 10px;
+    padding: 20px 10px;
     position: fixed;
 	top: 0;
 	left: 0;
@@ -30,25 +31,35 @@ nav {
     text-align: center;
 }
 
+.logo {
+    margin-left: 0px;
+    font-size: 23px;
+    color: black;
+    padding-left: 0;
+    font-weight: 700;
+    /* font-style: italic; */
+    /* letter-spacing: -1px; */
+    /* font-family: 'Roboto Slab', serif; */
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
+
+}
+
 .nav-left {
     float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .nav-center {
     float: center;
+    margin-bottom: 0;
 }
 
 .nav-right {
     float: right;
 }
-
-/* .profile-image {
-    margin-right: -30px;
-}
-
-.username {
-    margin-right: -30px;
-} */
 
 nav a {
     text-decoration: none;
@@ -79,8 +90,6 @@ nav a:hover {
 }
 
 .dropdown-btn {
-    /* position: relative;
-    display: inline-block; */
     cursor: pointer;
 }
 
@@ -92,7 +101,7 @@ nav a:hover {
     color: #44545E;
     padding: 12px 6px;
     margin-top: 26px;
-    z-index: 1;
+    z-index: 11;
 }
 
 .dropdown-content a {
@@ -104,6 +113,25 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.pagetop-nav {
+    position: fixed;
+    width: 100%;
+    top: 60px;
+    z-index: 10;
+    background-color: white;
+    margin: 0 0 10px 0;
+    padding: 20px 0;
+}
+
+.pagetop-nav a {
+    color: #44545E;
+    text-decoration: none;
+}
+
+.pagetop-nav a:hover {
+    text-decoration: underline;
 }
 
 /* -------------
@@ -330,6 +358,20 @@ List Page Flexbox
     color: #44545E;
 }
 
+.tag-ul li {
+    display: inline;
+    background-color: #7B98AA40;
+    border-radius: 5px;
+    padding: 2px 4px;
+    font-size: 15px;
+    line-height: 200%;
+}
+
+li.active {
+    font-weight: bold;
+    background-color: #7B98AA80;
+}
+
 .add-btn {
     background-color: #44545E;
     color: white;
@@ -373,6 +415,7 @@ List Page Flexbox
     justify-content: center;
     flex-wrap: wrap;
     text-align: center;
+    margin-top: 20px;
 }
 
 /* -------------
@@ -414,7 +457,7 @@ Travel List Page
     max-width: 300px;
     height: 400px;
     background-color: white;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .travel-card-content a {
@@ -439,6 +482,22 @@ Travel List Page
 Profile Page 
 ---------------- */
 
+.profile-page-profile-image {
+    width: 150px;
+    height: 150px;
+    background-color: #CFF2F6;
+    border-radius: 75px;
+
+}
+
+.profile-travel-card-content {
+    min-width: 300px;
+    max-width: 300px;
+    height: 300px;
+    background-color: white;
+}
+
+
 .travel-card-img {
     position: relative;
     text-align: center;
@@ -456,14 +515,27 @@ Profile Page
     color: white;
 }
 
-.travel-card-content:hover .profile-travel-card-text {
+.profile-travel-card-content:hover .profile-travel-card-text {
     display: block;
 }
 
-.travel-card-content:hover .travel-img {
+.profile-travel-card-content:hover .travel-img {
     opacity: 0.8;
 }
 
+.edit-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+.edit-profile img {
+    opacity: 0.7;
+    width: 20px;
+    margin-right: 3px;
+}
 
 /* -------------
 Destination Detail Page 
@@ -472,6 +544,7 @@ Destination Detail Page
 .destination-detail-header {
     width: 100%;
     height: 400px;
+    margin-top: 60px;
 }
 
 .destination-detail-header-img {
@@ -479,6 +552,11 @@ Destination Detail Page
     height: 100%;
     object-fit: cover;
     overflow: hidden;
+}
+
+.destination-travel-list {
+    display: flex;
+    flex-direction: row;
 }
 
 /* -------------
@@ -490,6 +568,7 @@ Travel Detail Page
     height: 400px;
     position: relative;
     text-align: center;
+    margin-top: 60px;
 }
 
 .detail-header-img {
@@ -520,34 +599,48 @@ Travel Detail Page
 }
 
 .detail-section {
-    margin: 30px 100px;
+    margin: 30px 50px;
 }
 
 .detail-section h2, h3, p {
     color: #44545E;
 }
 
-/* .detail-content {
-    margin: 30px 100px;
-} */
-
-/* .detail-content h2 {
-    color: #44545E;
-} */
-
 .detail-content p, li {
     font-size: 19px;
     color: #44545E;
 }
 
-/* .itinerary {
-    margin: 30px 100px;
-} */
+.checklists {
+    display: flex;
+    flex-direction: column;
+}
 
-/* .itinerary h2 {
+.checklist-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.checklist-card-content {
+    width: 30%;
+    background-color: #CFF2F6;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.checklist-card-content h4 {
     color: #44545E;
-} */
+    text-align: center;
+}
 
+.travel-detail-checklist p {
+    margin: 4px 10px;
+}
 
 .itinerary-card-content {
     margin: 0 0 20px 0;
@@ -603,36 +696,42 @@ td {
 }
 
 .itinerary-edit-delete-btn {
-    border: 2px solid #44545E;
+    border: 2px solid #44545E70;
     border-radius: 20px;
     width: 60px;
     background-color: white;
     color: #44545E;
 }
 
-/* .travel-comment {
-    margin: 30px 100px;
-} */
-
-/* .travel-comment h2 {
-    color: #44545E;
-} */
-
 .comment-list {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: center;
 }
 
-.comment-list p{
-    margin-top: 0px;
+.comment-author {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.comment-list span{
+    margin: 0 5px;
     color: #44545E;
 }
 
 .comment-create-form {
     display: flex;
     gap: 10px;
-    padding: 0 10px;
+    margin: 10px 0;
+
 }
 
 .comment-create-form span {
@@ -658,28 +757,107 @@ td {
 }
 
 /* -------------
-Create Form 
+Check List Update Page 
 ---------------- */
 
-.create-page-h1 {
+.is_completed {
+    color: #44545E80;
+}
+
+.item-content-card {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    background-color: white;
+    margin: 4px 10px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.item-content-card p {
+    margin: 10px 0;
+}
+
+.checklist-new {
+    margin: 0 25px;
+}
+
+.checklist-new h3 {
+    color: #44545E;
+    margin: 30px 0 5px 5px;
+}
+
+.create-checklist-form {
+    margin: auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #7B98AA50;
+    border-radius: 10px;
     color: #44545E;
 }
 
-.create-form-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.create-checklist-form input {
+    width: 150px;
+    border: 1px solid #44545E50;
+    border-radius: 5px;
+    height: 20px;
 }
+
+.create-checklist-form input[type="submit"] {
+    height : 25px;
+    border: 2px solid #44545E;
+    border-radius: 20px;
+    width: 60px;
+    background-color: white;
+    color: #44545E;
+}
+
+#id_priority, #id_category {
+    width: 150px;
+    border: 1px solid #44545E50;
+    border-radius: 5px;
+    height: 25px;
+}
+
+/* -------------
+Create Form 
+---------------- */
+
+.form-page {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.form-page-left {
+    color: #44545E;
+}
+
+.form-page-right {
+    text-align: center;
+    color: #44545E;
+}
+
+/* -------------
+Create Form - Destination
+---------------- */
 
 .create-form {
     width: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    border: 4px solid #44545E50;   
-    border-radius: 10px;
+    /* gap: 10px; */
+    border: 6px solid #44545E50;   
+    border-radius: 40px;
     padding: 25px;
     background-color: #7B98AA70;
+    text-align: center;
 }
 
 .create-form label {
@@ -699,8 +877,34 @@ Create Form
     padding: 5px;
 }
 
+/* input select*/
 .create-form select {
     width: 510px;
+}
+
+#id_destination, #id_travel, #id_continent {
+    height: 30px;
+}
+
+#id_destinations, #id_travelers, #id_tags {
+    height: 100px;
+}
+
+/* travel create tag input */
+input#id_tags {
+    height: 30px;
+}
+
+/* itinerary create page */
+.form-page img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50px;
+}
+
+.itinerary-card {
+    background-color: #CFF2F6;
+    border-radius: 10px;
 }
 
 .create-form textarea {
@@ -709,6 +913,7 @@ Create Form
     width: 500px;
 }
 
+/* input submit button */
 .create-form input[type=submit] {
     width: 100px;
     height: 40px;
@@ -724,60 +929,47 @@ input[type="checkbox"] {
     width: 30px;
 }
 
-#id_destination, #id_travel {
-    height: 30px;
-}
+/* -------------
+Comment Edit Form
+---------------- */
 
-#id_destinations {
-    height: 100px;
-}
-
-#id_travelers {
-    height: 50px;
-}
-
-.login-form-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.comment-edit-form {
     width: fit-content;
-    margin: auto auto;
-}
-
-.login-msg {
-    /* background-color: #CFF2F650; */
-    padding: 10px;
-    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 4px solid #44545E50;   
+    border-radius: 10px;
+    padding: 25px;
+    background-color: #7B98AA70;
     color: #44545E;
-    width: 300px;
 }
 
-.login {
-    border-radius: 0 10px 10px 0;
-    /* background-color: #CFF2F650; */
-}
-
-.login input {
-    width: 200px;
-}
-
-.login label {
-    font-size: 18px;
-}
-
-
-.helptext {
-    color: #44545E;
-    display: block;
-    margin-top: 5px;
+#id_text {
+    height: 30px;
+    border: none;  
+    border-radius: 5px;
     width: 500px;
 }
 
-.form-cancel {
+.comment-edit-form input[type=submit] {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #44545E;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin: 10px auto;
+}
+
+.comment-edit-form label {
+    font-size: 20px;
     color: #44545E;
-    text-align: right;
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 50px;
 }
 
 .errorlist {
@@ -788,10 +980,116 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* #id_image a {
-    display: inline;
-} */
+/* -------------
+Delete Confirm Form
+---------------- */
+.delete-confirm {
+    color: #44545E;
+    text-align: center;
+    margin: auto auto;
+}
 
-/* #image-clear_id {
-    display: inline;
-} */
+strong {
+    font-size: 25px;
+}
+
+.cancel-delete-btn {
+    text-align: right;
+    margin: 30px 0;
+}
+
+.cancel-delete-btn a {
+    margin: 0 5px;
+}
+
+.cancel-delete-btn input {
+    border: none;
+    background-color: white;
+    color: #44545E;
+    text-decoration: underline;
+    font-size: 17px;
+}
+
+.form-cancel {
+    color: #44545E;
+    text-align: right;
+}
+
+/* -------------
+Signup, Login Form
+---------------- */
+
+.login-page {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.login-img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    display: block;
+}
+
+.login-form {
+    position: absolute;
+    margin-top: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    border: 6px solid #44545E50;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-msg {
+    padding: 10px;
+    color: white;
+    width: 300px;
+}
+
+.login-create-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #7B98AA70;
+    padding: 25px;
+    color: #44545E;
+}
+
+.login-create-form input {
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.login-create-form label {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.login-create-form input[type=submit] {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #44545E;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin: 10px auto;
+}
+
+.helptext {
+    color: #44545E;
+    display: block;
+    /* margin-top: 5px; */
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.helptext li {
+    font-size: 16px;
+}

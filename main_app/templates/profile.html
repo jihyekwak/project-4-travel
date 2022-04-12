@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<div class="pagetop-nav">
+    <a href="{% url 'profile' user.username%}">My Travel</a> / <a href="">{{nav}} ({{travels|length}})</a>
+</div>
+
 <div class="list-flex-container">
 
     <div class="list-flex-nav">
         <div class="list-flex-nav-top">
+            {% if user.profile_image %}
+            <img class="profile-page-profile-image" src="{{user.profile_image.url}}" alt="">
+            {% else %}
+            <img  class="profile-page-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
+            {% endif %}
             <h1>{{user.username}}</h1>
-            <a href="{% url 'profile_update' user.pk %}">
-                <p>Edit Profile</p>
+            <a class="edit-profile" href="{% url 'profile_update' user.pk %}">
+                <img  class="setting-icon" src="{% static 'images/outline_settings_black_24dp.png' %}" alt="">
+                <span>Edit Profile</span>
             </a>
-            <p>Travel Plans: {{user.travel_set.all|length}}</p>
+            <!-- <p>Travel Plans: {{user.travel_set.all|length}}</p> -->
             <div class="list-flex-nav-category">
-                <ul>
+                <ul class="tag-ul">
+                    <li class="{% if nav == 'All Travels' %} active {% endif %}"><a href="{% url 'profile' user.username %}">All</a></li>
                     {% for tag in tags %}
-                        <li><a href="">{{tag}}</a></li>
+                        <li class="{% if nav == tag.name %} active {% endif %}"><a href="{% url 'profile' user.username %}?tag={{tag}}" name="tag" value="{{tag}}">#{{tag}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -28,8 +40,8 @@
 
     <div class="list-content">
         <div class="list-flex">
-            {% for travel in user.travel_set.all %}
-            <div class="travel-card-content">
+            {% for travel in travels %}
+            <div class="profile-travel-card-content">
                 <a href="{% url 'travel_detail' travel.pk %}">
                     <div class="travel-card-img">
                         {% if travel.image %}

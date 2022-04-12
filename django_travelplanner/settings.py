@@ -54,7 +54,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # DEBUG = True
 
 ALLOWED_HOSTS = [
-    'travellovers.herokuapp.com'
+    '127.0.0.1', 'travellovers.herokuapp.com'
 ]
 
 

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<div class="pagetop-nav">
+    <a href="{% url 'travel_list' %}">Travels</a> / <a href="">{{header}}</a> 
+</div>
+
     <div class="list-flex-container">
 
         <div class="list-flex-nav">
@@ -17,9 +22,10 @@
                     <a href="{% url 'travel_list' %}">Clear Search</a>
                 </div>
                 <div class="list-flex-nav-category">
-                    <ul>
+                    <ul class="tag-ul">
+                        <li ><a class="{% if nav == 'All Travels' %} active {% endif %}" href="{% url 'travel_list' %}">All</a></li>
                         {% for tag in tags %}
-                            <li><a href="{% url 'travel_list' %}?tag={{tag}}" name="tag">{{tag}}</a></li>
+                            <li><a class="{% if nav == tag.name %} active {% endif %}" href="{% url 'travel_list' %}?tag={{tag}}" name="tag" value="{{tag}}">#{{tag}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -35,7 +41,7 @@
         <div class="list-content">
             <div class="list-flex">
                 {% for travel in travels %}
-                <div class="travel-card-content">
+                <div class="destination-card-content">
                     <a href="{% url 'travel_detail' travel.pk %}">
                         <div class="travel-card-img">
                             {% if travel.image %}

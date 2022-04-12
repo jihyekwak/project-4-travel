@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="pagetop-nav">
+    <a href="{% url 'travel_detail' travel.pk %}">{{travel.title}}</a> / <a href="">Check List</a>
+</div>
+
+<div class="form-page">
+<h1 class="create-page-h1">{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
+<div class="create-form-div">
+
+<h2>Check List</h2>
+<div class = "checklist-container">
+    <div class = "checklist-card-content">
+        <h3>Things To Confirm</h3>
+        {% for item in check_list %}
+            {% if item.is_completed == False %}
+                <div class="item-content-card">
+                    <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                    {% if user.is_authenticated and user in travel.travelers.all  %}
+                    <div>
+                        <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Done</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="item-content-card">
+                    <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                    {% if user.is_authenticated and user in travel.travelers.all  %}
+                    <div>
+                        <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">To Do</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class = "checklist-card-content">
+        <h3>Things To Do</h3>
+        {% for item in todo_list %}
+            {% if item.is_completed == False %}
+                <div class="item-content-card">
+                    <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                    {% if user.is_authenticated and user in travel.travelers.all  %}
+                    <div>
+                        <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Done</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="item-content-card">
+                    <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                    {% if user.is_authenticated and user in travel.travelers.all  %}
+                    <div>
+                        <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">To Do</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class = "checklist-card-content">
+        <h3>Thinkg To Pack</h3>
+        {% for item in packing_list %}
+            {% if item.is_completed == False %}
+                <div class="item-content-card">
+                    <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                    {% if user.is_authenticated and user in travel.travelers.all  %}
+                    <div>
+                        <a href="{% url 'is_completed' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Done</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="item-content-card">
+                    <p class="is_completed">{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
+                    {% if user.is_authenticated and user in travel.travelers.all  %}
+                    <div>
+                        <a href="{% url 'is_not_done' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">To Do</button></a>
+                        <a href="{% url 'checklist_update' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Edit</button></a>
+                        <a href="{% url 'checklist_delete' pk=travel.pk item_id=item.id %}"><button class="itinerary-edit-delete-btn">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div class="checklist-new">
+    <h3>+ Add list</h3>
+    <form class="create-checklist-form" method="post">
+        {% csrf_token %}
+        {{list_form.as_p}}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+</div>
+
+</div>
+{% endblock %}
