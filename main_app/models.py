@@ -8,6 +8,7 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     
         profile_image = models.ImageField(upload_to = "profile_images/", blank=True, null=True)
+        travel_bucket_list = ArrayField(models.CharField(max_length = 250), blank = True, null=True)
 
 CONTINENT_CHOICES = {
     ("Africa", "Africa"),
@@ -48,6 +49,7 @@ class Travel(models.Model):
     destinations = models.ManyToManyField(Destination, blank=True)
     departure_date = models.DateField(auto_now = False, auto_now_add = False)
     return_date = models.DateField(auto_now = False, auto_now_add = False)
+    things_to_do = ArrayField(models.CharField(max_length = 250), blank = True, null=True)
     budget = models.IntegerField()
     travelers = models.ManyToManyField(CustomUser)
     tags = models.ManyToManyField(Tag)
@@ -78,8 +80,8 @@ class Itinerary(models.Model):
         ordering = ['date']
 
 CATEGORY_CHOICES = {
-    ("To Do List", "To Do List"), 
-    ("Check List", "Check List"),
+    ("To Confrim List", "To Do List"), 
+    ("To Do List", "To Do List"),
     ("Packing List", "Packing List"), 
 }
 
