@@ -14,10 +14,7 @@ Pillow = "*"
 cloudinary = "*"
 python-decouple = "*"
 dj3-cloudinary-storage = "*"
-<<<<<<< HEAD
 psycopg2-binary = "*"
-=======
->>>>>>> 3078738413462d6dba805d2a5e78d2083d9cdf6a
 
 [dev-packages]
 
