@@ -11,6 +11,7 @@ dj-database-url = "*"
 psycopg2 = "*"
 whitenoise = "*"
 Pillow = "*"
+cloudinary==1.29.0
 
 [dev-packages]
 
