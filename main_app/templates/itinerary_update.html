@@ -6,9 +6,12 @@
     <a href="{% url 'profile' user.username%}">My Travel</a> / <a href="{% url 'travel_detail' travel.pk %}">{{travel.title}}</a> / <a href="">Edit Itinerary</a>
 </div>
 
-    <h1 class="create-page-h1">{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
-    <h2>Itinerary Update</h2>
-    <div class="create-form-div">
+<div class="form-page">
+    <div class="form-page-left">
+        <h1>Itinerary Update</h1>
+        <h3>{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h3>
+    </div>
+    <div class="form-page-right">
         <form class="create-form" method="post" enctype = "multipart/form-data">
             {% csrf_token %}
             {{form.as_table}}
@@ -16,6 +19,6 @@
             <a class="form-cancel" href="{% url 'travel_detail' travel.pk %}">Cancel</a>
         </form>
     </div>
-
+</div>
     
 {% endblock %}

@@ -17,8 +17,9 @@
             <img  class="profile-page-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
             {% endif %}
             <h1>{{user.username}}</h1>
+            <h3>{{user.travel_buket_list.all|join(", )}}</h3>
 
-            {% if user.is_authenticated and user is user.username%}
+            {% if user.is_authenticated and user == user.username%}
             <a class="edit-profile" href="{% url 'profile_update' user.pk %}">
                 <img  class="setting-icon" src="{% static 'images/outline_settings_black_24dp.png' %}" alt="">
                 <span>Edit Profile</span>
