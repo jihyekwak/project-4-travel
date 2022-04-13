@@ -18,11 +18,11 @@
             {% endif %}
             <h1>{{user.username}}</h1>
             <ul>
-                {% for buketlist in user.travel_buket_list.all %}
+                {% for buketlist in user.travel_buket_list %}
                 <li>{{bucketlist}}</li>
                 {% endfor %}
             </ul>
-            {% if user.is_authenticated and user == user.username%}
+            {% if user.is_authenticated and user == user.pk%}
             <a class="edit-profile" href="{% url 'profile_update' user.pk %}">
                 <img  class="setting-icon" src="{% static 'images/outline_settings_black_24dp.png' %}" alt="">
                 <span>Edit Profile</span>
