@@ -80,7 +80,7 @@ class Itinerary(models.Model):
         ordering = ['date']
 
 CATEGORY_CHOICES = {
-    ("To Confrim List", "To Do List"), 
+    ("To Confirm List", "To Confirm List"), 
     ("To Do List", "To Do List"),
     ("Packing List", "Packing List"), 
 }

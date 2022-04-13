@@ -47,7 +47,7 @@
             <div class = "checklist-container">
                 <div class = "travel-detail-checklist checklist-card-content">
                     <h4>To Confirm</h4>
-                        {% for item in check_list %}
+                        {% for item in confirm_list %}
                             {% if item.is_completed == False %}
                             <p>{{item}} {% if item.priority == "High" %}❗️{% elif item.priority == "Medium" %}🔸{% elif item.priority == "Low" %}🔹{% endif %} {% if item.due_date%}| {{item.due_date}}{% endif %}</p>
                             {% else %}
