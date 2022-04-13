@@ -2,13 +2,18 @@
 
 {% block content %}
 
-    <h1 class="create-page-h1">Profile Update Page</h1>
-    <div class="create-form-div">
-        <form class="create-form" method="post" enctype = "multipart/form-data">
+<div class="form-page">
+    <div class="form-page-left">
+        <h1>Profile Update Page</h1>
+    </div>
+
+    <div class="form-page-right">
+        <form class="create-form profile-update-form" method="post" enctype = "multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <input type="submit" value="Submit" />
             <a class="form-cancel" href="{% url 'profile' user.pk %}">Cancel</a>
         </form>
     </div>
+</div>
 {% endblock %}

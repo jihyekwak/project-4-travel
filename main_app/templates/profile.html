@@ -17,8 +17,11 @@
             <img  class="profile-page-profile-image" src="{% static 'images/blank-profile-picture.png' %}" alt="">
             {% endif %}
             <h1>{{user.username}}</h1>
-            <h3>{{user.travel_buket_list.all|join(", )}}</h3>
-
+            <ul>
+                {% for buketlist in user.travel_buket_list.all %}
+                <li>{{bucketlist}}</li>
+                {% endfor %}
+            </ul>
             {% if user.is_authenticated and user == user.username%}
             <a class="edit-profile" href="{% url 'profile_update' user.pk %}">
                 <img  class="setting-icon" src="{% static 'images/outline_settings_black_24dp.png' %}" alt="">
