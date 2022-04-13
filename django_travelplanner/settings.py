@@ -16,9 +16,6 @@ import os
 import socket
 import psycopg2
 import dj_database_url
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 # load_dotenv()
 
@@ -71,7 +68,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
-    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -170,11 +166,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'main_app.CustomUser'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dbmgp682p',
-    'API_KEY': '427284597671712',
-    'API_SECRET': 'kHQYaaO3ywDSgCrWw21qnujWecg',
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

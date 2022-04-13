@@ -71,7 +71,7 @@ def travel_detail(request, pk):
     travel = Travel.objects.get(pk = pk)
     lists = List.objects.filter(travel = pk)
     packing_list = lists.filter(category__icontains= 'Packing')
-    check_list = lists.filter(category__icontains = 'check')
+    confirm_list = lists.filter(category__icontains = 'confirm')
     todo_list = lists.filter(category__icontains = 'to do')
     list_form = ListForm(request.POST)
     comment_form = CommentForm(request.POST)
@@ -85,7 +85,7 @@ def travel_detail(request, pk):
             comment_form.instance.travel = travel
             comment_form.save()
             return HttpResponseRedirect("/travels/"+str(pk))
-    return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'comment_form':comment_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+    return render(request, 'travel_detail.html', {'travel': travel, 'list_form':list_form, 'comment_form':comment_form, 'packing_list': packing_list, 'confirm_list': confirm_list, 'todo_list':todo_list})
 
 @login_required
 def comment_update(request, pk, comment_id):
@@ -229,16 +229,15 @@ def checklist_list(request, pk):
     travel = Travel.objects.get(pk = pk)
     lists = List.objects.filter(travel = pk)
     packing_list = lists.filter(category__icontains= 'Packing')
-    check_list = lists.filter(category__icontains = 'check')
+    confirm_list = lists.filter(category__icontains = 'Confirm')
     todo_list = lists.filter(category__icontains = 'to do')
     list_form = ListForm(request.POST)
     if request.method == "POST":
-
         if list_form.is_valid():
             list_form.instance.travel = travel
             list_form.save()
             return HttpResponseRedirect("/travels/"+str(pk)+"/checklists")
-    return render(request, 'checklist_list.html', {'travel': travel, 'list_form':list_form, 'packing_list': packing_list, 'check_list': check_list, 'todo_list':todo_list})
+    return render(request, 'checklist_list.html', {'travel': travel, 'list_form':list_form, 'packing_list': packing_list, 'confirm_list': confirm_list, 'todo_list':todo_list})
 
 @login_required
 def is_completed(request, pk, item_id):
@@ -264,7 +263,7 @@ def checklist_update(request, pk, item_id):
     form = ListForm(request.POST or None, instance = list)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/travels/"+str(pk)+"/checklists/")
+        return HttpResponseRedirect("/travels/"+str(pk)+"/checklists")
     return render(request, 'checklist_update.html', {'list':list, 'form':form})
 
 def login_view(request):
