@@ -5,11 +5,11 @@
     <a href="{% url 'travel_detail' travel.pk %}">{{travel.title}}</a> / <a href="">Check List</a>
 </div>
 
-<div class="form-page">
-<h1 class="create-page-h1">{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h1>
-<div class="create-form-div">
+<div class="checklist-page">
+<h1>Check List</h1>
 
-<h2>Check List</h2>
+<div class="create-form-div">
+<h2>{{travel.title}} ({{travel.departure_date}}~{{travel.return_date}})</h2>
 <div class = "checklist-container">
     <div class = "checklist-card-content">
         <h3>Things To Confirm</h3>
