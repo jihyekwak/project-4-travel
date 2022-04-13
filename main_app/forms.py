@@ -24,7 +24,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'email',  'profile_image']
+        fields = ['username', 'first_name', 'last_name', 'email',  'profile_image', 'travel_bucket_list']
 
 class DateInput(forms.DateInput):
     input_type = 'date'
