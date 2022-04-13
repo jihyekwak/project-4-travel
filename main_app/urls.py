@@ -36,7 +36,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name="signup"),
 
     path('user/<username>', views.profile, name='profile'),
-    path('user/<int:pk>/update', views.Profile_Update.as_view(), name='profile_update'),
+    path('user/<int:username>/update', views.Profile_Update.as_view(), name='profile_update'),
 
     # path('users/', views.Users.as_view(), name='users')
 
