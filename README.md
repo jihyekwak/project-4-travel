@@ -10,7 +10,9 @@ This app is for travel planning. Plan your travels with your family and friends,
 6. [Technologies used](#technologies-used)
 
 # About The Project  
+Build a web application using Django, Python, PostgreSQL, Heroku Deployment. 
 
+Heroku Deployment : https://travellovers.herokuapp.com/
 
 # User Stories
 Home Page (Laning page) / General:
