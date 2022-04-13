@@ -263,7 +263,7 @@ def checklist_update(request, pk, item_id):
     form = ListForm(request.POST or None, instance = list)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/travels/"+str(pk)+"/checklists/")
+        return HttpResponseRedirect("/travels/"+str(pk)+"/checklists")
     return render(request, 'checklist_update.html', {'list':list, 'form':form})
 
 def login_view(request):
