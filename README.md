@@ -38,7 +38,8 @@ Post List Page (Travels, Destinations) / Detail Page (Travel, Destination):
 ![image](https://user-images.githubusercontent.com/47770303/160962673-59ea7b6c-dee9-4cfc-a077-7a9b15c4d792.png)  
 
 # ERD
-![image](https://user-images.githubusercontent.com/47770303/161394120-89eef39d-c9d8-4b31-8631-c3e163632bd5.png)
+![image](https://user-images.githubusercontent.com/47770303/163493385-6d007cb9-12fb-4b1a-ab95-3e48315ae567.png)
+
 
 
 # Wireframes
