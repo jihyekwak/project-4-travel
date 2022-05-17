@@ -12,7 +12,7 @@ This app is travel planner for travel lovers. Explore destination and plan your 
 # About The Project  
 Built a web application using Django, Python, PostgreSQL, Heroku Deployment. 
 
-Heroku Deployment : https://travellovers.herokuapp.com/
+Heroku Deployment : https://travellovers.herokuapp.com/  
 (Because Heroku deployment doesn't offer image cloud, the demo site doens't store the uploaded images. Still uploading image is possible and can show the images as long as the site window opens.)
 
 <img width="1490" alt="travellovers_home" src="https://user-images.githubusercontent.com/47770303/168755561-634d518f-33b5-41b8-8e41-3a945fc64d5f.png">
