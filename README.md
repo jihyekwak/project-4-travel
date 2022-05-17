@@ -1,4 +1,3 @@
-<img width="1355" alt="travellovers" src="https://user-images.githubusercontent.com/47770303/168752881-5a7e32e4-e3e2-4730-ae76-c9f7ef16ceb2.png">
 # Travel Planner
 This app is for travel planning. Plan your travels with your family and friends, and share the plans and itineraries with others. Leave precious memories through travels.
 
@@ -15,6 +14,7 @@ Build a web application using Django, Python, PostgreSQL, Heroku Deployment.
 
 Heroku Deployment : https://travellovers.herokuapp.com/
 
+<img width="1490" alt="travellovers_home" src="https://user-images.githubusercontent.com/47770303/168755561-634d518f-33b5-41b8-8e41-3a945fc64d5f.png">
 <img width="1474" alt="profilepage" src="https://user-images.githubusercontent.com/47770303/168753500-6191f9f6-447c-4bfd-8b5f-6218d7ca6d26.png">
 <img width="1466" alt="travelplan" src="https://user-images.githubusercontent.com/47770303/168753586-2c3d5cd0-6148-43b3-8f42-4368695a8a6b.png">
 <img width="1461" alt="travelplan_table" src="https://user-images.githubusercontent.com/47770303/168753625-49ea675a-6b14-42fd-b609-60c98f6c1807.png">
