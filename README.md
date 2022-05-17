@@ -1,5 +1,5 @@
 # Travel Planner
-This app is for travel planning. Plan your travels with your family and friends, and share the plans and itineraries with others. Leave precious memories through travels.
+This app is travel planner for travel lovers. Explore destination and plan your travels with your family and friends, and share the plans and itineraries with others. Leave precious memories through travels.
 
 #### Table of Contents  
 1. [About The Project](#about-the-project)
@@ -10,9 +10,10 @@ This app is for travel planning. Plan your travels with your family and friends,
 6. [Technologies used](#technologies-used)
 
 # About The Project  
-Build a web application using Django, Python, PostgreSQL, Heroku Deployment. 
+Built a web application using Django, Python, PostgreSQL, Heroku Deployment. 
 
 Heroku Deployment : https://travellovers.herokuapp.com/
+(Because Heroku deployment doesn't offer image cloud, the demo site doens't store the uploaded images. Still uploading image is possible and can show the images as long as the site window opens.)
 
 <img width="1490" alt="travellovers_home" src="https://user-images.githubusercontent.com/47770303/168755561-634d518f-33b5-41b8-8e41-3a945fc64d5f.png">
 <img width="1474" alt="profilepage" src="https://user-images.githubusercontent.com/47770303/168753500-6191f9f6-447c-4bfd-8b5f-6218d7ca6d26.png">
