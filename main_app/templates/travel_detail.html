@@ -33,7 +33,7 @@
                 <li><p>Tags: {{ travel.tags.all|join:", "}}</p></li>
             </ul>
             {% if user.is_authenticated and user in travel.travelers.all  %}
-            <div>
+            <div class="travel-button-group">
                 <a href="{% url 'travel_update' travel.pk %}"><button class="travel-edit-delete-btn">Edit</button></a>
                 <a href="{% url 'travel_delete' travel.pk %}"><button class="travel-edit-delete-btn">Delete</button></a>
             </div>
@@ -106,22 +106,22 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Day</th>
-                                <th>Date</th>
-                                <th>Transportation</th>
-                                <th>Accomodation</th>
-                                <th>Things To Do</th>
-                                <th>Meals</th>
-                                <th>Budget</th>
+                                <th class="table-day">Day</th>
+                                <th class="table-date">Date</th>
+                                <th class="table-transportation">Transportation</th>
+                                <th class="table-accomodation">Accomodation</th>
+                                <th class="table-todo">Things To Do</th>
+                                <th class="table-meals">Meals</th>
+                                <th class="table-budget">Budget</th>
                                 {% if user.is_authenticated and user in travel.travelers.all  %}
-                                <th></th>
+                                <th class="table-edit"></th>
                                 {% endif %}
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><p>{{itinerary.day}}</p></td>
-                                <td><p>{{itinerary.date}}</p></td>
+                                <td class="table-center"><p>{{itinerary.day}}</p></td>
+                                <td class="table-center"><p>{{itinerary.date}}</p></td>
                                 <td><p>{{itinerary.transportation}}</p></td>
                                 <td><p>{{itinerary.accomodation}}</p></td>
                                 <td>
@@ -134,7 +134,7 @@
                                     <p>{{meal}}</p>
                                 {% endfor %}
                                 </td>
-                                <td><p>{{itinerary.daily_budget}}</p></td>
+                                <td class="table-center"><p>{{itinerary.daily_budget}}</p></td>
                                 {% if user.is_authenticated and user in travel.travelers.all  %}
                                 <td>
                                     <div class="detail-itinerary-edit-delete">
@@ -146,10 +146,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <div class="">
-                        <a href="{% url 'itinerary_update' pk=travel.pk itinerary_id=itinerary.id %}"><button>Edit</button></a>
-                        <a href="{% url 'itinerary_delete' pk=travel.pk itinerary_id=itinerary.id %}"><button>Delete</button></a>
-                    </div> -->
                 </div>
             {% endfor %}
             </div>
