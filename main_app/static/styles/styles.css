@@ -185,7 +185,7 @@ Home Page
 }
 
 .home-list {
-    margin: 100px 100px;
+    margin: 0px 100px;
 }
 
 .home-list-header {
@@ -214,7 +214,7 @@ Home Page
     aspect-ratio: 1 /1;
     height: 360px;
     /* background-color: white; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .home-destination-card-content a {
@@ -233,6 +233,7 @@ Home Page
 
 .home-destination-card-text {
     padding: 0 10px;
+    display: none;
 }
 
 .home-travel-card-content {
@@ -240,8 +241,8 @@ Home Page
     max-width: 300px;
     aspect-ratio: 1 /1;
     height: 380px;
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-color: white; */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .home-travel-card-content a {
@@ -260,6 +261,7 @@ Home Page
 
 .home-travel-card-text {
     padding: 0 10px;
+    display: none;
 }
 
 @media (max-width:1023px) {
